@@ -7,7 +7,7 @@ export default function Testimonials() {
   if (!testimonials.length) return null
 
   return (
-    <section id="clientes" aria-labelledby="clientes-title" className="bg-[#f5f5f7]/60 py-24 md:py-32">
+    <section id="clientes" aria-labelledby="clientes-title" className="bg-paper/60 py-24 md:py-32">
       <div className="wrap">
         <Reveal as="h2" id="clientes-title" className="headline max-w-[18ch]">
           {testimonialsSection.title}

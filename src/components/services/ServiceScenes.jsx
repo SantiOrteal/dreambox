@@ -80,7 +80,7 @@ function WebScene() {
   return (
     <div className="relative w-full max-w-[380px]">
       <motion.div {...enter(0.05)} className={`${card} overflow-hidden`}>
-        <div className="flex items-center gap-1.5 border-b border-black/[0.06] px-4 py-2.5">
+        <div className="flex items-center gap-1.5 border-b border-black/6 px-4 py-2.5">
           <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
@@ -96,7 +96,7 @@ function WebScene() {
           </motion.div>
           <div className="mt-5 grid grid-cols-3 gap-2">
             {[0, 1, 2].map((i) => (
-              <motion.div key={i} {...enter(0.7 + i * 0.08)} className="aspect-[4/3] rounded-lg bg-gradient-to-br from-brand-soft to-[#e3f2fd]" />
+              <motion.div key={i} {...enter(0.7 + i * 0.08)} className="aspect-4/3 rounded-lg bg-linear-to-br/srgb from-brand-soft to-[#e3f2fd]" />
             ))}
           </div>
         </div>
@@ -137,12 +137,12 @@ function MaintenanceScene() {
             </motion.li>
           ))}
         </ul>
-        <motion.div {...enter(1)} className="mt-4 border-t border-black/[0.06] pt-4">
+        <motion.div {...enter(1)} className="mt-4 border-t border-black/6 pt-4">
           <div className="flex justify-between text-[13px]">
             <span className="text-ink-muted">{t.backups}</span>
             <span className="font-medium tabular-nums text-ink">{t.backupsValue}</span>
           </div>
-          <div className="mt-2 h-2 overflow-hidden rounded-full bg-black/[0.06]">
+          <div className="mt-2 h-2 overflow-hidden rounded-full bg-black/6">
             <motion.div
               initial={{ transform: reduce ? 'scaleX(1)' : 'scaleX(0)' }}
               animate={{ transform: 'scaleX(1)' }}
@@ -161,7 +161,7 @@ function AutomationScene() {
   const t = useT().serviceScenes.automation
   const nodes = [
     { icon: Inbox, label: t.nodes[0], tone: 'bg-white text-ink' },
-    { icon: Sparkles, label: t.nodes[1], tone: 'bg-gradient-to-br from-brand to-[#6d5cff] text-white' },
+    { icon: Sparkles, label: t.nodes[1], tone: 'bg-linear-to-br/srgb from-brand to-[#6d5cff] text-white' },
     { icon: Send, label: t.nodes[2], tone: 'bg-white text-ink' },
   ]
   return (
@@ -199,7 +199,7 @@ function CloudScene() {
     <div className="relative grid h-[260px] w-full max-w-[380px] place-items-center">
       <motion.div
         {...enter(0.05, 'scale(0.9)')}
-        className="grid h-28 w-28 place-items-center rounded-[32px] bg-gradient-to-br from-brand to-navy text-white shadow-[0_24px_48px_-16px_rgba(47,91,234,0.6)]"
+        className="grid h-28 w-28 place-items-center rounded-[32px] bg-linear-to-br/srgb from-brand to-navy text-white shadow-[0_24px_48px_-16px_rgba(47,91,234,0.6)]"
       >
         <Lock className="h-11 w-11" strokeWidth={1.6} />
       </motion.div>
@@ -246,7 +246,7 @@ function SystemsScene() {
             />
           ))}
         </div>
-        <div className="mt-4 space-y-2 border-t border-black/[0.06] pt-4 text-[13px]">
+        <div className="mt-4 space-y-2 border-t border-black/6 pt-4 text-[13px]">
           {t.rows.map(([k, v], i) => (
             <motion.p key={k} {...enter(0.9 + i * 0.15)} className="flex justify-between">
               <span className="text-ink-muted">{k}</span>

@@ -19,7 +19,7 @@ export default function Hero() {
   return (
     <section ref={section} id="inicio" className={`relative ${reduce ? '' : 'h-[260vh]'}`}>
       <div
-        className={`${reduce ? 'min-h-[100dvh]' : 'sticky top-0 h-[100dvh]'} relative flex flex-col items-center justify-center overflow-hidden pb-5 pt-[4.5rem] max-sm:[@media(max-height:620px)]:pb-3 max-sm:[@media(max-height:620px)]:pt-16`}
+        className={`${reduce ? 'min-h-dvh' : 'sticky top-0 h-dvh'} relative flex flex-col items-center justify-center overflow-hidden pb-5 pt-18 max-sm:[@media(max-height:620px)]:pb-3 max-sm:[@media(max-height:620px)]:pt-16`}
       >
         <CircuitLines />
         <HeroCopy />

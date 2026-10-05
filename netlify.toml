@@ -6,7 +6,7 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "22"
   # Dev nunca se indexa en Google. VITE_SITE_URL no hace falta: se usa la dirección de Netlify.
   VITE_NOINDEX = "true"
   # La access key de Web3Forms va en Netlify > Site configuration > Environment variables

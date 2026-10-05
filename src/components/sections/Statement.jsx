@@ -13,15 +13,15 @@ function Phrase({ text, last }) {
     <motion.p
       className={`absolute inset-x-5 text-center font-semibold tracking-[-0.035em] ${
         last
-          ? 'text-[2.75rem] leading-[1.02] text-brand sm:text-7xl md:text-[6.5rem]'
-          : 'text-[2.25rem] leading-[1.06] text-ink sm:text-6xl md:text-[5rem]'
+          ? 'text-[2.75rem] leading-[1.02] text-brand sm:text-7xl sm:leading-none md:text-[6.5rem]'
+          : 'text-[2.25rem] leading-[1.06] text-ink sm:text-6xl sm:leading-none md:text-[5rem]'
       }`}
       aria-hidden="true"
       exit={{ opacity: 0, transform: 'translateY(-48px)', transition: { duration: 0.45, ease: EASE } }}
     >
       {words.map((w, i) => (
         <span key={i}>
-          <span className="-mb-[0.14em] -mt-[0.1em] inline-block overflow-hidden pb-[0.14em] pt-[0.1em] align-bottom">
+          <span className="mb-[-0.14em] mt-[-0.1em] inline-block overflow-hidden pb-[0.14em] pt-[0.1em] align-bottom">
             <motion.span
               className="inline-block"
               initial={{ transform: 'translateY(110%)', opacity: 0 }}
@@ -72,13 +72,13 @@ export default function Statement() {
   return (
     <section ref={ref} aria-label={copy.label} className="relative h-[320vh]">
       <h2 className="sr-only">{story.join(' ')}</h2>
-      <div className="sticky top-0 flex h-[100dvh] items-center justify-center overflow-hidden">
+      <div className="sticky top-0 flex h-dvh items-center justify-center overflow-hidden">
         {/* Halo que acompaña la respuesta final */}
         <motion.div
           aria-hidden="true"
           animate={{ opacity: last ? 1 : 0, transform: last ? 'scale(1)' : 'scale(0.8)' }}
           transition={{ duration: 1.2, ease: EASE }}
-          className="pointer-events-none absolute left-1/2 top-1/2 -ml-[300px] -mt-[300px] h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(79,124,255,0.22),transparent_65%)]"
+          className="pointer-events-none absolute left-1/2 top-1/2 ml-[-300px] mt-[-300px] h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(79,124,255,0.22),transparent_65%)]"
         />
 
         <div className="relative flex w-full max-w-[1200px] items-center justify-center" style={{ minHeight: '40vh' }}>
@@ -88,7 +88,7 @@ export default function Statement() {
         <motion.p
           animate={{ opacity: last ? 1 : 0, transform: last ? 'translateY(0px)' : 'translateY(16px)' }}
           transition={{ duration: 0.8, delay: last ? 0.5 : 0, ease: EASE }}
-          className="absolute inset-x-5 bottom-[18%] mx-auto max-w-[32rem] text-center text-[19px] leading-[1.45] text-ink-muted sm:text-[21px]"
+          className="absolute inset-x-5 bottom-[18%] mx-auto max-w-lg text-center text-[19px] leading-[1.45] text-ink-muted sm:text-[21px]"
         >
           {copy.tagline}
         </motion.p>

@@ -9,7 +9,7 @@ export default function Faq() {
   const [open, setOpen] = useState(-1)
 
   return (
-    <section id="preguntas" aria-labelledby="preguntas-title" className="bg-[#f5f5f7]/60 py-24 md:py-32">
+    <section id="preguntas" aria-labelledby="preguntas-title" className="bg-paper/60 py-24 md:py-32">
       <div className="wrap max-w-[820px]">
         <Reveal as="h2" id="preguntas-title" className="headline text-center">
           {faqSection.title}

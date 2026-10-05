@@ -125,7 +125,7 @@ export default function Contact() {
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute -left-32 -top-40 h-[520px] w-[520px] animate-drift rounded-full bg-brand/45 blur-[110px] motion-reduce:animate-none" />
             <div className="absolute -bottom-48 right-[-10%] h-[560px] w-[560px] animate-drift rounded-full bg-[#6d5cff]/35 blur-[120px] [animation-delay:-9s] motion-reduce:animate-none" />
-            <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_at_center,#000_30%,transparent_75%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] bg-size-[22px_22px] mask-[radial-gradient(ellipse_at_center,#000_30%,transparent_75%)]" />
           </div>
 
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
@@ -142,14 +142,14 @@ export default function Contact() {
               <SplitText
                 id="contacto-title"
                 text={c.title}
-                className="mt-4 text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:text-6xl"
+                className="mt-4 text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:text-6xl sm:leading-none"
               />
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="mt-6 max-w-[30rem] text-[19px] leading-[1.5] text-white/70"
+                className="mt-6 max-w-120 text-[19px] leading-normal text-white/70"
               >
                 {c.body}
               </motion.p>
@@ -167,7 +167,7 @@ export default function Contact() {
                       href={href}
                       target={href.startsWith('http') ? '_blank' : undefined}
                       rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-[15px] transition-[background-color,transform] duration-150 ease-out active:scale-[0.97] ${
+                      className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-[15px] transition-[background-color,transform,scale] duration-150 ease-out active:scale-[0.97] ${
                         accent ? 'bg-[#25d366] font-medium text-[#05230f] hover:bg-[#2ee57a]' : 'bg-white/10 text-white hover:bg-white/15'
                       }`}
                     >
@@ -233,7 +233,7 @@ export default function Contact() {
                           return (
                             <label
                               key={s.id}
-                              className={`inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-2 text-[14px] ring-1 ring-inset transition-[background-color,color,box-shadow,transform] duration-150 ease-out active:scale-[0.97] has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand ${
+                              className={`inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-2 text-[14px] ring-1 ring-inset transition-[background-color,color,box-shadow,transform,scale] duration-150 ease-out active:scale-[0.97] has-focus-visible:ring-2 has-focus-visible:ring-brand ${
                                 on ? 'bg-brand text-white ring-brand' : 'bg-white text-ink ring-line hover:ring-ink-subtle'
                               }`}
                             >

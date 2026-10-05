@@ -28,7 +28,7 @@ export default function OpeningBox({ progress, layout }) {
         <BoxDefs />
 
         {/* Sombras en el suelo: se encogen un poco cuando la caja sube al flotar */}
-        <g className="animate-float-shadow [transform-box:fill-box] [transform-origin:center] motion-reduce:animate-none">
+        <g className="animate-float-shadow transform-fill origin-center motion-reduce:animate-none">
           <ellipse cx="200" cy="344" rx="180" ry="26" fill="#0b1a3f" opacity="0.2" filter="url(#softShadow)" />
           <ellipse cx="200" cy="341" rx="115" ry="9" fill="#0b1a3f" opacity="0.32" filter="url(#contactShadow)" />
         </g>

@@ -23,7 +23,7 @@ export default function HeroCopy() {
 
       <motion.p
         {...rise(1.1)}
-        className="mx-auto mt-5 max-w-[34rem] text-[18px] leading-[1.45] text-ink-muted sm:text-[21px] [@media(min-width:640px)_and_(max-height:800px)]:mt-3 [@media(min-width:640px)_and_(max-height:800px)]:text-[19px] max-sm:[@media(max-height:760px)]:hidden"
+        className="mx-auto mt-5 max-w-136 text-[18px] leading-[1.45] text-ink-muted sm:text-[21px] [@media(min-width:640px)_and_(max-height:800px)]:mt-3 [@media(min-width:640px)_and_(max-height:800px)]:text-[19px] max-sm:[@media(max-height:760px)]:hidden"
       >
         {t.hero.subtitle}
       </motion.p>

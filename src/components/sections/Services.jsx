@@ -25,10 +25,10 @@ function Progress({ running, className }) {
 }
 
 const control =
-  'grid h-10 w-10 place-items-center rounded-full bg-white/80 text-ink/70 shadow-sm backdrop-blur transition-[background-color,color,transform] duration-150 ease-out hover:bg-white hover:text-ink active:scale-95 '
+  'grid h-10 w-10 place-items-center rounded-full bg-white/80 text-ink/70 shadow-xs backdrop-blur-sm transition-[background-color,color,transform,scale] duration-150 ease-out hover:bg-white hover:text-ink active:scale-95 '
 
 const arrow =
-  'grid h-11 w-11 place-items-center rounded-full bg-paper text-ink/70 transition-[background-color,color,transform] duration-150 ease-out hover:text-ink active:scale-95'
+  'grid h-11 w-11 place-items-center rounded-full bg-paper text-ink/70 transition-[background-color,color,transform,scale] duration-150 ease-out hover:text-ink active:scale-95'
 
 function Controls({ reduce, playing, onToggle, onStep, labels, className }) {
   return (
@@ -102,12 +102,12 @@ export default function Services() {
   const controls = { reduce, playing, onToggle: () => setPlaying((p) => !p), onStep: step, labels: copy }
 
   return (
-    <section ref={section} id="servicios" aria-labelledby="servicios-title" className="bg-[#f5f5f7]/60 py-24 md:py-32">
+    <section ref={section} id="servicios" aria-labelledby="servicios-title" className="bg-paper/60 py-24 md:py-32">
       <div className="wrap">
         <Reveal as="h2" id="servicios-title" className="headline max-w-[18ch]">
           {copy.title}
         </Reveal>
-        <Reveal as="p" delay={0.06} className="mt-4 max-w-[40rem] text-[19px] leading-[1.45] text-ink-muted">
+        <Reveal as="p" delay={0.06} className="mt-4 max-w-160 text-[19px] leading-[1.45] text-ink-muted">
           {copy.subtitle}
         </Reveal>
 
@@ -159,7 +159,7 @@ export default function Services() {
               const Icon = icons[s.icon]
               const selected = i === active
               return (
-                <div key={s.id} className="relative border-b border-black/[0.08]">
+                <div key={s.id} className="relative border-b border-black/8">
                   <button
                     ref={(el) => (listTabs.current[i] = el)}
                     type="button"
@@ -191,13 +191,13 @@ export default function Services() {
                   {/* Todo el detalle queda en el HTML (SEO); solo se despliega el del servicio activo */}
                   <div
                     aria-hidden={!selected}
-                    className={`grid transition-[grid-template-rows,opacity] duration-[400ms] ease-out motion-reduce:transition-none ${
+                    className={`grid transition-[grid-template-rows,opacity] duration-400 ease-out motion-reduce:transition-none ${
                       selected ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
                     }`}
                   >
                     <div className="overflow-hidden">
                       <div className="pb-6 pl-14">
-                        <p className="text-[16px] leading-[1.5] text-ink-muted">{s.body}</p>
+                        <p className="text-[16px] leading-normal text-ink-muted">{s.body}</p>
                         <ul className="mt-3 space-y-1 text-[15px] text-ink">
                           {s.points.map((p) => (
                             <li key={p} className="flex items-center gap-2">
@@ -245,11 +245,11 @@ export default function Services() {
                   animate="center"
                   exit="exit"
                   transition={{ duration: 0.5, ease: EASE }}
-                  className={`absolute inset-0 grid place-items-center bg-gradient-to-br px-8 py-10 ${bg}`}
+                  className={`absolute inset-0 grid place-items-center bg-linear-to-br/srgb px-8 py-10 ${bg}`}
                 >
                   <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(11,26,63,0.08)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"
+                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(11,26,63,0.08)_1px,transparent_1px)] bg-size-[22px_22px] mask-[radial-gradient(ellipse_at_center,black,transparent_75%)]"
                   />
                   <div className="relative flex w-full justify-center">
                     <Scene />
@@ -312,7 +312,7 @@ export default function Services() {
                       className={`[grid-area:1/1] ${isActive ? '' : 'pointer-events-none'}`}
                     >
                       <h3 className="text-[24px] font-semibold leading-[1.15] tracking-[-0.02em] text-ink">{s.title}</h3>
-                      <p className="mt-2 text-[16px] leading-[1.5] text-ink-muted">{s.body}</p>
+                      <p className="mt-2 text-[16px] leading-normal text-ink-muted">{s.body}</p>
                       <ul className="mt-4 space-y-1.5 text-[15px] text-ink">
                         {s.points.map((p) => (
                           <li key={p} className="flex items-center gap-2">

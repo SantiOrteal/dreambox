@@ -32,7 +32,7 @@ export default function ScrollCue({ progress, sectionRef }) {
         className="flex flex-col items-center gap-1.5"
       >
         {hero.cue}
-        <span className="grid h-8 w-8 animate-nudge place-items-center rounded-full bg-black/[0.05] motion-reduce:animate-none">
+        <span className="grid h-8 w-8 animate-nudge place-items-center rounded-full bg-black/5 motion-reduce:animate-none">
           <ChevronDown className="h-4 w-4" />
         </span>
       </motion.span>

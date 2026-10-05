@@ -22,7 +22,7 @@ export default function Header() {
   }, [open])
 
   return (
-    <header className="material fixed inset-x-0 top-0 z-50 border-b border-black/[0.08]">
+    <header className="material fixed inset-x-0 top-0 z-50 border-b border-black/8">
       <div className="wrap flex h-12 items-center justify-between">
         <Logo animated />
 

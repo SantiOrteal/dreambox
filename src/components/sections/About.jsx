@@ -6,7 +6,7 @@ import { useT } from '../../i18n'
 function MarqueeRow({ items, reverse }) {
   const row = [...items, ...items]
   return (
-    <div className="group flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_10%,#000_90%,transparent)]">
+    <div className="group flex overflow-hidden mask-[linear-gradient(to_right,transparent,#000_10%,#000_90%,transparent)]">
       <ul
         className={`flex w-max shrink-0 gap-3 pr-3 group-hover:[animation-play-state:paused] motion-reduce:animate-none ${
           reverse ? 'animate-marquee-reverse' : 'animate-marquee'
@@ -16,7 +16,7 @@ function MarqueeRow({ items, reverse }) {
           <li
             key={`${t.slug}-${i}`}
             aria-hidden={i >= items.length}
-            className="flex items-center gap-2.5 rounded-full bg-white py-2.5 shadow-[0_1px_3px_rgba(15,23,42,0.06)] ring-1 ring-black/[0.04] pl-3 pr-5 text-[15px] font-medium text-ink"
+            className="flex items-center gap-2.5 rounded-full bg-white py-2.5 shadow-[0_1px_3px_rgba(15,23,42,0.06)] ring-1 ring-black/4 pl-3 pr-5 text-[15px] font-medium text-ink"
           >
             <img
               src={`https://cdn.simpleicons.org/${t.slug}`}
@@ -43,7 +43,7 @@ export default function About() {
         <Reveal as="h2" id="nosotros-title" className="display mx-auto max-w-[14ch]">
           {about.title}
         </Reveal>
-        <Reveal as="div" delay={0.08} className="mx-auto mt-8 max-w-[40rem] space-y-5 text-[19px] leading-[1.5] text-ink-muted sm:text-[21px]">
+        <Reveal as="div" delay={0.08} className="mx-auto mt-8 max-w-160 space-y-5 text-[19px] leading-normal text-ink-muted sm:text-[21px]">
           <p>{about.body}</p>
           <p className="font-semibold text-ink">{about.claim}</p>
         </Reveal>

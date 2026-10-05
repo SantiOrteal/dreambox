@@ -15,7 +15,7 @@ export default function ServicePiece({ piece, label, progress, layout }) {
   return (
     <motion.div
       style={{ transform, opacity }}
-      className="absolute left-1/2 top-[42%] -ml-[54px] -mt-[46px] flex w-[108px] flex-col items-center gap-2 rounded-[22px] bg-white px-3 pb-3 pt-3.5 shadow-[0_20px_40px_-14px_rgba(30,58,138,0.45),0_2px_6px_rgba(15,23,42,0.06)] ring-1 ring-black/[0.05]"
+      className="absolute left-1/2 top-[42%] ml-[-54px] mt-[-46px] flex w-[108px] flex-col items-center gap-2 rounded-[22px] bg-white px-3 pb-3 pt-3.5 shadow-[0_20px_40px_-14px_rgba(30,58,138,0.45),0_2px_6px_rgba(15,23,42,0.06)] ring-1 ring-black/5"
     >
       <span className="grid h-11 w-11 place-items-center rounded-[14px] bg-brand-soft">
         <Icon className="h-6 w-6 text-brand" strokeWidth={1.75} />
