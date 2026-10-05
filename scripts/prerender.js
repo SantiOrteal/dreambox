@@ -10,7 +10,7 @@ const dist = path.join(root, 'dist')
 const env = loadEnv('production', root, '')
 // En Netlify, sin VITE_SITE_URL se usa su dirección principal (igual que en vite.config.js).
 const siteUrl = (env.VITE_SITE_URL || process.env.URL || 'https://dreamboxdev.netlify.app').replace(/\/$/, '')
-// Versión de prueba: pide a los buscadores no indexar (solo en dev; ver README).
+// Versión de prueba: pide a los buscadores no indexar (solo en dev).
 const noindex = env.VITE_NOINDEX === 'true'
 
 // En Cloudflare (producción) la dirección del dominio es obligatoria: sin ella, el canonical y el

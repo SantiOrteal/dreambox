@@ -1,55 +1,51 @@
-# DreamBox · Sitio web
+<p align="center">
+  <a href="https://dreamboxdev.netlify.app">
+    <img src="public/og-image.png" alt="DreamBox: tecnología que funciona, con un equipo que responde." width="720" />
+  </a>
+</p>
 
-Landing de DreamBox (desarrollo de software y soluciones IT). React 18 + Vite + Tailwind 3 + Motion.
+<h1 align="center">DreamBox</h1>
 
-## Comandos
+<p align="center">
+  <strong>Soporte IT, sitios web y tecnología para empresas en México.</strong><br />
+  Somos el equipo de sistemas de tu empresa: resolvemos, mantenemos y mejoramos tu tecnología.
+</p>
 
-- `npm run dev`: servidor de desarrollo
-- `npm run build`: build de producción + pre-render del HTML (SEO), `sitemap.xml` y `robots.txt` en `dist/`
-- `npm run preview`: sirve `dist/` localmente
+<p align="center">
+  <a href="https://dreamboxdev.netlify.app"><strong>Visitar el sitio →</strong></a>
+  &nbsp;·&nbsp;
+  <a href="https://wa.me/525659239380"><strong>Escríbenos por WhatsApp</strong></a>
+</p>
 
-## Ambientes y ramas
+---
 
-| Ambiente | Rama | Dónde | Indexación |
-|---|---|---|---|
-| Dev (pruebas) | `dev` | Netlify: `https://dreamboxdev.netlify.app` | No (`noindex`) |
-| Producción | `main` | Cloudflare, con el dominio (pendiente) | Sí |
+## Qué hacemos
 
-Flujo: se trabaja en `dev` (cada push publica en Netlify) y se hace merge a `main` cuando está listo.
-Mientras no haya dominio, `main` no se publica en ningún lado.
+| | |
+|---|---|
+| **Soporte técnico y mesa de ayuda** | Resolvemos los problemas con tus programas, cuentas y sistemas por WhatsApp, correo o acceso remoto. |
+| **Sitios web y tiendas en línea** | Creamos, migramos y mantenemos tu web para que cargue rápido, aparezca en Google y reciba clientes. |
+| **Mantenimiento mensual** | Actualizaciones, copias de seguridad y monitoreo para que tus sistemas no fallen en el peor momento. |
+| **Automatización e IA** | Automatizamos tareas repetitivas: cotizaciones, reportes, respuestas y recordatorios. |
+| **Nube, correo y seguridad** | Correo corporativo, almacenamiento en la nube, accesos y respaldos configurados de forma segura. |
+| **Sistemas a la medida** | Cuando una herramienta estándar no alcanza, desarrollamos la que necesitas y la mantenemos contigo. |
 
-Las variables van en el panel de cada plataforma, nunca en el repo. Plantilla local: `.env.example` → `.env`.
+## Cómo trabajamos
 
-### Dev en Netlify (activo)
+- **Respuesta el mismo día** en horario laboral.
+- **Precio fijo mensual**, sin cobros sorpresa.
+- **Una persona responsable** que conoce tu empresa y tus sistemas.
+- **Mes a mes**, sin contratos largos. Te quedas porque funciona.
 
-1. Netlify → *Add new site → Import an existing project* → elegir el repo de GitHub.
-2. *Site configuration → Build & deploy → Branches*: rama de producción **`dev`**; *Branch deploys*: **None**.
-3. *Environment variables*: `VITE_WEB3FORMS_KEY` (y `VITE_GA_ID` si se usa).
-   `netlify.toml` ya fija el build, Node 20 y `VITE_NOINDEX=true`; la URL del sitio la pone Netlify sola.
+## Hablemos
 
-### Producción en Cloudflare (al comprar el dominio)
+¿Tu empresa necesita que la tecnología simplemente funcione?
 
-Configuración en `wrangler.jsonc` (Workers con archivos estáticos). Cabeceras HTTP en `public/_headers`, compartidas con Netlify.
+- 💬 **WhatsApp:** [+52 56 5923 9380](https://wa.me/525659239380)
+- 🌐 **Sitio web:** [dreamboxdev.netlify.app](https://dreamboxdev.netlify.app), con formulario de contacto
 
-1. Comprar el dominio en Cloudflare (queda en la misma cuenta).
-2. *Workers & Pages → Create → Import a repository* → elegir el repo.
-   - Rama de producción: **`main`**
-   - Build command: `npm run build`
-   - Deploy command: `npx wrangler deploy`
-3. *Settings → Build → Variables*: `VITE_SITE_URL=https://www.tudominio.com` (obligatoria, sin `/` final; el build falla si falta),
-   `NODE_VERSION=20`, `VITE_WEB3FORMS_KEY` y `VITE_GA_ID` si se usa. **No** definir `VITE_NOINDEX`.
-4. *Settings → Domains & Routes → Add custom domain*: `www.tudominio.com`, y redirigir el dominio sin `www` a `www`.
-5. En Web3Forms, permitir el nuevo dominio si hay restricción de origen.
-6. Registrar el sitio en Google Search Console y enviar `/sitemap.xml`.
+---
 
-## Pendientes de contenido
-
-1. `src/content/site.js`: reemplaza todo lo marcado con `TODO` (correo, teléfono, WhatsApp, redes, compromisos).
-2. Testimonios: agrégalos en `testimonials` (solo reales, con permiso). La sección aparece sola cuando hay datos.
-3. Después de publicar en el dominio: crea o actualiza tu Perfil de Empresa en Google.
-
-## Estructura
-
-- `src/content/site.js`: todos los textos y datos editables
-- `src/components/sections/`: una sección por archivo, en el orden de la historia de la página
-- `src/entry-server.jsx` + `scripts/prerender.js`: pre-render y datos estructurados (schema.org)
+<p align="center">
+  <sub>Sitio diseñado y desarrollado por Santiago Ortega · © DreamBox Dev. Todos los derechos reservados.</sub>
+</p>

@@ -1,5 +1,5 @@
 # Ambiente de DEV (pruebas): Netlify publica la rama `dev` en https://dreamboxdev.netlify.app.
-# Producción irá a Cloudflare con el dominio (ver wrangler.jsonc y el README).
+# Producción irá a Cloudflare con el dominio (ver wrangler.jsonc).
 # Las cabeceras HTTP están en public/_headers (compartidas con Cloudflare).
 [build]
   command = "npm run build"
