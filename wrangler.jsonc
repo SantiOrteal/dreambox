@@ -1,0 +1,13 @@
+// Ambiente de PRODUCCIÓN: Cloudflare Workers con archivos estáticos (se usará al tener el dominio).
+// Cloudflare construye la rama `main` desde GitHub (Workers Builds) y publica ./dist.
+// Variables de build en el panel de Cloudflare: VITE_SITE_URL (obligatoria), VITE_WEB3FORMS_KEY, VITE_GA_ID.
+// Cabeceras HTTP: public/_headers. Pasos completos en el README.
+{
+  "name": "dreambox",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    // /privacidad -> privacidad.html, /en/ -> en/index.html (igual que en Netlify)
+    "html_handling": "auto-trailing-slash"
+  }
+}

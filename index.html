@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <!--
+      Idioma automático: si el visitante no eligió idioma a mano, se usa el de su navegador.
+      Español (de cualquier país) → versión en español; cualquier otro idioma → versión en inglés.
+      Los buscadores y herramientas automáticas nunca se redirigen, para que indexen cada versión.
+    -->
+    <script>
+      ;(function () {
+        try {
+          if (/bot|crawl|spider|slurp|lighthouse|headless|preview/i.test(navigator.userAgent)) return
+          var path = location.pathname
+          var isEn = /^\/en(\/|$)/.test(path)
+          var saved = null
+          try {
+            saved = localStorage.getItem('dreambox-lang')
+          } catch (e) {}
+          var browser = (navigator.languages && navigator.languages[0]) || navigator.language || 'es'
+          var want = saved === 'es' || saved === 'en' ? saved : /^es\b/i.test(browser) ? 'es' : 'en'
+          if ((want === 'en') === isEn) return
+          var isPrivacy = /\/(privacidad|privacy)(\.html|\/)?$/.test(path)
+          var target = want === 'en' ? (isPrivacy ? '/en/privacy' : '/en/') : isPrivacy ? '/privacidad' : '/'
+          location.replace(target + location.search + location.hash)
+        } catch (e) {}
+      })()
+    </script>
+    <title>DreamBox Dev</title>
+    <!-- Título, descripción, canonical, hreflang y Open Graph de cada página e idioma: los escribe scripts/prerender.js -->
+    <!--head-meta-->
+    <meta name="author" content="DreamBox Dev" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="dns-prefetch" href="https://cdn.simpleicons.org" />
+
+    <!--structured-data-->
+  </head>
+  <body>
+    <div id="root"><!--app-html--></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

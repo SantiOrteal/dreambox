@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+    min-width: 320px;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Tracking según tamaño: negativo en titulares grandes, neutro en texto corrido */
+  h1, h2, h3 {
+    @apply text-balance;
+  }
+
+  p {
+    @apply text-pretty;
+  }
+
+  /* Todo lo que se puede pulsar muestra la mano (Tailwind deja los botones con flecha) */
+  button,
+  [role='button'],
+  [role='tab'],
+  summary,
+  select,
+  label:has(input[type='radio'], input[type='checkbox']) {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  ::selection {
+    @apply bg-brand/20;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand ring-offset-2 ring-offset-canvas;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-5 py-2.5 text-[15px] font-normal
+      transition-[transform,background-color,color] duration-150 ease-out active:scale-[0.97];
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-hover;
+  }
+  .btn-secondary {
+    @apply btn text-brand ring-1 ring-inset ring-brand hover:bg-brand hover:text-white;
+  }
+  .link {
+    @apply inline-flex items-center gap-1 text-[17px] text-brand hover:underline;
+  }
+
+  /* Barra translúcida: aproximación web al material de Apple, no es Liquid Glass oficial */
+  .material {
+    @apply bg-white/75 backdrop-blur-xl backdrop-saturate-[1.8];
+  }
+  @media (prefers-reduced-transparency: reduce) {
+    .material { @apply bg-white backdrop-blur-none; }
+  }
+
+  .tile {
+    @apply rounded-[28px] bg-paper;
+  }
+
+  .wrap {
+    @apply mx-auto w-full max-w-page px-5 sm:px-8;
+  }
+
+  .display {
+    @apply text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.03em] sm:text-6xl md:text-[4.5rem];
+  }
+
+  .headline {
+    @apply text-[2rem] font-semibold leading-[1.08] tracking-[-0.025em] md:text-5xl;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-[17px] text-ink placeholder:text-ink-subtle
+      transition-[border-color,box-shadow] duration-150 hover:border-ink-subtle focus:border-brand focus:outline-none focus:ring-4 focus:ring-brand/15;
+  }
+}
+
+@keyframes fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@layer utilities {
+  /* Agranda el área táctil a ~44px sin cambiar el tamaño visible */
+  .hit { position: relative; }
+  .hit::after { content: ''; position: absolute; inset: -6px; }
+
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+}

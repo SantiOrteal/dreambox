@@ -1,0 +1,14 @@
+# Finales de línea LF en todo el repo, sin importar la configuración de Git de cada equipo
+# (así Windows y WSL ven los mismos archivos sin cambios fantasma).
+* text=auto eol=lf
+
+# Binarios: no se tocan
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.pdf binary

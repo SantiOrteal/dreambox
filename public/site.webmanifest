@@ -1,0 +1,11 @@
+{
+  "name": "DreamBox Dev | Soporte IT y soluciones tecnológicas",
+  "short_name": "DreamBox",
+  "icons": [
+    { "src": "/brand/logo-square.png", "type": "image/png", "sizes": "512x512" },
+    { "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
