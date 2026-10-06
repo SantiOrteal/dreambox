@@ -163,6 +163,10 @@
   @apply text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.03em] sm:text-6xl sm:leading-none md:text-[4.5rem];
 }
 
+@utility text-gradient {
+  @apply bg-linear-to-r from-brand via-[#5a4ff0] to-[#7b5cff] bg-clip-text text-transparent;
+}
+
 @utility headline {
   @apply text-[2rem] font-semibold leading-[1.08] tracking-tight md:text-5xl md:leading-none;
 }
