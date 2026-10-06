@@ -91,7 +91,7 @@ function ToggleScene({ reduce }) {
           transition={{ duration: 0.25, delay: 0.5, ease: 'easeOut' }}
         >
           <motion.span
-            className="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow"
+            className="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow-sm"
             initial={reduce ? false : { transform: 'translateX(0px)' }}
             whileInView={{ transform: 'translateX(16px)' }}
             viewport={{ once: true, amount: 0.8 }}
@@ -105,9 +105,9 @@ function ToggleScene({ reduce }) {
 
 const cells = {
   respuesta: { span: 'md:col-span-2', tone: 'bg-navy-deep text-white', sub: 'text-white/65', Scene: ChatScene },
-  precio: { span: '', tone: 'bg-white/75 text-ink ring-1 ring-black/[0.04] backdrop-blur-sm', sub: 'text-ink-muted', Scene: PlanScene },
+  precio: { span: '', tone: 'bg-white/75 text-ink ring-1 ring-black/4 backdrop-blur-xs', sub: 'text-ink-muted', Scene: PlanScene },
   contacto: { span: '', tone: 'bg-brand-soft text-navy', sub: 'text-navy/70', Scene: OwnerScene },
-  contrato: { span: 'md:col-span-2', tone: 'bg-white/75 text-ink ring-1 ring-black/[0.04] backdrop-blur-sm', sub: 'text-ink-muted', Scene: ToggleScene },
+  contrato: { span: 'md:col-span-2', tone: 'bg-white/75 text-ink ring-1 ring-black/4 backdrop-blur-xs', sub: 'text-ink-muted', Scene: ToggleScene },
 }
 
 export default function Commitments() {

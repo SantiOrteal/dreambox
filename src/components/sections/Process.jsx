@@ -21,7 +21,7 @@ function StagePanel({ active, progress, reduce }) {
       <div aria-hidden="true" className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-brand/40 blur-3xl" />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:linear-gradient(to_bottom,black,transparent_70%)]"
+        className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.07)_1px,transparent_1px)] bg-size-[22px_22px] mask-[linear-gradient(to_bottom,black,transparent_70%)]"
       />
 
       <div className="relative flex items-center gap-5">
@@ -111,8 +111,8 @@ function StepCopy({ step, i, as: Title = 'h3' }) {
         <span className="mx-2 text-ink-subtle">·</span>
         {step.detail}
       </p>
-      <Title className="mt-2 text-[32px] font-semibold tracking-[-0.025em] text-ink md:text-[40px]">{step.title}</Title>
-      <p className="mt-3 max-w-[44ch] text-[19px] leading-[1.5] text-ink-muted">{step.body}</p>
+      <Title className="mt-2 text-[32px] font-semibold tracking-tight text-ink md:text-[40px]">{step.title}</Title>
+      <p className="mt-3 max-w-[44ch] text-[19px] leading-normal text-ink-muted">{step.body}</p>
       <ul className="mt-5 space-y-2 text-[16px] text-ink">
         {step.items.map((it) => (
           <li key={it} className="flex items-start gap-2.5">
@@ -154,7 +154,7 @@ function PinnedSteps({ reduce }) {
 
   return (
     <div ref={track} className="relative hidden lg:block" style={{ height: `calc(100dvh + ${TRACK_EXTRA})` }}>
-      <div className="sticky top-0 flex h-[100dvh] items-center pt-14">
+      <div className="sticky top-0 flex h-dvh items-center pt-14">
         <div className="grid h-[min(560px,calc(100dvh-140px))] w-full grid-cols-2 gap-12">
           <StagePanel active={active} progress={progress} reduce={reduce} />
 
@@ -213,12 +213,12 @@ export default function Process() {
   const reduce = useReducedMotion()
 
   return (
-    <section id="proceso" aria-labelledby="proceso-title" className="bg-[#f5f5f7]/60 py-24 md:py-32 lg:pb-16">
+    <section id="proceso" aria-labelledby="proceso-title" className="bg-paper/60 py-24 md:py-32 lg:pb-16">
       <div className="wrap">
         <Reveal as="h2" id="proceso-title" className="headline max-w-[20ch]">
           {copy.title}
         </Reveal>
-        <Reveal as="p" delay={0.06} className="mt-4 max-w-[40rem] text-[19px] leading-[1.45] text-ink-muted">
+        <Reveal as="p" delay={0.06} className="mt-4 max-w-160 text-[19px] leading-[1.45] text-ink-muted">
           {copy.subtitle}
         </Reveal>
 

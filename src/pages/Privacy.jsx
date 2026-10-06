@@ -44,14 +44,14 @@ export default function Privacy() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="min-h-[100dvh] bg-canvas">
+      <div className="min-h-dvh bg-canvas">
         <a
           href="#contenido"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-70 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-white"
         >
           {t.common.skipToContent}
         </a>
-        <header className="material sticky top-0 z-50 border-b border-black/[0.06]">
+        <header className="material sticky top-0 z-50 border-b border-black/6">
           <div className="wrap flex h-14 items-center justify-between">
             <Logo href={t.paths.home} />
             <div className="flex items-center gap-2">

@@ -17,7 +17,7 @@ export default function LangSwitch({ page = 'home', variant = 'compact', classNa
       aria-label={`${label}: ${switchTo}`}
       className={
         variant === 'compact'
-          ? `hit inline-flex h-8 items-center gap-1 rounded-full px-2.5 text-[12px] font-semibold tracking-[0.04em] text-ink/70 transition-colors hover:bg-black/[0.05] hover:text-ink ${className}`
+          ? `hit inline-flex h-8 items-center gap-1 rounded-full px-2.5 text-[12px] font-semibold tracking-[0.04em] text-ink/70 transition-colors hover:bg-black/5 hover:text-ink ${className}`
           : `inline-flex items-center gap-2 text-[17px] font-medium text-ink/80 transition-colors hover:text-ink ${className}`
       }
     >

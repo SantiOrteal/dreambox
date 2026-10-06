@@ -36,10 +36,10 @@ function CallVisual() {
         </span>
       </div>
       <div className="mt-5 grid grid-cols-2 gap-3">
-        <motion.div {...enter(0.2)} className="grid aspect-[4/3] place-items-center rounded-xl bg-white/[0.06]">
+        <motion.div {...enter(0.2)} className="grid aspect-4/3 place-items-center rounded-xl bg-white/6">
           <span className="grid h-12 w-12 place-items-center rounded-full bg-white/15 text-[15px] font-semibold text-white">{t.you}</span>
         </motion.div>
-        <motion.div {...enter(0.35)} className="grid aspect-[4/3] place-items-center rounded-xl bg-brand/30">
+        <motion.div {...enter(0.35)} className="grid aspect-4/3 place-items-center rounded-xl bg-brand/30">
           <span className="grid h-12 w-12 place-items-center rounded-full bg-white">
             <LogoMark className="h-7 w-7" />
           </span>
@@ -79,7 +79,7 @@ function ProposalVisual() {
           </motion.li>
         ))}
       </ol>
-      <motion.div {...enter(0.7)} className="mt-4 flex items-center justify-between border-t border-black/[0.06] pt-4 text-[14px]">
+      <motion.div {...enter(0.7)} className="mt-4 flex items-center justify-between border-t border-black/6 pt-4 text-[14px]">
         <span className="text-ink-muted">{t.price}</span>
         <span className="font-semibold">{t.priceValue}</span>
       </motion.div>
@@ -115,7 +115,7 @@ function RolloutVisual() {
       </div>
       <ul className="mt-4 grid grid-cols-2 gap-2.5">
         {tasks.map((t, i) => (
-          <motion.li key={t} {...enter(0.35 + i * 0.35)} className="flex items-center gap-2 rounded-xl bg-white/[0.06] px-3 py-2.5 text-[14px] text-white">
+          <motion.li key={t} {...enter(0.35 + i * 0.35)} className="flex items-center gap-2 rounded-xl bg-white/6 px-3 py-2.5 text-[14px] text-white">
             <CircleCheck className="h-4 w-4 text-[#4ade80]" /> {t}
           </motion.li>
         ))}
@@ -138,7 +138,7 @@ function SupportVisual() {
       </div>
       <div className="mt-4 grid grid-cols-3 gap-2.5">
         {stats.map((s, i) => (
-          <motion.div key={s.label} {...enter(0.2 + i * 0.15)} className="rounded-xl bg-white/[0.06] p-3">
+          <motion.div key={s.label} {...enter(0.2 + i * 0.15)} className="rounded-xl bg-white/6 p-3">
             <p className="text-[22px] font-semibold tabular-nums leading-none text-white">{s.value}</p>
             <p className="mt-1.5 text-[12px] leading-tight text-white/60">{s.label}</p>
           </motion.div>

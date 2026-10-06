@@ -32,7 +32,7 @@ export default function Footer({ page = 'home' }) {
         <div className="grid gap-10 border-b border-line pb-10 sm:grid-cols-2 md:grid-cols-4">
           <div>
             <Logo variant="original" height={34} href={page === 'home' ? '#inicio' : t.paths.home} />
-            <p className="mt-4 max-w-[28ch] leading-[1.5]">{f.tagline}</p>
+            <p className="mt-4 max-w-[28ch] leading-normal">{f.tagline}</p>
           </div>
           {cols.map((c) => (
             <nav key={c.title} aria-label={c.title}>
@@ -43,7 +43,7 @@ export default function Footer({ page = 'home' }) {
                     <a
                       href={l.href}
                       {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      className="break-words hover:text-ink hover:underline"
+                      className="wrap-break-word hover:text-ink hover:underline"
                     >
                       {l.label}
                     </a>
@@ -64,7 +64,7 @@ export default function Footer({ page = 'home' }) {
             <button type="button" onClick={openCookieSettings} className="hover:text-ink hover:underline">
               {f.cookies}
             </button>
-            <LangSwitch page={page} variant="full" className="!text-[12px] !font-normal !text-ink-muted hover:!text-ink" />
+            <LangSwitch page={page} variant="full" className="text-[12px]! font-normal! text-ink-muted! hover:text-ink!" />
           </div>
         </div>
       </div>

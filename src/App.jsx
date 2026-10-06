@@ -21,10 +21,10 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       <Backdrop />
-      <div className="relative min-h-[100dvh] overflow-x-clip">
+      <div className="relative min-h-dvh overflow-x-clip">
         <a
           href="#contenido"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-70 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-white"
         >
           {t.common.skipToContent}
         </a>
