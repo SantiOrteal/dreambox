@@ -1,19 +1,22 @@
-import { motion, useTransform } from 'motion/react'
+import { motion, useReducedMotion, useTransform } from 'motion/react'
 import BoxDefs, { RIM_IN, RIM_OUT } from './BoxDefs'
 import BoxLid from './BoxLid'
 import BoxLight, { BoxHalo } from './BoxLight'
 import ServicePiece from './ServicePiece'
-import { pieces } from './constants'
+import { CHARGE_AT, CHARGE_DURATION, pieces } from './constants'
 import { useT } from '../../i18n'
 
 const FACE_LEFT = 'M40 144 200 234v106L40 250Z'
 const FACE_RIGHT = 'M200 234 360 144v106L200 340Z'
 const FLOOR = 'M200 159 342 239 200 319 58 239Z'
+const OUTLINE = 'M40 144 200 54 360 144v106L200 340 40 250Z'
 
-// La caja de DreamBox: empieza cerrada y se destapa solo con el scroll.
+// La caja de DreamBox: empieza cerrada, se enciende cuando le llega el pulso de los circuitos y se destapa sola.
 // Capas, de atrás hacia adelante: sombra, halo, interior, borde, cuerpo, logo, aristas, luz y tapa.
-export default function OpeningBox({ progress, layout }) {
+export default function OpeningBox({ progress, layout, pointer }) {
   const { hero } = useT()
+  const reduce = useReducedMotion()
+  const charged = CHARGE_AT + CHARGE_DURATION
   const lidShade = useTransform(progress, [0.08, 0.25], [1, 0])
   const glow = useTransform(progress, [0.12, 0.45], [0, 1])
 
@@ -73,13 +76,36 @@ export default function OpeningBox({ progress, layout }) {
           <path d="M40 144v106" stroke="url(#edgeV)" strokeOpacity="0.5" />
           <path d="M40 250 200 340 360 250" fill="none" stroke="#0b1a3f" strokeOpacity="0.3" />
 
+          {/* Encendido: el contorno destella cuando llega el pulso de energía */}
+          {!reduce && (
+            <motion.path
+              d={OUTLINE}
+              fill="none"
+              stroke="#9fb5ff"
+              strokeWidth="4"
+              strokeLinejoin="round"
+              filter="url(#contactShadow)"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1, 0] }}
+              transition={{ duration: 0.9, delay: charged - 0.1, times: [0, 0.25, 1], ease: 'easeOut' }}
+            />
+          )}
+
           <BoxLight progress={progress} glow={glow} />
           <BoxLid progress={progress} />
         </g>
       </svg>
 
       {pieces.map((piece, i) => (
-        <ServicePiece key={i} piece={piece} label={hero.pieces[i]} progress={progress} layout={layout} />
+        <ServicePiece
+          key={i}
+          index={i}
+          piece={piece}
+          label={hero.pieces[i]}
+          progress={progress}
+          layout={layout}
+          pointer={pointer}
+        />
       ))}
     </>
   )
