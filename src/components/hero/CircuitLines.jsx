@@ -1,7 +1,9 @@
-import { motion, useReducedMotion } from 'motion/react'
+import { motion, useReducedMotion, useTransform } from 'motion/react'
+import { CHARGE_AT, CHARGE_DURATION, TRACE_AT } from './constants'
 
 // Trazos de circuito (como los del logo) que llegan desde los bordes hacia la caja.
-// Se dibujan una vez al cargar y luego recorren pulsos de luz por algunos trazos.
+// Se dibujan al cargar; luego un pulso de luz corre por todos a la vez hasta la caja (la "enciende")
+// y después siguen pasando pulsos sueltos, como energía que alimenta los servicios.
 const left = [
   'M0 610H250l60-60h150',
   'M0 700H190l60 60h170',
@@ -22,18 +24,24 @@ const nodes = [
   [280, 480],
 ]
 
-export default function CircuitLines() {
+const charged = CHARGE_AT + CHARGE_DURATION
+
+export default function CircuitLines({ pointer }) {
   const reduce = useReducedMotion()
   const paths = [...left, ...right]
   const allNodes = [...nodes, ...nodes.map(([x, y]) => [1440 - x, y])]
+  // Al fondo: se mueve poco y en sentido contrario al cursor.
+  const x = useTransform(pointer.x, [-1, 1], [10, -10])
+  const y = useTransform(pointer.y, [-1, 1], [6, -6])
 
   return (
-    <svg
+    <motion.svg
       aria-hidden="true"
       viewBox="0 0 1440 900"
       preserveAspectRatio="xMidYMax slice"
       className="pointer-events-none absolute inset-0 h-full w-full"
       fill="none"
+      style={{ x, y }}
     >
       <defs>
         <linearGradient id="trace" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
@@ -54,9 +62,31 @@ export default function CircuitLines() {
           strokeLinejoin="round"
           initial={reduce ? false : { pathLength: 0 }}
           animate={{ pathLength: 1 }}
-          transition={{ duration: 1.6, delay: 0.6 + (i % 4) * 0.12, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1, delay: TRACE_AT + (i % 4) * 0.08, ease: [0.22, 1, 0.36, 1] }}
         />
       ))}
+
+      {/* Carga: un pulso por trazo, todos llegan juntos a la caja */}
+      {!reduce &&
+        paths.map((d, i) => (
+          <motion.path
+            key={`c-${d}`}
+            d={d}
+            pathLength="100"
+            stroke={i < left.length ? '#4f7cff' : '#6d5cff'}
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeDasharray="14 200"
+            initial={{ strokeDashoffset: 14, opacity: 0 }}
+            animate={{ strokeDashoffset: -100, opacity: [0, 1, 1, 0] }}
+            transition={{
+              duration: CHARGE_DURATION,
+              delay: CHARGE_AT,
+              ease: 'easeIn',
+              opacity: { duration: CHARGE_DURATION, delay: CHARGE_AT, times: [0, 0.1, 0.85, 1] },
+            }}
+          />
+        ))}
 
       {/* Pulsos: un tramo corto de luz que viaja por el trazo, en bucle */}
       {!reduce &&
@@ -71,26 +101,35 @@ export default function CircuitLines() {
               strokeLinecap="round"
               strokeDasharray="6 200"
               className="animate-pulse-trace [animation-fill-mode:backwards] motion-reduce:hidden"
-              style={{ animationDelay: `${2.4 + i * 0.7}s`, opacity: 0.7 }}
+              style={{ animationDelay: `${charged + 1.2 + i * 0.7}s`, opacity: 0.7 }}
             />
           ) : null,
         )}
 
+      {/* Nodos: aparecen con los trazos y destellan cuando pasa la carga */}
       {allNodes.map(([cx, cy], i) => (
         <motion.circle
           key={`${cx}-${cy}`}
           cx={cx}
           cy={cy}
           r="3.5"
-          fill="#fbfbfd"
           stroke="#4f7cff"
           strokeOpacity="0.45"
           strokeWidth="1.5"
-          initial={reduce ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4, delay: 1.6 + (i % 4) * 0.1 }}
+          style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
+          initial={reduce ? false : { opacity: 0, scale: 0.4, fill: '#fbfbfd' }}
+          animate={
+            reduce
+              ? { opacity: 1, fill: '#fbfbfd' }
+              : { opacity: 1, scale: [0.4, 1, 1, 1.8, 1], fill: ['#fbfbfd', '#fbfbfd', '#fbfbfd', '#9fb5ff', '#fbfbfd'] }
+          }
+          transition={{
+            duration: charged + 0.5 - (TRACE_AT + 0.6),
+            delay: TRACE_AT + 0.6 + (i % 4) * 0.04,
+            times: [0, 0.15, 0.5, 0.6, 1],
+          }}
         />
       ))}
-    </svg>
+    </motion.svg>
   )
 }

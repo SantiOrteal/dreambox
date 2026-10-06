@@ -1,14 +1,20 @@
-import { motion, useTransform } from 'motion/react'
+import { easeIn, easeInOut, easeOut, motion, useTransform } from 'motion/react'
 
 // Tapa con alero (un poco más ancha que la caja) y grosor.
-// Con el scroll se desliza hacia la derecha, gira y se desvanece.
+// Al abrir: un pequeño salto (la presión de lo que hay dentro), luego se desliza a la derecha, gira y se desvanece.
 export default function BoxLid({ progress }) {
   const transform = useTransform(
     progress,
-    [0.1, 0.55],
-    ['translate(0px, 0px) rotate(0deg)', 'translate(260px, -50px) rotate(20deg)'],
+    [0, 0.08, 0.14, 0.5],
+    [
+      'translate(0px, 0px) rotate(0deg)',
+      'translate(0px, -16px) rotate(-2deg)',
+      'translate(6px, -10px) rotate(-1deg)',
+      'translate(260px, -60px) rotate(20deg)',
+    ],
+    { ease: [easeOut, easeIn, easeInOut] },
   )
-  const opacity = useTransform(progress, [0.4, 0.56], [1, 0])
+  const opacity = useTransform(progress, [0.34, 0.5], [1, 0])
 
   return (
     <motion.g style={{ transform, opacity, transformOrigin: '200px 130px', transformBox: 'view-box' }}>
