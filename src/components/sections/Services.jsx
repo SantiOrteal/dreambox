@@ -116,6 +116,14 @@ export default function Services() {
     row.scrollTo({ left: pill.offsetLeft - (row.clientWidth - pill.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' })
   }, [active, reduce])
 
+  // Pausa solo con el mouse (o el foco) sobre las opciones o sobre la tarjeta, no en el espacio vacío alrededor.
+  const pauseOnHover = {
+    onPointerEnter: (e) => e.pointerType === 'mouse' && setHovered(true),
+    onPointerLeave: () => setHovered(false),
+    onFocus: () => setHovered(true),
+    onBlur: (e) => !e.currentTarget.contains(e.relatedTarget) && setHovered(false),
+  }
+
   const shift = reduce ? 0 : 48
   const controls = { reduce, running, onToggle: togglePlay, onStep: step, labels: copy }
 
@@ -132,14 +140,11 @@ export default function Services() {
         <Reveal
           delay={0.12}
           className="mt-10 grid grid-cols-[minmax(0,1fr)] items-start gap-5 md:mt-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-12"
-          onPointerEnter={(e) => e.pointerType === 'mouse' && setHovered(true)}
-          onPointerLeave={() => setHovered(false)}
-          onFocus={() => setHovered(true)}
-          onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setHovered(false)}
         >
           {/* Móvil y tablet: pestañas compactas en una fila deslizable */}
           <div
             ref={pillRow}
+            {...pauseOnHover}
             role="tablist"
             aria-label={copy.tabsLabel}
             className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 sm:-mx-8 sm:px-8 lg:hidden"
@@ -172,7 +177,7 @@ export default function Services() {
           </div>
 
           {/* Escritorio: lista vertical; el servicio activo se despliega con su detalle */}
-          <div role="tablist" aria-label={copy.tabsLabel} aria-orientation="vertical" className="hidden lg:block">
+          <div {...pauseOnHover} role="tablist" aria-label={copy.tabsLabel} aria-orientation="vertical" className="hidden lg:block">
             {services.map((s, i) => {
               const Icon = icons[s.icon]
               const selected = i === active
@@ -240,6 +245,7 @@ export default function Services() {
 
           {/* Escenario: muestra el servicio activo. En móvil también se cambia deslizando. */}
           <motion.div
+            {...pauseOnHover}
             id="svc-panel"
             role="tabpanel"
             aria-labelledby={`svc-tab-${service.id}`}
