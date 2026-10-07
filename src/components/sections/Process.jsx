@@ -73,11 +73,15 @@ function Accordion() {
     return () => ro.disconnect()
   }, [n])
 
-  useEffect(() => {
-    if (!running) return
-    const id = setTimeout(() => setActive((a) => (a + 1) % n), AUTOPLAY_MS)
-    return () => clearTimeout(id)
-  }, [running, active, n])
+  // El avance lo marca la propia barra: al pausar solo se congela (no se reinicia) y al terminar de llenarse pasa al siguiente.
+  const next = () => setActive((a) => (a + 1) % n)
+
+  // El botón refleja si avanza o no. Reanudar desde el botón también quita la pausa del mouse encima.
+  function togglePlay() {
+    if (running) return setPlaying(false)
+    setPlaying(true)
+    setHovered(false)
+  }
 
   function onKeyDown(e, i) {
     const keys = { ArrowRight: 1, ArrowLeft: -1 }
@@ -175,20 +179,27 @@ function Accordion() {
             {on && (
               <div className="absolute inset-x-9 bottom-5 z-20 flex items-center gap-3">
                 <span className="relative h-0.5 flex-1 overflow-hidden rounded-full bg-white/15">
+                  {/* Solo se reinicia al cambiar de paso; pausar congela la animación donde va.
+                      Con movimiento reducido no hay avance automático (y la animación no se aplica). */}
                   <span
-                    key={`${active}-${running}`}
+                    key={active}
+                    onAnimationEnd={next}
                     className="absolute inset-0 origin-left bg-[#7b9dff]"
-                    style={running ? { animation: `fill ${AUTOPLAY_MS}ms linear forwards` } : { transform: reduce ? 'scaleX(1)' : 'scaleX(0)' }}
+                    style={
+                      reduce
+                        ? { transform: 'scaleX(1)' }
+                        : { animation: `fill ${AUTOPLAY_MS}ms linear forwards`, animationPlayState: running ? 'running' : 'paused' }
+                    }
                   />
                 </span>
                 {!reduce && (
                   <button
                     type="button"
-                    onClick={() => setPlaying((p) => !p)}
-                    aria-label={playing ? copy.pause : copy.play}
+                    onClick={togglePlay}
+                    aria-label={running ? copy.pause : copy.play}
                     className="hit grid h-7 w-7 place-items-center rounded-full text-white/70 transition-colors hover:text-white"
                   >
-                    {playing ? <Pause className="h-3.5 w-3.5" fill="currentColor" /> : <Play className="h-3.5 w-3.5" fill="currentColor" />}
+                    {running ? <Pause className="h-3.5 w-3.5" fill="currentColor" /> : <Play className="h-3.5 w-3.5" fill="currentColor" />}
                   </button>
                 )}
               </div>
