@@ -1,3 +1,25 @@
+import {
+  siCloudflare,
+  siDocker,
+  siDotnet,
+  siFigma,
+  siFirebase,
+  siGooglecloud,
+  siLinux,
+  siMysql,
+  siNextdotjs,
+  siNodedotjs,
+  siPostgresql,
+  siPython,
+  siReact,
+  siShopify,
+  siStripe,
+  siTailwindcss,
+  siWhatsapp,
+  siWoocommerce,
+  siWordpress,
+} from 'simple-icons'
+
 // Datos del sitio que no dependen del idioma: contacto, URL, ubicación y configuración.
 // Los textos (español e inglés) están en src/i18n/es.js y src/i18n/en.js.
 // Todo lo marcado con TODO debe reemplazarse por información real antes de publicar.
@@ -37,32 +59,33 @@ export const site = {
 }
 
 // Dos filas de la marquesina de herramientas con las que trabajamos. El stack Microsoft va primero: es el principal.
-// slug: ícono de cdn.simpleicons.org. icon: ícono genérico (lucide) para marcas que Simple Icons no tiene (C#, SQL Server, Azure).
+// si: ícono de Simple Icons (paquete npm, se dibuja como SVG dentro de la página; sin pedir nada a un CDN).
+// icon: ícono genérico (lucide) para marcas que Simple Icons no tiene (C#, SQL Server, Azure).
 export const stack = [
   [
-    { name: '.NET', slug: 'dotnet' },
+    { name: '.NET', si: siDotnet },
     { name: 'C#', icon: 'Code', color: '#68217a' },
     { name: 'SQL Server', icon: 'Database', color: '#cc2927' },
     { name: 'Azure', icon: 'Cloud', color: '#0078d4' },
-    { name: 'React', slug: 'react' },
-    { name: 'Node.js', slug: 'nodedotjs' },
-    { name: 'Python', slug: 'python' },
-    { name: 'Next.js', slug: 'nextdotjs' },
-    { name: 'Tailwind CSS', slug: 'tailwindcss' },
-    { name: 'Figma', slug: 'figma' },
+    { name: 'React', si: siReact },
+    { name: 'Node.js', si: siNodedotjs },
+    { name: 'Python', si: siPython },
+    { name: 'Next.js', si: siNextdotjs },
+    { name: 'Tailwind CSS', si: siTailwindcss },
+    { name: 'Figma', si: siFigma },
   ],
   [
-    { name: 'WordPress', slug: 'wordpress' },
-    { name: 'Shopify', slug: 'shopify' },
-    { name: 'WooCommerce', slug: 'woocommerce' },
-    { name: 'Google Cloud', slug: 'googlecloud' },
-    { name: 'Cloudflare', slug: 'cloudflare' },
-    { name: 'Docker', slug: 'docker' },
-    { name: 'Linux', slug: 'linux' },
-    { name: 'MySQL', slug: 'mysql' },
-    { name: 'PostgreSQL', slug: 'postgresql' },
-    { name: 'Firebase', slug: 'firebase' },
-    { name: 'WhatsApp', slug: 'whatsapp' },
-    { name: 'Stripe', slug: 'stripe' },
+    { name: 'WordPress', si: siWordpress },
+    { name: 'Shopify', si: siShopify },
+    { name: 'WooCommerce', si: siWoocommerce },
+    { name: 'Google Cloud', si: siGooglecloud },
+    { name: 'Cloudflare', si: siCloudflare },
+    { name: 'Docker', si: siDocker },
+    { name: 'Linux', si: siLinux },
+    { name: 'MySQL', si: siMysql },
+    { name: 'PostgreSQL', si: siPostgresql },
+    { name: 'Firebase', si: siFirebase },
+    { name: 'WhatsApp', si: siWhatsapp },
+    { name: 'Stripe', si: siStripe },
   ],
 ]

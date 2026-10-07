@@ -6,20 +6,17 @@ import { useT } from '../../i18n'
 // Íconos genéricos para las marcas que Simple Icons no incluye.
 const fallbackIcons = { Cloud, Code, Database }
 
+// Los íconos se dibujan como SVG en la página: no dependen de un CDN ni de la carga diferida de imágenes,
+// así que nunca aparecen vacíos o rotos al entrar en la marquesina.
 function ToolIcon({ tool }) {
   if (tool.icon) {
     const Icon = fallbackIcons[tool.icon]
     return <Icon aria-hidden="true" className="h-[22px] w-[22px]" style={{ color: tool.color }} strokeWidth={2} />
   }
   return (
-    <img
-      src={`https://cdn.simpleicons.org/${tool.slug}`}
-      alt=""
-      width="22"
-      height="22"
-      loading="lazy"
-      className="h-[22px] w-[22px]"
-    />
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[22px] w-[22px]" fill={`#${tool.si.hex}`}>
+      <path d={tool.si.path} />
+    </svg>
   )
 }
 
