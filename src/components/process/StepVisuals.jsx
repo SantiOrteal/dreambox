@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'motion/react'
 import { CalendarCheck, Check, CircleCheck, FileText, Video } from 'lucide-react'
 import { LogoMark } from '../Logo'
+import { seen } from '../Reveal'
 import { useT } from '../../i18n'
 
 // Mini escenas sobre fondo azul oscuro que muestran qué pasa en cada paso.
@@ -15,7 +16,7 @@ function useEnter() {
   return (delay = 0) => ({
     initial: reduce ? { opacity: 0 } : { opacity: 0, transform: 'translateY(12px) scale(0.97)' },
     whileInView: { opacity: 1, transform: 'translateY(0px) scale(1)' },
-    viewport: { once: true, amount: 0.4 },
+    viewport: seen,
     transition: reduce ? { duration: 0.3 } : { ...pop, delay },
   })
 }
@@ -108,7 +109,7 @@ function RolloutVisual() {
         <motion.div
           initial={{ transform: reduce ? 'scaleX(1)' : 'scaleX(0)' }}
           whileInView={{ transform: 'scaleX(1)' }}
-          viewport={{ once: true }}
+          viewport={seen}
           transition={{ duration: 1.6, delay: 0.3, ease: EASE }}
           className="h-full origin-left rounded-full bg-[#7b9dff]"
         />

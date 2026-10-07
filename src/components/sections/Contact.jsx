@@ -4,6 +4,7 @@ import { AlertCircle, ArrowRight, Check, CircleCheck, Loader2, Mail, MessageCirc
 import { site } from '../../content/site'
 import { useT } from '../../i18n'
 import SplitText from '../SplitText'
+import { seen } from '../Reveal'
 
 const EASE = [0.23, 1, 0.32, 1]
 const empty = { nombre: '', email: '', telefono: '', empresa: '', servicio: '', mensaje: '' }
@@ -133,7 +134,7 @@ export default function Contact() {
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
+                viewport={seen}
                 transition={{ duration: 0.6 }}
                 className="text-[17px] font-semibold text-brand-light"
               >
@@ -147,7 +148,7 @@ export default function Contact() {
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
+                viewport={seen}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="mt-6 max-w-120 text-[19px] leading-normal text-white/70"
               >
@@ -160,7 +161,7 @@ export default function Contact() {
                     key={label}
                     initial={reduce ? { opacity: 0 } : { opacity: 0, transform: 'translateY(12px)' }}
                     whileInView={{ opacity: 1, transform: 'translateY(0px)' }}
-                    viewport={{ once: true }}
+                    viewport={seen}
                     transition={{ duration: 0.6, delay: 0.5 + i * 0.07, ease: EASE }}
                   >
                     <a
@@ -182,7 +183,7 @@ export default function Contact() {
             <motion.div
               initial={reduce ? { opacity: 0 } : { opacity: 0, transform: 'translateY(40px) scale(0.98)' }}
               whileInView={{ opacity: 1, transform: 'translateY(0px) scale(1)' }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={seen}
               transition={{ duration: 1, delay: 0.15, ease: EASE }}
               className="rounded-[28px] bg-white p-6 text-ink shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] sm:p-8 lg:col-span-7"
             >

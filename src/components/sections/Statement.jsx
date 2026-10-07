@@ -70,7 +70,8 @@ export default function Statement() {
   const last = index === story.length - 1
 
   return (
-    <section ref={ref} aria-label={copy.label} className="relative h-[320vh]">
+    // Recorrido corto (~1.1 pantallas para las cuatro frases): así no parece que la página se trabó.
+    <section ref={ref} aria-label={copy.label} className="relative h-[210vh]">
       <h2 className="sr-only">{story.join(' ')}</h2>
       <div className="sticky top-0 flex h-dvh items-center justify-center overflow-hidden">
         {/* Halo que acompaña la respuesta final */}

@@ -224,20 +224,16 @@ export default function Process() {
 
         <PinnedSteps reduce={reduce} />
 
-        {/* Móvil y tablet: lista de pasos, cada uno con su escena */}
-        <ol className="mt-14 space-y-16 lg:hidden">
+        {/* Móvil y tablet: lista compacta de pasos; las escenas solo se muestran en escritorio */}
+        <ol className="mt-12 space-y-12 lg:hidden">
           {process.map((step, i) => {
             const Icon = icons[step.icon]
-            const Visual = stepVisuals[i]
             return (
               <li key={step.title}>
                 <span className="mb-4 grid h-12 w-12 place-items-center rounded-2xl bg-white text-brand shadow-[0_2px_12px_rgba(0,0,0,0.05)]">
                   <Icon className="h-6 w-6" strokeWidth={1.5} />
                 </span>
                 <StepCopy step={step} i={i} as="p" />
-                <div className="mt-6 rounded-[24px] bg-navy-deep p-5 sm:p-6">
-                  <Visual />
-                </div>
               </li>
             )
           })}

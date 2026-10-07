@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'motion/react'
 import { Check, CircleCheck, UserRound } from 'lucide-react'
 import { useT } from '../../i18n'
-import Reveal from '../Reveal'
+import Reveal, { seen } from '../Reveal'
 
 const EASE = [0.23, 1, 0.32, 1]
 const pop = { type: 'spring', duration: 0.5, bounce: 0.2 }
@@ -12,7 +12,7 @@ function enter(reduce, delay = 0) {
   return {
     initial: reduce ? { opacity: 0 } : { opacity: 0, transform: 'translateY(10px) scale(0.96)' },
     whileInView: { opacity: 1, transform: 'translateY(0px) scale(1)' },
-    viewport: { once: true, amount: 0.6 },
+    viewport: seen,
     transition: { ...pop, delay },
   }
 }
@@ -73,10 +73,19 @@ function OwnerScene() {
   )
 }
 
+// El switch de "Mes a mes" termina siempre encendido: fondo y bolita dependen del mismo disparador.
+// Con movimiento reducido ya aparece encendido.
 function ToggleScene({ reduce }) {
   const t = useT().commitmentsSection.toggle
+  const off = { track: { backgroundColor: 'rgba(0,0,0,0.1)' }, knob: { transform: 'translateX(0px)' } }
+  const on = { track: { backgroundColor: '#2f5bea' }, knob: { transform: 'translateX(16px)' } }
   return (
-    <div className="space-y-3 rounded-2xl bg-white p-4 text-[15px] shadow-[0_2px_12px_rgba(0,0,0,0.05)] sm:max-w-sm">
+    <motion.div
+      initial={reduce ? 'on' : 'off'}
+      whileInView="on"
+      viewport={seen}
+      className="space-y-3 rounded-2xl bg-white p-4 text-[15px] shadow-[0_2px_12px_rgba(0,0,0,0.05)] sm:max-w-sm"
+    >
       <div className="flex items-center justify-between text-ink-subtle">
         <span className="line-through decoration-ink-subtle/60">{t.annual}</span>
         <span className="h-6 w-10 rounded-full bg-black/10" />
@@ -85,21 +94,17 @@ function ToggleScene({ reduce }) {
         <span>{t.monthly}</span>
         <motion.span
           className="relative h-6 w-10 rounded-full"
-          initial={{ backgroundColor: 'rgba(0,0,0,0.1)' }}
-          whileInView={{ backgroundColor: '#2f5bea' }}
-          viewport={{ once: true, amount: 0.8 }}
+          variants={{ off: off.track, on: on.track }}
           transition={{ duration: 0.25, delay: 0.5, ease: 'easeOut' }}
         >
           <motion.span
             className="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow-sm"
-            initial={reduce ? false : { transform: 'translateX(0px)' }}
-            whileInView={{ transform: 'translateX(16px)' }}
-            viewport={{ once: true, amount: 0.8 }}
+            variants={{ off: off.knob, on: on.knob }}
             transition={{ type: 'spring', duration: 0.4, bounce: 0.15, delay: 0.5 }}
           />
         </motion.span>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -130,7 +135,7 @@ export default function Commitments() {
                 key={c.id}
                 initial={reduce ? { opacity: 0 } : { opacity: 0, transform: 'translateY(24px) scale(0.97)' }}
                 whileInView={{ opacity: 1, transform: 'translateY(0px) scale(1)' }}
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={seen}
                 transition={{ duration: 0.9, delay: (i % 2) * 0.08, ease: EASE }}
                 className={`flex flex-col gap-8 rounded-[28px] p-8 sm:p-10 ${span} ${tone} ${
                   wide ? 'md:flex-row md:items-end md:justify-between' : 'justify-between'
