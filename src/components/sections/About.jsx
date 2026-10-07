@@ -23,12 +23,20 @@ function ToolIcon({ tool }) {
   )
 }
 
-// Una fila de la marquesina: el contenido se duplica para que el bucle sea continuo.
+// Cada copia de la fila repite los íconos hasta tener al menos MIN_ITEMS (~3,000px), más ancha que cualquier pantalla.
+// Si una copia es más angosta que la pantalla, a mitad del recorrido queda un hueco vacío a la derecha.
+const MIN_ITEMS = 24
+// Segundos por ícono: mantiene la misma velocidad sin importar cuántas veces se repita la fila.
+const SECONDS_PER_ITEM = 4.5
+
+// Una fila de la marquesina: la copia se duplica para que el bucle (-50%) sea continuo.
 function MarqueeRow({ items, reverse }) {
-  const row = [...items, ...items]
+  const copy = Array.from({ length: Math.ceil(MIN_ITEMS / items.length) }, () => items).flat()
+  const row = [...copy, ...copy]
   return (
     <div className="group flex overflow-hidden mask-[linear-gradient(to_right,transparent,#000_10%,#000_90%,transparent)]">
       <ul
+        style={{ animationDuration: `${copy.length * SECONDS_PER_ITEM}s` }}
         className={`flex w-max shrink-0 gap-3 pr-3 group-hover:[animation-play-state:paused] motion-reduce:animate-none ${
           reverse ? 'animate-marquee-reverse' : 'animate-marquee'
         }`}
