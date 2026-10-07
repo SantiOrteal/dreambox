@@ -37,6 +37,25 @@ function Phrase({ text, last }) {
   )
 }
 
+// Barras de progreso: cada frase vista se llena en azul (la actual) o en tinta (las anteriores).
+function StoryProgress({ story, index, vertical = false, className }) {
+  const axis = vertical ? 'Y' : 'X'
+  return (
+    <div className={`absolute flex gap-2.5 ${vertical ? 'flex-col' : ''} ${className}`} aria-hidden="true">
+      {story.map((t, i) => (
+        <span key={t} className={`relative overflow-hidden rounded-full bg-black/15 ${vertical ? 'h-14 w-2' : 'h-2 w-14'}`}>
+          <motion.span
+            initial={false}
+            animate={{ transform: i <= index ? `scale${axis}(1)` : `scale${axis}(0)` }}
+            transition={{ duration: 0.5, ease: EASE }}
+            className={`absolute inset-0 rounded-full ${vertical ? 'origin-top' : 'origin-left'} ${i === index ? 'bg-brand' : 'bg-ink'}`}
+          />
+        </span>
+      ))}
+    </div>
+  )
+}
+
 export default function Statement() {
   const { story: copy } = useT()
   const story = copy.lines
@@ -94,19 +113,9 @@ export default function Statement() {
           {copy.tagline}
         </motion.p>
 
-        {/* Progreso de la historia */}
-        <div className="absolute bottom-10 left-1/2 flex -translate-x-1/2 gap-2" aria-hidden="true">
-          {story.map((t, i) => (
-            <span key={t} className="relative h-1 w-8 overflow-hidden rounded-full bg-black/10">
-              <motion.span
-                initial={false}
-                animate={{ transform: i <= index ? 'scaleX(1)' : 'scaleX(0)' }}
-                transition={{ duration: 0.5, ease: EASE }}
-                className="absolute inset-0 origin-left rounded-full bg-ink"
-              />
-            </span>
-          ))}
-        </div>
+        {/* Progreso de la historia: abajo en móvil, a la derecha en escritorio */}
+        <StoryProgress story={story} index={index} className="bottom-[11%] left-1/2 -translate-x-1/2 md:hidden" />
+        <StoryProgress vertical story={story} index={index} className="right-10 top-1/2 hidden -translate-y-1/2 md:flex lg:right-14" />
       </div>
     </section>
   )
