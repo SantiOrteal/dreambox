@@ -263,3 +263,23 @@
     }
   }
 }
+
+/* TEMPORAL: animaciones de las variantes del hero (src/components/hero/variants) */
+@keyframes orb-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.035);
+  }
+}
+@keyframes chip-shine {
+  0%,
+  60% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}

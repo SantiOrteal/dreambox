@@ -1,29 +1,36 @@
-import { useEffect, useRef } from 'react'
-import { animate, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from 'motion/react'
-import BoxStage from '../hero/BoxStage'
+import { useRef, useState } from 'react'
+import { useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from 'motion/react'
 import CircuitLines from '../hero/CircuitLines'
 import HeroCopy from '../hero/HeroCopy'
 import ScrollCue from '../hero/ScrollCue'
-import { OPEN_AT, OPEN_DURATION } from '../hero/constants'
+import BoxVisual from '../hero/variants/BoxVisual'
+import DashboardVisual from '../hero/variants/DashboardVisual'
+import NetworkVisual from '../hero/variants/NetworkVisual'
+import OrbVisual from '../hero/variants/OrbVisual'
+import BentoVisual from '../hero/variants/BentoVisual'
+import LogoVisual from '../hero/variants/LogoVisual'
+import VariantPicker, { useHeroVariant } from '../hero/variants/VariantPicker'
 
-// Hero de una pantalla: al cargar, los circuitos llevan un pulso de luz hasta la caja,
-// la caja se enciende, se destapa sola y salen los servicios. Después sigue al cursor con parallax.
-// Al hacer scroll el hero solo se desvanece y se aleja; no se queda fijo.
+// TEMPORAL: varias animaciones para comparar; se elige con el selector de abajo.
+const visuals = {
+  caja: BoxVisual,
+  dashboard: DashboardVisual,
+  red: NetworkVisual,
+  orbe: OrbVisual,
+  bento: BentoVisual,
+  logo: LogoVisual,
+}
+// Variantes que usan los circuitos de fondo.
+const withCircuits = new Set(['caja', 'logo'])
+
+// Hero de una pantalla: texto arriba y la animación de la marca abajo.
+// Después de entrar sigue al cursor con parallax. Al hacer scroll el hero solo se desvanece y se aleja.
 export default function Hero() {
   const section = useRef(null)
   const reduce = useReducedMotion()
-
-  // Progreso de apertura de la caja: 0 = cerrada, 1 = abierta con los servicios afuera.
-  const opened = useMotionValue(reduce ? 1 : 0)
-  useEffect(() => {
-    if (reduce) {
-      opened.set(1)
-      return
-    }
-    // Lineal: cada pieza (tapa, luz, tarjetas) aplica su propia curva sobre su tramo.
-    const controls = animate(opened, 1, { duration: OPEN_DURATION, delay: OPEN_AT, ease: 'linear' })
-    return () => controls.stop()
-  }, [reduce, opened])
+  const [variant, setVariant] = useHeroVariant()
+  const [run, setRun] = useState(0) // cambia para repetir la animación desde cero
+  const Visual = visuals[variant]
 
   // Cursor en -1..1 respecto al centro del hero (solo con mouse; en táctil se queda en 0).
   const px = useMotionValue(0)
@@ -43,7 +50,7 @@ export default function Hero() {
     py.set(0)
   }
 
-  // Salida al hacer scroll: el texto sube y se desvanece, la caja baja y se aleja un poco.
+  // Salida al hacer scroll: el texto sube y se desvanece, la animación baja y se aleja un poco.
   const { scrollYProgress } = useScroll({ target: section, offset: ['start start', 'end start'] })
   const copyStyle = {
     y: useTransform(scrollYProgress, [0, 0.6], [0, -60]),
@@ -55,6 +62,7 @@ export default function Hero() {
     opacity: useTransform(scrollYProgress, [0.3, 0.9], [1, 0]),
   }
 
+  const key = `${variant}-${run}`
   return (
     <section ref={section} id="inicio" className="relative">
       <div
@@ -62,11 +70,12 @@ export default function Hero() {
         onPointerLeave={onPointerLeave}
         className="relative flex h-dvh min-h-[560px] flex-col items-center justify-center overflow-hidden pb-5 pt-18 max-sm:[@media(max-height:620px)]:pb-3 max-sm:[@media(max-height:620px)]:pt-16"
       >
-        <CircuitLines pointer={pointer} />
-        <HeroCopy style={reduce ? undefined : copyStyle} />
-        <BoxStage progress={opened} pointer={pointer} style={reduce ? undefined : stageStyle} />
-        <ScrollCue progress={scrollYProgress} />
+        {withCircuits.has(variant) && <CircuitLines key={`c-${key}`} pointer={pointer} />}
+        <HeroCopy key={`t-${key}`} style={reduce ? undefined : copyStyle} />
+        <Visual key={key} pointer={pointer} style={reduce ? undefined : stageStyle} />
+        <ScrollCue key={`s-${key}`} progress={scrollYProgress} />
       </div>
+      <VariantPicker value={variant} onChange={setVariant} onReplay={() => setRun((n) => n + 1)} />
     </section>
   )
 }
