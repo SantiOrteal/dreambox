@@ -483,9 +483,11 @@ const es = {
 
   about: {
     title: 'Un socio tecnológico. No un proveedor más.',
+    // Historia en dos tiempos: por qué somos pequeños y que nos quedamos a cuidar lo que construimos.
+    // Las cifras y la lista de proyectos ya aparecen en el hero y en "Lo que hemos construido"; aquí no se repiten.
     body: [
-      'Somos un equipo pequeño y con experiencia. Desde hace más de 10 años desarrollamos y mantenemos sistemas que empresas usan todos los días: desde el software de una planta automotriz hasta inventarios conectados a marketplaces y reportes sobre ERPs.',
-      'Aquí no hay intermediarios ni ejecutivos de cuenta. Cuando escribes, te responde la misma persona que construyó y conoce tu sistema.',
+      'Somos un equipo pequeño, y es a propósito: así quien te contesta es quien construyó tu sistema. Sin intermediarios, sin ejecutivos de cuenta y sin tener que explicar todo desde cero cada vez.',
+      'Y lo que construimos, lo cuidamos. El sistema que desarrollamos para una planta automotriz lleva más de una década operando todos los días, y seguimos a cargo de él.',
     ],
     claim: 'No te vendemos tecnología. Nos hacemos cargo de que funcione.',
     toolsTitle: 'Herramientas con las que trabajamos a diario',

@@ -468,8 +468,8 @@ const en = {
   about: {
     title: 'A technology partner. Not just another vendor.',
     body: [
-      "We're a small, experienced team. For over 10 years we've built and maintained systems that businesses use every day: from the software running an automotive plant to inventories connected to marketplaces and reports on top of ERPs.",
-      "There are no middlemen or account managers here. When you reach out, you hear from the same person who built your system and knows it inside out.",
+      "We're a small team, on purpose: the person who answers you is the person who built your system. No middlemen, no account managers, no explaining everything from scratch every time.",
+      "And what we build, we look after. The system we developed for an automotive plant has been running every day for over a decade, and we're still the ones taking care of it.",
     ],
     claim: "We don't sell you technology. We make sure it works.",
     toolsTitle: 'Tools we work with every day',
