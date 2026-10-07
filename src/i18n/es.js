@@ -45,8 +45,7 @@ const es = {
 
   nav: [
     { label: 'Servicios', href: '#servicios' },
-    { label: 'Manufactura', href: '#manufactura' },
-    { label: 'Proyectos', href: '#proyectos' },
+    { label: 'Proyectos', href: '#construido' },
     { label: 'Cómo trabajamos', href: '#proceso' },
     { label: 'Nosotros', href: '#nosotros' },
     { label: 'Preguntas', href: '#preguntas' },
@@ -221,6 +220,22 @@ const es = {
     { id: 'contacto', value: 'Un responsable', label: 'Una persona que conoce tu empresa y tus sistemas.' },
     { id: 'contrato', value: 'Mes a mes', label: 'Sin contratos largos. Te quedas porque funciona.' },
   ],
+
+  // Lo que hemos construido (#construido): una sección con tres pestañas (manufactura, caso de estudio y proyectos).
+  // Los enlaces a #manufactura, #caso y #proyectos abren la pestaña correspondiente.
+  builtSection: {
+    title: 'Lo que hemos construido.',
+    subtitle: 'Más de 10 años de sistemas en producción: una plataforma para manufactura, un caso real de modernización y proyectos a la medida.',
+    tabsLabel: 'Proyectos',
+    tabs: [
+      { id: 'manufactura', label: 'Manufactura', hint: 'Dreambox Manufacturing' },
+      { id: 'caso', label: 'Caso de estudio', hint: 'Proveedor automotriz' },
+      { id: 'proyectos', label: 'Proyectos', hint: 'Marketplaces y ERP' },
+    ],
+    carousel: { prev: 'Anterior', next: 'Siguiente' },
+    deck: { label: 'Módulos destacados', prev: 'Módulo anterior', next: 'Módulo siguiente' },
+    compare: 'Comparar antes y ahora',
+  },
 
   // Software para manufactura (#manufactura). **texto** se muestra en negritas.
   // El sistema tiene 12 años: usar siempre "más de 10 años" / "10+ años" / "más de una década", nunca "15 años".
@@ -397,6 +412,10 @@ const es = {
     title: 'De la primera llamada a todo en orden, en cuatro pasos.',
     subtitle: 'Sin contratos eternos ni tecnicismos. En cada etapa sabes qué estamos haciendo, cuánto falta y cuánto cuesta.',
     tabsLabel: 'Pasos',
+    pause: 'Pausar avance automático',
+    play: 'Reanudar avance automático',
+    prev: 'Paso anterior',
+    next: 'Paso siguiente',
     step: (n, total) => `Paso ${n} de ${total}`,
     takeaway: 'Te llevas:',
     ctaTitle: 'El primer paso no cuesta nada.',

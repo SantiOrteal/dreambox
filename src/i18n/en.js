@@ -43,8 +43,7 @@ const en = {
 
   nav: [
     { label: 'Services', href: '#servicios' },
-    { label: 'Manufacturing', href: '#manufactura' },
-    { label: 'Projects', href: '#proyectos' },
+    { label: 'Projects', href: '#construido' },
     { label: 'How we work', href: '#proceso' },
     { label: 'About', href: '#nosotros' },
     { label: 'FAQ', href: '#preguntas' },
@@ -218,6 +217,20 @@ const en = {
     { id: 'contrato', value: 'Month to month', label: 'No long contracts. You stay because it works.' },
   ],
 
+  builtSection: {
+    title: "What we've built.",
+    subtitle: 'Over 10 years of systems in production: a manufacturing platform, a real modernization case and custom projects.',
+    tabsLabel: 'Projects',
+    tabs: [
+      { id: 'manufactura', label: 'Manufacturing', hint: 'Dreambox Manufacturing' },
+      { id: 'caso', label: 'Case study', hint: 'Automotive supplier' },
+      { id: 'proyectos', label: 'Projects', hint: 'Marketplaces & ERP' },
+    ],
+    carousel: { prev: 'Previous', next: 'Next' },
+    deck: { label: 'Featured modules', prev: 'Previous module', next: 'Next module' },
+    compare: 'Compare before and now',
+  },
+
   // Manufacturing software (#manufactura). **text** renders in bold.
   // The system is 12 years old: always say "over 10 years" / "10+ years" / "over a decade", never "15 years".
   manufacturing: {
@@ -384,6 +397,10 @@ const en = {
     title: 'From the first call to everything in order, in four steps.',
     subtitle: 'No endless contracts or jargon. At every stage you know what we are doing, what is left and what it costs.',
     tabsLabel: 'Steps',
+    pause: 'Pause autoplay',
+    play: 'Resume autoplay',
+    prev: 'Previous step',
+    next: 'Next step',
     step: (n, total) => `Step ${n} of ${total}`,
     takeaway: 'You get:',
     ctaTitle: 'The first step is free.',
