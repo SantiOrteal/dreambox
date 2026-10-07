@@ -1,26 +1,41 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useInView, useReducedMotion } from 'motion/react'
-import { Boxes, ChevronLeft, ChevronRight, Cloud, Globe, Headset, Pause, Play, ShieldCheck, Sparkles } from 'lucide-react'
+import { ArrowRight, Boxes, ChevronLeft, ChevronRight, Cloud, Globe, Headset, Pause, Play, RefreshCw, ShieldCheck, Sparkles } from 'lucide-react'
 import es from '../../i18n/es'
 import { useT } from '../../i18n'
 import Reveal from '../Reveal'
 import { scenes } from '../services/ServiceScenes'
 
-const icons = { Boxes, Globe, Headset, ShieldCheck, Sparkles, Cloud }
+const icons = { Boxes, Globe, Headset, ShieldCheck, Sparkles, Cloud, RefreshCw }
 const AUTOPLAY_MS = 6500
 const EASE = [0.23, 1, 0.32, 1]
 // Ambos idiomas tienen los mismos servicios, en el mismo orden.
 const n = es.services.length
 const wrapIndex = (i) => ((i % n) + n) % n
 
-// Barra que se llena mientras corre el avance automático (reinicia al cambiar de servicio o al reanudar).
-function Progress({ running, className }) {
+// Barra del avance automático. Se monta de nuevo solo al cambiar de servicio; al pausar se congela donde va
+// y al terminar de llenarse pasa al siguiente. Con movimiento reducido no hay avance (ni animación).
+function Progress({ running, reduce, onEnd, className }) {
   return (
     <span
-      key={String(running)}
+      onAnimationEnd={onEnd}
       className={`absolute inset-0 origin-left ${className}`}
-      style={running ? { animation: `fill ${AUTOPLAY_MS}ms linear forwards` } : { transform: 'scaleX(1)' }}
+      style={
+        reduce
+          ? { transform: 'scaleX(1)' }
+          : { animation: `fill ${AUTOPLAY_MS}ms linear forwards`, animationPlayState: running ? 'running' : 'paused' }
+      }
     />
+  )
+}
+
+// Enlace opcional de un servicio (por ejemplo, "Ver proyectos"). Fuera del servicio activo no recibe foco.
+function ServiceLink({ link, active }) {
+  if (!link) return null
+  return (
+    <a href={link.href} tabIndex={active ? undefined : -1} className="link mt-4 text-[15px]">
+      {link.label} <ArrowRight className="h-3.5 w-3.5" />
+    </a>
   )
 }
 
@@ -30,12 +45,12 @@ const control =
 const arrow =
   'grid h-11 w-11 place-items-center rounded-full bg-paper text-ink/70 transition-[background-color,color,transform,scale] duration-150 ease-out hover:text-ink active:scale-95'
 
-function Controls({ reduce, playing, onToggle, onStep, labels, className }) {
+function Controls({ reduce, running, onToggle, onStep, labels, className }) {
   return (
     <div className={`items-center gap-2 ${className}`}>
       {!reduce && (
-        <button type="button" onClick={onToggle} aria-label={playing ? labels.pause : labels.play} className={control}>
-          {playing ? <Pause className="h-3.5 w-3.5" fill="currentColor" /> : <Play className="h-3.5 w-3.5" fill="currentColor" />}
+        <button type="button" onClick={onToggle} aria-label={running ? labels.pause : labels.play} className={control}>
+          {running ? <Pause className="h-3.5 w-3.5" fill="currentColor" /> : <Play className="h-3.5 w-3.5" fill="currentColor" />}
         </button>
       )}
       <button type="button" onClick={() => onStep(-1)} aria-label={labels.prev} className={control}>
@@ -83,12 +98,15 @@ export default function Services() {
   const listKeys = useTabKeys(go, listTabs)
   const pillKeys = useTabKeys(go, pillTabs)
 
-  // Avance automático: se reinicia en cada cambio y se detiene al pausar, al pasar el mouse o fuera de vista.
-  useEffect(() => {
-    if (!running) return
-    const id = setTimeout(() => step(1), AUTOPLAY_MS)
-    return () => clearTimeout(id)
-  }, [running, active])
+  // Avance automático: lo marca la barra (onEnd). Se pausa al pausar, con el mouse encima o fuera de vista.
+  const advance = () => step(1)
+
+  // El botón refleja si avanza o no. Reanudar desde el botón también quita la pausa del mouse encima.
+  function togglePlay() {
+    if (running) return setPlaying(false)
+    setPlaying(true)
+    setHovered(false)
+  }
 
   // En móvil, mantiene visible la pestaña activa dentro de su fila (sin mover la página).
   useEffect(() => {
@@ -98,8 +116,16 @@ export default function Services() {
     row.scrollTo({ left: pill.offsetLeft - (row.clientWidth - pill.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' })
   }, [active, reduce])
 
+  // Pausa solo con el mouse (o el foco) sobre las opciones o sobre la tarjeta, no en el espacio vacío alrededor.
+  const pauseOnHover = {
+    onPointerEnter: (e) => e.pointerType === 'mouse' && setHovered(true),
+    onPointerLeave: () => setHovered(false),
+    onFocus: () => setHovered(true),
+    onBlur: (e) => !e.currentTarget.contains(e.relatedTarget) && setHovered(false),
+  }
+
   const shift = reduce ? 0 : 48
-  const controls = { reduce, playing, onToggle: () => setPlaying((p) => !p), onStep: step, labels: copy }
+  const controls = { reduce, running, onToggle: togglePlay, onStep: step, labels: copy }
 
   return (
     <section ref={section} id="servicios" aria-labelledby="servicios-title" className="bg-paper/60 py-24 md:py-32">
@@ -114,14 +140,11 @@ export default function Services() {
         <Reveal
           delay={0.12}
           className="mt-10 grid grid-cols-[minmax(0,1fr)] items-start gap-5 md:mt-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-12"
-          onPointerEnter={(e) => e.pointerType === 'mouse' && setHovered(true)}
-          onPointerLeave={() => setHovered(false)}
-          onFocus={() => setHovered(true)}
-          onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setHovered(false)}
         >
           {/* Móvil y tablet: pestañas compactas en una fila deslizable */}
           <div
             ref={pillRow}
+            {...pauseOnHover}
             role="tablist"
             aria-label={copy.tabsLabel}
             className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 sm:-mx-8 sm:px-8 lg:hidden"
@@ -145,7 +168,7 @@ export default function Services() {
                     selected ? 'bg-ink text-white' : 'bg-white text-ink-muted hover:text-ink'
                   }`}
                 >
-                  {selected && <Progress running={running} className="bg-white/[0.14]" />}
+                  {selected && <Progress running={running} reduce={reduce} onEnd={advance} className="bg-white/[0.14]" />}
                   <Icon className="relative h-4 w-4" />
                   <span className="relative">{s.short}</span>
                 </button>
@@ -154,7 +177,7 @@ export default function Services() {
           </div>
 
           {/* Escritorio: lista vertical; el servicio activo se despliega con su detalle */}
-          <div role="tablist" aria-label={copy.tabsLabel} aria-orientation="vertical" className="hidden lg:block">
+          <div {...pauseOnHover} role="tablist" aria-label={copy.tabsLabel} aria-orientation="vertical" className="hidden lg:block">
             {services.map((s, i) => {
               const Icon = icons[s.icon]
               const selected = i === active
@@ -205,13 +228,14 @@ export default function Services() {
                             </li>
                           ))}
                         </ul>
+                        <ServiceLink link={s.link} active={selected} />
                       </div>
                     </div>
                   </div>
 
                   {selected && (
                     <span className="absolute inset-x-0 -bottom-px h-0.5 overflow-hidden">
-                      <Progress running={running} className="bg-brand" />
+                      <Progress running={running} reduce={reduce} onEnd={advance} className="bg-brand" />
                     </span>
                   )}
                 </div>
@@ -221,6 +245,7 @@ export default function Services() {
 
           {/* Escenario: muestra el servicio activo. En móvil también se cambia deslizando. */}
           <motion.div
+            {...pauseOnHover}
             id="svc-panel"
             role="tabpanel"
             aria-labelledby={`svc-tab-${service.id}`}
@@ -271,11 +296,11 @@ export default function Services() {
                   {!reduce && (
                     <button
                       type="button"
-                      onClick={() => setPlaying((p) => !p)}
-                      aria-label={playing ? copy.pause : copy.play}
+                      onClick={togglePlay}
+                      aria-label={running ? copy.pause : copy.play}
                       className="hit grid h-8 w-8 place-items-center rounded-full text-ink/60 transition-colors hover:text-ink"
                     >
-                      {playing ? <Pause className="h-3.5 w-3.5" fill="currentColor" /> : <Play className="h-3.5 w-3.5" fill="currentColor" />}
+                      {running ? <Pause className="h-3.5 w-3.5" fill="currentColor" /> : <Play className="h-3.5 w-3.5" fill="currentColor" />}
                     </button>
                   )}
                   <div aria-hidden="true" className="flex gap-1.5">
@@ -294,7 +319,7 @@ export default function Services() {
                 </button>
               </div>
 
-              {/* Los seis servicios quedan en el HTML con su título (SEO); solo se ve el activo.
+              {/* Todos los servicios quedan en el HTML con su título (SEO); solo se ve el activo.
                   Al ocupar la misma celda, la tarjeta mide siempre lo mismo y no salta al cambiar. */}
               <div className="grid">
                 {services.map((s, i) => {
@@ -320,6 +345,7 @@ export default function Services() {
                           </li>
                         ))}
                       </ul>
+                      <ServiceLink link={s.link} active={isActive} />
                     </motion.div>
                   )
                 })}

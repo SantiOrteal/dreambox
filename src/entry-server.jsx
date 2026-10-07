@@ -59,10 +59,10 @@ export function structuredData(lang = 'es') {
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
         name: t.meta.catalogName,
-        itemListElement: t.services.map((s) => ({
-          '@type': 'Offer',
-          itemOffered: { '@type': 'Service', name: s.title, description: s.body },
-        })),
+        itemListElement: [
+          ...t.services.map((s) => ({ name: s.title, description: s.body })),
+          { name: t.manufacturing.eyebrow, description: t.manufacturing.body.replaceAll('**', '') },
+        ].map((service) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', ...service } })),
       },
     },
     {

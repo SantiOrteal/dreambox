@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { AlertCircle, ArrowRight, Check, CircleCheck, Loader2, Mail, MessageCircle, Phone } from 'lucide-react'
 import { site } from '../../content/site'
 import { useT } from '../../i18n'
 import SplitText from '../SplitText'
+import { seen } from '../Reveal'
+import { onPreselectService } from '../../lib/contactIntent'
 
 const EASE = [0.23, 1, 0.32, 1]
 const empty = { nombre: '', email: '', telefono: '', empresa: '', servicio: '', mensaje: '' }
@@ -36,11 +38,13 @@ function Field({ id, label, optional, error, children }) {
 export default function Contact() {
   const t = useT()
   const c = t.contact
-  const { services } = t
+  const options = [...t.services, ...c.extraOptions]
   const reduce = useReducedMotion()
   const [values, setValues] = useState(empty)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
+
+  useEffect(() => onPreselectService((id) => setValues((v) => ({ ...v, servicio: id }))), [])
 
   const set = (k) => (e) => {
     setValues((v) => ({ ...v, [k]: e.target.value }))
@@ -55,7 +59,7 @@ export default function Contact() {
     setErrors(found)
     if (Object.keys(found).length) return
 
-    const servicio = services.find((s) => s.id === values.servicio)?.title || c.mail.noService
+    const servicio = options.find((s) => s.id === values.servicio)?.title || c.mail.noService
 
     // Campo trampa: las personas no lo ven; si viene marcado, es un bot y no se envía.
     if (e.currentTarget.elements.botcheck?.checked) return
@@ -133,7 +137,7 @@ export default function Contact() {
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
+                viewport={seen}
                 transition={{ duration: 0.6 }}
                 className="text-[17px] font-semibold text-brand-light"
               >
@@ -147,7 +151,7 @@ export default function Contact() {
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
+                viewport={seen}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="mt-6 max-w-120 text-[19px] leading-normal text-white/70"
               >
@@ -160,7 +164,7 @@ export default function Contact() {
                     key={label}
                     initial={reduce ? { opacity: 0 } : { opacity: 0, transform: 'translateY(12px)' }}
                     whileInView={{ opacity: 1, transform: 'translateY(0px)' }}
-                    viewport={{ once: true }}
+                    viewport={seen}
                     transition={{ duration: 0.6, delay: 0.5 + i * 0.07, ease: EASE }}
                   >
                     <a
@@ -182,7 +186,7 @@ export default function Contact() {
             <motion.div
               initial={reduce ? { opacity: 0 } : { opacity: 0, transform: 'translateY(40px) scale(0.98)' }}
               whileInView={{ opacity: 1, transform: 'translateY(0px) scale(1)' }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={seen}
               transition={{ duration: 1, delay: 0.15, ease: EASE }}
               className="rounded-[28px] bg-white p-6 text-ink shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] sm:p-8 lg:col-span-7"
             >
@@ -228,7 +232,7 @@ export default function Contact() {
                         {c.serviceLegend} <span className="font-normal text-ink-subtle">{c.optional}</span>
                       </legend>
                       <div className="mt-3 flex flex-wrap gap-2">
-                        {services.map((s) => {
+                        {options.map((s) => {
                           const on = values.servicio === s.id
                           return (
                             <label

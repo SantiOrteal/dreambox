@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'motion/react'
+import { seen } from './Reveal'
 
 // Titular con letras que caen desde arriba y se asientan con un pequeño rebote.
 // Sin desenfoque: solo opacidad y transform. La cascada letra a letra da la fluidez.
@@ -9,7 +10,7 @@ export default function SplitText({ text, as = 'h2', className, delay = 0, stagg
   const Tag = as
   const hidden = reduce ? { opacity: 0 } : { opacity: 0, transform: 'translateY(-0.6em) rotate(-8deg)' }
   const shown = { opacity: 1, transform: 'translateY(0em) rotate(0deg)' }
-  const play = trigger === 'load' ? { animate: shown } : { whileInView: shown, viewport: { once: true, amount: 0.6 } }
+  const play = trigger === 'load' ? { animate: shown } : { whileInView: shown, viewport: seen }
 
   let n = 0
   return (

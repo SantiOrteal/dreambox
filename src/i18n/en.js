@@ -7,18 +7,27 @@ const en = {
   paths: { home: '/en/', privacy: '/en/privacy' },
 
   meta: {
-    title: 'IT Support & Web Development for Businesses | DreamBox Dev',
+    title: 'IT Support, Custom Software & Manufacturing | DreamBox Dev',
     description:
-      'Software support, maintenance, web development and automation for small and mid-sized businesses. A team that keeps your tech running. Free assessment.',
+      'IT support, custom software and manufacturing platforms. Over 10 years building and maintaining the systems businesses in Mexico rely on. Free assessment.',
     keywords:
-      'IT support for businesses, software support, managed IT services, web development, online stores, AI automation, business email, IT consulting, Mexico',
+      'IT support for businesses, software support, software maintenance, custom software, manufacturing software, PPAP, traceability, Andon system, legacy system modernization, .NET development, SQL Server, Mercado Libre integration, ERP reporting, web development, AI automation, Mexico',
     ogTitle: 'DreamBox Dev | Technology that works, with a team that answers',
-    ogDescription: 'IT support, maintenance, web and automation for small businesses. Book a free assessment.',
+    ogDescription: 'IT support, custom software and manufacturing platforms. Over 10 years building systems. Book a free assessment.',
     ogImageAlt: 'DreamBox Dev, IT support and technology solutions for businesses',
     privacyTitle: 'Privacy & Cookie Notice | DreamBox Dev',
     privacyDescription: 'What data DreamBox Dev collects, how it is used, which cookies the site uses and how to exercise your rights.',
-    orgDescription: 'IT support, maintenance, web development and technology solutions for small and mid-sized businesses.',
-    knowsAbout: ['Software support', 'Software maintenance', 'Web development', 'Automation', 'Business email and cloud', 'IT consulting'],
+    orgDescription: 'IT support, custom software and manufacturing platforms for businesses in Mexico.',
+    knowsAbout: [
+      'Software support',
+      'Software maintenance',
+      'Custom software',
+      'Manufacturing software',
+      'Legacy system modernization',
+      'Web development',
+      'Automation',
+      'Business email and cloud',
+    ],
     catalogName: 'IT support and technology services',
     country: 'Mexico',
   },
@@ -34,6 +43,7 @@ const en = {
 
   nav: [
     { label: 'Services', href: '#servicios' },
+    { label: 'Projects', href: '#construido' },
     { label: 'How we work', href: '#proceso' },
     { label: 'About', href: '#nosotros' },
     { label: 'FAQ', href: '#preguntas' },
@@ -42,9 +52,10 @@ const en = {
   header: { mainNav: 'Main', mobileNav: 'Menu', openMenu: 'Open menu', closeMenu: 'Close menu' },
 
   hero: {
-    eyebrow: 'IT support for growing businesses',
+    eyebrow: 'Support and software for businesses in Mexico',
     title: 'Technology that works, with a team that answers.',
-    subtitle: "We're your company's IT team: we fix, maintain and improve your technology.",
+    subtitle:
+      'For over 10 years we have built and maintained the systems businesses rely on: day-to-day support, custom software and manufacturing platforms.',
     secondary: 'See services',
     trustLabel: 'Our commitments',
     trust: ['Same-day response', 'Fixed monthly price', 'No long contracts'],
@@ -114,10 +125,24 @@ const en = {
     {
       id: 'sistemas',
       title: 'Custom software',
-      body: "When off-the-shelf tools fall short, we build the one you need and keep maintaining it with you.",
+      body: "When off-the-shelf tools fall short, we build the one you need and keep maintaining it with you. We've done it for manufacturing plants, marketplace sellers and companies that needed real reports out of their ERP.",
       short: 'Custom',
-      points: ['Inventory, orders and reports', 'Dashboards with your numbers', 'Support after launch'],
+      points: [
+        'Manufacturing software',
+        'API integrations (Mercado Libre, eBay and more)',
+        'Reports and dashboards on your data',
+        'Support after launch',
+      ],
+      link: { label: 'See projects', href: '#proyectos' },
       icon: 'Boxes',
+    },
+    {
+      id: 'modernizacion',
+      title: 'System modernization',
+      body: 'Does your business run on an old system nobody wants to touch anymore? We move it to modern technology piece by piece, without stopping your operation.',
+      short: 'Modernization',
+      points: ['Module-by-module migration', 'Your current system keeps running during the change', "Everything documented and in your company's name"],
+      icon: 'RefreshCw',
     },
   ],
 
@@ -160,6 +185,13 @@ const en = {
       ],
       chip: 'Built around how you work',
     },
+    modernization: {
+      before: 'Old system',
+      after: 'New platform',
+      modules: ['Inventory', 'Billing', 'Reports', 'Users'],
+      next: 'Coming up',
+      chip: 'Nothing gets switched off',
+    },
   },
 
   commitmentsSection: {
@@ -185,10 +217,190 @@ const en = {
     { id: 'contrato', value: 'Month to month', label: 'No long contracts. You stay because it works.' },
   ],
 
+  builtSection: {
+    title: "What we've built.",
+    subtitle: 'Over 10 years of systems in production: a manufacturing platform, a real modernization case and custom projects.',
+    tabsLabel: 'Projects',
+    tabs: [
+      { id: 'manufactura', label: 'Manufacturing', hint: 'Dreambox Manufacturing' },
+      { id: 'caso', label: 'Case study', hint: 'Automotive supplier' },
+      { id: 'proyectos', label: 'Projects', hint: 'Marketplaces & ERP' },
+    ],
+    carousel: { prev: 'Previous', next: 'Next' },
+    deck: { label: 'Featured modules', prev: 'Previous module', next: 'Next module' },
+    compare: 'Compare before and now',
+  },
+
+  // Manufacturing software (#manufactura). **text** renders in bold.
+  // The system is 12 years old: always say "over 10 years" / "10+ years" / "over a decade", never "15 years".
+  manufacturing: {
+    eyebrow: 'Manufacturing software',
+    title: 'Over 10 years on the shop floor. Now on a modern platform.',
+    body: "We've built and maintained the system that runs an auto parts plant for over a decade. Today we're moving it, module by module, to **Dreambox Manufacturing**: a platform built for Tier 1 and Tier 2 automotive suppliers.",
+    cta: 'Book a demo',
+    secondary: 'See the case study',
+    facts: [
+      { value: '10+ years', label: 'With our own system running every day in an automotive plant.' },
+      { value: 'In your plant', label: "On-premise installation per site. Your data stays on your server and operations don't depend on the internet." },
+      { value: 'By module', label: 'We migrate one module at a time. The old system keeps running until the new one is ready.' },
+    ],
+    modulesTitle: 'Modules built for automotive quality.',
+    modulesBody: 'Each module comes from a real plant process and can be adopted on its own.',
+    soon: 'Coming soon',
+    modules: [
+      {
+        id: 'ppap',
+        title: 'PPAP',
+        body: 'Files by part number, the status of every element and customer-ready documents generated for you.',
+      },
+      {
+        id: 'herramental',
+        title: 'Tooling',
+        body: 'Actions on molds and tools logged right on the floor from a kiosk, with a full history per tool.',
+      },
+      {
+        id: 'trazabilidad',
+        title: 'Component traceability',
+        body: 'Which lot of each BOM component went into every run, by shift and operator. Answer a customer complaint in minutes.',
+        soon: true,
+      },
+    ],
+    alsoTitle: 'Also includes',
+    also: [
+      'Andon system',
+      'Material receiving',
+      'Scrap management',
+      'Audits',
+      'Dashboards',
+      'Plant catalogs',
+      'Role-based users and permissions',
+      'Alerts',
+      'Multiple plants per site',
+      'Custom modules',
+      '…and more',
+    ],
+  },
+
+  manufacturingScenes: {
+    ppap: {
+      title: 'PPAP · Level 3',
+      part: 'Part no. 4471-B',
+      items: [
+        { label: 'Drawings & specifications', status: 'Approved', done: true },
+        { label: 'Dimensional results', status: 'Approved', done: true },
+        { label: 'PSW', status: 'In review', done: false },
+      ],
+    },
+    tooling: {
+      header: 'Line 2 · Shift 1',
+      tool: 'Mold M-218',
+      actions: ['Adjustment', 'Cleaning', 'Repair'],
+      saved: 'Cleaning logged',
+    },
+    trace: {
+      title: 'Run · Folio 000812 · Shift 2',
+      product: 'Finished good',
+      productValue: 'Bracket 7720',
+      components: [
+        { name: 'PP resin', lot: 'Lot R-2291' },
+        { name: 'Metal insert', lot: 'Lot M-0457' },
+      ],
+    },
+  },
+
+  caseStudy: {
+    eyebrow: 'Case study · Automotive supplier in Saltillo',
+    title: 'Modernizing a 10+ year-old system without stopping the plant.',
+    body: 'The plant ran on two systems that had grown apart for over a decade. They worked, but every change was slower and riskier.',
+    beforeTitle: 'Before',
+    before: [
+      'Two separate legacy systems, built on technology over ten years old.',
+      'Key processes, like scrap and traceability, buried in modules no one used anymore.',
+      'Every improvement meant touching fragile code.',
+    ],
+    afterTitle: 'Now',
+    after: [
+      'One modern platform, installed at the plant.',
+      'PPAP, Tooling and catalogs already migrated; Traceability on the way.',
+      'Every module is documented and approved with the plant before it gets built.',
+    ],
+    testimonial: null,
+  },
+
+  modernize: {
+    title: 'Does your business also run on an old system?',
+    body: "There's no need to throw it out and start over. We modernize it piece by piece, without switching anything off.",
+    steps: [
+      {
+        title: 'We learn what already works',
+        body: 'We review your current system with the people who use it and document every process before touching any code.',
+      },
+      {
+        title: 'We migrate one module at a time',
+        body: 'We start with the one that hurts most. Every module has its scope, price and date in writing.',
+      },
+      {
+        title: 'Both run side by side',
+        body: 'The old system keeps running while you validate the new one. You switch when you are sure.',
+      },
+    ],
+    stack: ['.NET 8', 'React', 'SQL Server', 'On-premise or cloud', 'Automated testing'],
+  },
+
+  projectsSection: {
+    title: 'Beyond the plant.',
+    body: 'We also build custom software for other industries. Two examples:',
+  },
+
+  projects: [
+    {
+      id: 'marketplaces',
+      label: 'E-commerce',
+      title: 'Inventory connected to Mercado Libre and eBay',
+      body: 'For a company that buys and resells on marketplaces. From a single system they manage their inventory and publish, update or remove their listings on Mercado Libre and eBay, connected straight to their APIs. No more entering things twice.',
+      points: [
+        'Central inventory as the single source of truth',
+        'Publish, edit and remove Mercado Libre and eBay listings from the system',
+        "Direct integration with each marketplace's API",
+      ],
+    },
+    {
+      id: 'erp',
+      label: 'Reporting & analytics',
+      title: 'Custom reports on top of your ERP',
+      body: 'Asking their ERP vendor for new reports was getting very expensive. We connected to their database, transformed the data and delivered the reports and charts exactly as they needed them, without switching ERPs.',
+      points: [
+        "Direct connection to the ERP's database",
+        'Data transformed into the format the business needs',
+        'Custom reports and charts',
+        'No paying the ERP vendor for every new report',
+      ],
+    },
+  ],
+
+  projectScenes: {
+    marketplaces: {
+      sku: 'SKU 10482',
+      stock: 'Stock',
+      channels: ['Mercado Libre', 'eBay'],
+      published: 'Listed',
+      sale: '1 sold on eBay → stock updated on both channels',
+    },
+    erp: {
+      title: 'Sales by branch · This month',
+      branches: ['Downtown', 'North', 'South', 'East'],
+      source: 'Data from your ERP',
+    },
+  },
+
   processSection: {
     title: 'From the first call to everything in order, in four steps.',
     subtitle: 'No endless contracts or jargon. At every stage you know what we are doing, what is left and what it costs.',
     tabsLabel: 'Steps',
+    pause: 'Pause autoplay',
+    play: 'Resume autoplay',
+    prev: 'Previous step',
+    next: 'Next step',
     step: (n, total) => `Step ${n} of ${total}`,
     takeaway: 'You get:',
     ctaTitle: 'The first step is free.',
@@ -255,7 +467,10 @@ const en = {
 
   about: {
     title: 'A technology partner. Not just another vendor.',
-    body: "We're a Mexico-based team of support specialists and developers working with small and mid-sized businesses. When you reach out, you hear from someone who already knows your systems, your accounts and your website.",
+    body: [
+      "We're a small team, on purpose: the person who answers you is the person who built your system. No middlemen, no account managers, no explaining everything from scratch every time.",
+      "And what we build, we look after. The system we developed for an automotive plant has been running every day for over a decade, and we're still the ones taking care of it.",
+    ],
     claim: "We don't sell you technology. We make sure it works.",
     toolsTitle: 'Tools we work with every day',
   },
@@ -292,6 +507,18 @@ const en = {
       a: 'Yes. We design websites, online stores and custom software, and then stay on to maintain them so they keep running.',
     },
     {
+      q: 'Do you work with manufacturing plants?',
+      a: "Yes. For over 10 years we've built and maintained the system of an auto parts plant, and today we're building Dreambox Manufacturing, a platform with modules like PPAP, tooling, traceability, Andon and scrap. It's installed in your plant and you can adopt only the modules you need.",
+    },
+    {
+      q: "I have an old system that works, but nobody wants to touch it anymore. Can you help?",
+      a: "Yes, that's exactly what we do. First we understand and document it; then we migrate it piece by piece to modern technology, without switching off the system you use today.",
+    },
+    {
+      q: 'Can you connect to my ERP or other systems I already have?',
+      a: "Yes. We connect to your systems' database or APIs to build reports, dashboards or integrations, without you having to switch vendors.",
+    },
+    {
       q: 'Do I have to sign a long contract?',
       a: "No. Plans are month to month. All access, accounts and files stay in your company's name, so you never depend on us to operate.",
     },
@@ -302,6 +529,7 @@ const en = {
     title: 'Tell us what you need.',
     body: "We'll review where your technology stands today and what to tackle first. No commitment.",
     serviceLegend: 'What can we help with?',
+    extraOptions: [{ id: 'manufactura', title: 'Manufacturing software' }],
     optional: '(optional)',
     name: 'Name',
     email: 'Email',
@@ -333,7 +561,7 @@ const en = {
   },
 
   footer: {
-    tagline: 'IT support, web and technology for businesses. Based in Mexico.',
+    tagline: 'IT support, custom software and manufacturing software for businesses. Based in Mexico.',
     company: 'Company',
     services: 'Services',
     contact: 'Contact',
