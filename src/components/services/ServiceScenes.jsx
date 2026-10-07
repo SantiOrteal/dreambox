@@ -262,6 +262,69 @@ function SystemsScene() {
   )
 }
 
+// Los módulos pasan uno a uno del sistema anterior a la plataforma nueva; el último sigue en camino.
+function ModernizationScene() {
+  const enter = useEnter()
+  const t = useT().serviceScenes.modernization
+  const last = t.modules.length - 1
+  const step = (i) => 0.5 + i * 0.4
+  return (
+    <div className="relative w-full max-w-[400px]">
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-3">
+        <motion.div {...enter(0.05)} className="rounded-2xl bg-white/60 p-3.5 ring-1 ring-inset ring-black/6 sm:p-4">
+          <p className="text-[12px] font-medium text-ink-subtle">{t.before}</p>
+          <ul className="mt-3 space-y-2">
+            {t.modules.map((m, i) => (
+              <motion.li
+                key={m}
+                initial={{ opacity: 1 }}
+                animate={{ opacity: i === last ? 1 : 0.35 }}
+                transition={{ duration: 0.3, delay: step(i) }}
+                className="rounded-lg bg-black/5 px-2.5 py-2 text-[13px] text-ink-muted"
+              >
+                {m}
+              </motion.li>
+            ))}
+          </ul>
+        </motion.div>
+
+        <motion.span {...enter(0.3)} className="grid h-8 w-8 place-items-center rounded-full bg-brand text-white">
+          <ArrowRight className="h-4 w-4" />
+        </motion.span>
+
+        <motion.div {...enter(0.15)} className={`${card} p-3.5 sm:p-4`}>
+          <p className="text-[12px] font-medium text-brand">{t.after}</p>
+          <ul className="mt-3 space-y-2">
+            {t.modules.map((m, i) =>
+              i === last ? (
+                <motion.li
+                  key={m}
+                  {...enter(step(i))}
+                  className="rounded-lg border border-dashed border-brand/40 px-2.5 py-[7px] text-[13px] text-ink-subtle"
+                >
+                  {t.next}
+                </motion.li>
+              ) : (
+                <motion.li
+                  key={m}
+                  {...enter(step(i), 'translateX(-16px) scale(0.97)')}
+                  className="flex items-center justify-between gap-2 rounded-lg bg-brand-soft px-2.5 py-2 text-[13px] font-medium text-ink"
+                >
+                  {m}
+                  <CircleCheck className="h-3.5 w-3.5 shrink-0 text-[#1f9d55]" strokeWidth={2.5} />
+                </motion.li>
+              ),
+            )}
+          </ul>
+        </motion.div>
+      </div>
+      <Chip enter={enter} delay={2.2} className="-bottom-12 left-1/2 -translate-x-1/2">
+        <span className="h-2 w-2 rounded-full bg-[#1f9d55]" /> {t.chip}
+      </Chip>
+    </div>
+  )
+}
+
 // Fondo del escenario por servicio: suave y dentro de la paleta de la marca.
 export const scenes = {
   soporte: { Scene: SupportScene, bg: 'from-[#e8eeff] to-[#f4f6ff]' },
@@ -270,4 +333,5 @@ export const scenes = {
   automatizacion: { Scene: AutomationScene, bg: 'from-[#ece8ff] to-[#f6f4ff]' },
   cloud: { Scene: CloudScene, bg: 'from-[#e3f0fd] to-[#f2f8fe]' },
   sistemas: { Scene: SystemsScene, bg: 'from-[#e9edf7] to-[#f5f7fb]' },
+  modernizacion: { Scene: ModernizationScene, bg: 'from-[#e8eeff] to-[#f5f3ff]' },
 }

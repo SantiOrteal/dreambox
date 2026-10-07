@@ -8,19 +8,28 @@ const es = {
   paths: { home: '/', privacy: '/privacidad' },
 
   meta: {
-    title: 'Soporte IT y desarrollo web en México | DreamBox Dev',
+    title: 'Soporte IT, software a la medida y manufactura | DreamBox Dev',
     description:
-      'Soporte de software, mantenimiento, desarrollo web y automatización para pymes en todo México. Un equipo que resuelve tu tecnología. Diagnóstico gratuito.',
+      'Soporte IT, software a la medida y plataformas para manufactura. Más de 10 años construyendo y manteniendo sistemas para empresas en México. Diagnóstico gratuito.',
     keywords:
-      'soporte IT para empresas, soporte de software, mantenimiento de software, empresa de desarrollo y soluciones IT, desarrollo web, tiendas en línea, automatización con IA, correo corporativo, consultoría IT, México',
+      'soporte IT para empresas, soporte de software, mantenimiento de software, software a la medida, software para manufactura, PPAP, trazabilidad, sistema Andon, modernización de sistemas legacy, desarrollo .NET, SQL Server, integración Mercado Libre, reportes ERP, desarrollo web, automatización con IA, México',
     ogTitle: 'DreamBox Dev | Tecnología que funciona, con un equipo que responde',
-    ogDescription: 'Soporte IT, mantenimiento, web y automatización para pymes en México. Agenda un diagnóstico gratuito.',
+    ogDescription: 'Soporte IT, software a la medida y plataformas para manufactura. Más de 10 años construyendo sistemas. Agenda un diagnóstico gratuito.',
     ogImageAlt: 'DreamBox Dev, soporte IT y soluciones tecnológicas para empresas',
     privacyTitle: 'Aviso de privacidad y cookies | DreamBox Dev',
     privacyDescription:
       'Qué datos recopila DreamBox Dev, para qué los usa, qué cookies usa el sitio y cómo ejercer tus derechos ARCO.',
-    orgDescription: 'Soporte IT, mantenimiento, desarrollo web y soluciones tecnológicas para pymes en México.',
-    knowsAbout: ['Soporte técnico de software', 'Mantenimiento de software', 'Desarrollo web', 'Automatización', 'Correo corporativo y nube', 'Consultoría IT'],
+    orgDescription: 'Soporte IT, software a la medida y plataformas para manufactura para empresas en México.',
+    knowsAbout: [
+      'Soporte técnico de software',
+      'Mantenimiento de software',
+      'Software a la medida',
+      'Software para manufactura',
+      'Modernización de sistemas',
+      'Desarrollo web',
+      'Automatización',
+      'Correo corporativo y nube',
+    ],
     catalogName: 'Servicios de soporte IT y soluciones tecnológicas',
     country: 'México',
   },
@@ -36,6 +45,8 @@ const es = {
 
   nav: [
     { label: 'Servicios', href: '#servicios' },
+    { label: 'Manufactura', href: '#manufactura' },
+    { label: 'Proyectos', href: '#proyectos' },
     { label: 'Cómo trabajamos', href: '#proceso' },
     { label: 'Nosotros', href: '#nosotros' },
     { label: 'Preguntas', href: '#preguntas' },
@@ -44,9 +55,10 @@ const es = {
   header: { mainNav: 'Principal', mobileNav: 'Menú', openMenu: 'Abrir menú', closeMenu: 'Cerrar menú' },
 
   hero: {
-    eyebrow: 'Soporte IT para empresas en México',
+    eyebrow: 'Soporte y software para empresas en México',
     title: 'Tecnología que funciona, con un equipo que responde.',
-    subtitle: 'Somos el equipo de sistemas de tu empresa: resolvemos, mantenemos y mejoramos tu tecnología.',
+    subtitle:
+      'Desde hace más de 10 años construimos y mantenemos los sistemas de los que dependen las empresas: soporte diario, software a la medida y plataformas para manufactura.',
     secondary: 'Ver servicios',
     trustLabel: 'Nuestros compromisos',
     trust: ['Respuesta el mismo día', 'Precio fijo mensual', 'Sin contratos largos'],
@@ -116,10 +128,24 @@ const es = {
     {
       id: 'sistemas',
       title: 'Sistemas a la medida',
-      body: 'Cuando una herramienta estándar no alcanza, desarrollamos la que necesitas y la mantenemos contigo.',
+      body: 'Cuando una herramienta estándar no alcanza, desarrollamos la que necesitas y la mantenemos contigo. Ya lo hicimos para plantas de manufactura, vendedores en marketplaces y empresas que necesitaban sacarle reportes a su ERP.',
       short: 'A la medida',
-      points: ['Inventarios, pedidos y reportes', 'Paneles con tus números', 'Soporte después de entregar'],
+      points: [
+        'Software para manufactura',
+        'Integraciones con APIs (Mercado Libre, eBay y otras)',
+        'Reportes y dashboards sobre tus datos',
+        'Soporte después de entregar',
+      ],
+      link: { label: 'Ver proyectos', href: '#proyectos' },
       icon: 'Boxes',
+    },
+    {
+      id: 'modernizacion',
+      title: 'Modernización de sistemas',
+      body: '¿Tu empresa depende de un sistema viejo que ya nadie quiere tocar? Lo llevamos a tecnología actual por partes, sin detener tu operación.',
+      short: 'Modernización',
+      points: ['Migración por módulos', 'El sistema actual sigue funcionando durante el cambio', 'Todo documentado y a nombre de tu empresa'],
+      icon: 'RefreshCw',
     },
   ],
 
@@ -163,6 +189,13 @@ const es = {
       ],
       chip: 'Hecho para tu forma de trabajar',
     },
+    modernization: {
+      before: 'Sistema anterior',
+      after: 'Plataforma nueva',
+      modules: ['Inventario', 'Facturación', 'Reportes', 'Usuarios'],
+      next: 'En camino',
+      chip: 'Sin apagar nada',
+    },
   },
 
   commitmentsSection: {
@@ -188,6 +221,177 @@ const es = {
     { id: 'contacto', value: 'Un responsable', label: 'Una persona que conoce tu empresa y tus sistemas.' },
     { id: 'contrato', value: 'Mes a mes', label: 'Sin contratos largos. Te quedas porque funciona.' },
   ],
+
+  // Software para manufactura (#manufactura). **texto** se muestra en negritas.
+  // El sistema tiene 12 años: usar siempre "más de 10 años" / "10+ años" / "más de una década", nunca "15 años".
+  manufacturing: {
+    eyebrow: 'Software para manufactura',
+    title: 'Más de 10 años en el piso de producción. Ahora en una plataforma moderna.',
+    body: 'Desarrollamos y mantenemos el sistema que opera una planta de autopartes desde hace más de una década. Hoy lo estamos llevando, módulo por módulo, a **Dreambox Manufacturing**: una plataforma hecha para proveedores automotrices Tier 1 y Tier 2.',
+    cta: 'Agenda una demo',
+    secondary: 'Ver el caso de estudio',
+    facts: [
+      { value: '10+ años', label: 'Con un sistema propio operando todos los días en una planta automotriz.' },
+      { value: 'En tu planta', label: 'Instalación on-premise por sucursal. Tus datos se quedan en tu servidor y la operación no depende de internet.' },
+      { value: 'Por módulos', label: 'Migramos un módulo a la vez. El sistema anterior sigue funcionando hasta que el nuevo está listo.' },
+    ],
+    modulesTitle: 'Módulos pensados para la calidad automotriz.',
+    modulesBody: 'Cada módulo nace de un proceso real de planta y se puede adoptar por separado.',
+    soon: 'Próximamente',
+    modules: [
+      {
+        id: 'ppap',
+        title: 'PPAP',
+        body: 'Expedientes por número de parte, estatus de cada elemento y generación de documentos listos para el cliente.',
+      },
+      {
+        id: 'herramental',
+        title: 'Herramental',
+        body: 'Acciones sobre moldes y herramientas capturadas directo en piso desde un kiosco, con historial por herramental.',
+      },
+      {
+        id: 'trazabilidad',
+        title: 'Trazabilidad de componentes',
+        body: 'Qué lote de cada componente del BOM entró en cada corrida, por turno y operador. Responde un reclamo del cliente en minutos.',
+        soon: true,
+      },
+    ],
+    alsoTitle: 'También incluye',
+    // Confirmado: todos ya están en la plataforma nueva. Si alguno vuelve a estar en migración, márcalo con { label, soon: true }.
+    also: [
+      'Sistema Andon',
+      'Recibo de material',
+      'Manejo de scrap',
+      'Auditoría',
+      'Dashboards',
+      'Catálogos de planta',
+      'Usuarios y permisos por rol',
+      'Alertas',
+      'Varias plantas por sucursal',
+      'Módulos a la medida',
+      '…y más',
+    ],
+  },
+
+  // Ejemplos ilustrativos de los módulos (números de parte, folios y moldes inventados).
+  manufacturingScenes: {
+    ppap: {
+      title: 'PPAP · Nivel 3',
+      part: 'No. de parte 4471-B',
+      items: [
+        { label: 'Dibujo y especificaciones', status: 'Aprobado', done: true },
+        { label: 'Estudio dimensional', status: 'Aprobado', done: true },
+        { label: 'PSW', status: 'En revisión', done: false },
+      ],
+    },
+    tooling: {
+      header: 'Línea 2 · Turno 1',
+      tool: 'Molde M-218',
+      actions: ['Ajuste', 'Limpieza', 'Reparación'],
+      saved: 'Limpieza registrada',
+    },
+    trace: {
+      title: 'Corrida · Folio 000812 · Turno 2',
+      product: 'Producto terminado',
+      productValue: 'Soporte 7720',
+      components: [
+        { name: 'Resina PP', lot: 'Lote R-2291' },
+        { name: 'Inserto metálico', lot: 'Lote M-0457' },
+      ],
+    },
+  },
+
+  // Caso de estudio (#caso) y cómo modernizamos un sistema existente, en un solo bloque.
+  // No mencionar el nombre del cliente hasta tener su autorización.
+  caseStudy: {
+    eyebrow: 'Caso de estudio · Proveedor automotriz en Saltillo',
+    title: 'Modernizar un sistema de más de 10 años sin detener la planta.',
+    body: 'La planta operaba con dos sistemas que crecieron por separado durante más de una década. Funcionaban, pero cada cambio era más lento y más riesgoso.',
+    beforeTitle: 'Antes',
+    before: [
+      'Dos sistemas legacy separados, con tecnología de hace más de diez años.',
+      'Procesos clave, como scrap y trazabilidad, mezclados en módulos que ya no se usaban.',
+      'Cada mejora implicaba tocar código frágil.',
+    ],
+    afterTitle: 'Ahora',
+    after: [
+      'Una sola plataforma moderna, instalada en la planta.',
+      'PPAP, Herramental y catálogos ya migrados; Trazabilidad en camino.',
+      'Cada módulo se documenta y aprueba con la planta antes de construirse.',
+    ],
+    // TODO: cita real del cliente, con su permiso. Mientras sea null, el bloque no se muestra.
+    // Formato: { quote: 'Una o dos frases sobre el resultado.', name: 'Nombre', role: 'Puesto', company: 'Empresa (solo si autoriza)' }
+    testimonial: null,
+  },
+
+  modernize: {
+    title: '¿Tu empresa también corre sobre un sistema viejo?',
+    body: 'No hace falta tirarlo y empezar de cero. Lo modernizamos por partes, sin apagar nada.',
+    steps: [
+      {
+        title: 'Entendemos lo que ya funciona',
+        body: 'Revisamos tu sistema actual con la gente que lo usa y documentamos cada proceso antes de tocar código.',
+      },
+      {
+        title: 'Migramos un módulo a la vez',
+        body: 'Empezamos por el que más duele. Cada módulo tiene alcance, precio y fecha por escrito.',
+      },
+      {
+        title: 'Conviven hasta el cambio',
+        body: 'El sistema anterior sigue operando mientras validas el nuevo. Cambias cuando estás seguro.',
+      },
+    ],
+    stack: ['.NET 8', 'React', 'SQL Server', 'On-premise o en la nube', 'Pruebas automatizadas'],
+  },
+
+  // Proyectos a la medida (#proyectos). No usar logos de Mercado Libre ni eBay, solo el nombre.
+  // TODO: confirmar si los clientes permiten mencionar su giro o nombre.
+  projectsSection: {
+    title: 'Más allá de la planta.',
+    body: 'También construimos sistemas a la medida para otros giros. Dos ejemplos:',
+  },
+
+  projects: [
+    {
+      id: 'marketplaces',
+      label: 'Comercio en línea',
+      title: 'Inventario conectado a Mercado Libre y eBay',
+      body: 'Para una empresa que compra y revende en marketplaces. Desde un solo sistema manejan su inventario y publican, actualizan o dan de baja sus anuncios en Mercado Libre y eBay, conectados directo a sus APIs. Nada de capturar dos veces.',
+      points: [
+        'Inventario central como única fuente de verdad',
+        'Publicar, editar y eliminar anuncios en Mercado Libre y eBay desde el sistema',
+        'Integración directa con las APIs de cada marketplace',
+      ],
+    },
+    {
+      id: 'erp',
+      label: 'Reportes y análisis',
+      title: 'Reportes a la medida sobre tu ERP',
+      body: 'Pedirle reportes nuevos al proveedor de su ERP les salía muy caro. Nos conectamos a su base de datos, transformamos la información y les entregamos sus reportes y gráficas tal como los necesitaban, sin cambiar de ERP.',
+      points: [
+        'Conexión directa a la base de datos del ERP',
+        'Transformación de datos al formato que el negocio necesita',
+        'Reportes personalizados y gráficas',
+        'Sin depender ni pagarle al proveedor del ERP por cada reporte',
+      ],
+    },
+  ],
+
+  // Ejemplos ilustrativos de los proyectos.
+  projectScenes: {
+    marketplaces: {
+      sku: 'SKU 10482',
+      stock: 'Stock',
+      channels: ['Mercado Libre', 'eBay'],
+      published: 'Publicado',
+      sale: 'Se vendió 1 en eBay → stock actualizado en ambos canales',
+    },
+    erp: {
+      title: 'Ventas por sucursal · Este mes',
+      branches: ['Centro', 'Norte', 'Sur', 'Oriente'],
+      source: 'Datos de tu ERP',
+    },
+  },
 
   processSection: {
     title: 'De la primera llamada a todo en orden, en cuatro pasos.',
@@ -260,7 +464,10 @@ const es = {
 
   about: {
     title: 'Un socio tecnológico. No un proveedor más.',
-    body: 'Somos un equipo mexicano de especialistas en soporte y desarrolladores que atiende a pequeñas y medianas empresas en todo México. Cuando escribes, responde alguien que ya conoce tus sistemas, tus cuentas y tu web.',
+    body: [
+      'Somos un equipo pequeño y con experiencia. Desde hace más de 10 años desarrollamos y mantenemos sistemas que empresas usan todos los días: desde el software de una planta automotriz hasta inventarios conectados a marketplaces y reportes sobre ERPs.',
+      'Aquí no hay intermediarios ni ejecutivos de cuenta. Cuando escribes, te responde la misma persona que construyó y conoce tu sistema.',
+    ],
     claim: 'No te vendemos tecnología. Nos hacemos cargo de que funcione.',
     toolsTitle: 'Herramientas con las que trabajamos a diario',
   },
@@ -284,6 +491,8 @@ const es = {
     },
     {
       q: '¿Atienden de forma remota o presencial?',
+      // TODO (confirmar): si hacemos visitas a planta, agregar al final:
+      // "Para proyectos de manufactura podemos hacer visitas a planta cuando el proyecto lo requiere."
       a: 'Trabajamos de forma remota: la mayoría de los casos los resolvemos el mismo día por acceso remoto, videollamada, WhatsApp o correo. Nos especializamos en software, cuentas y sistemas; no hacemos reparación de equipos.',
     },
     {
@@ -299,6 +508,18 @@ const es = {
       a: 'Sí. Diseñamos sitios web, tiendas en línea y sistemas a la medida, y después nos quedamos a cargo de su mantenimiento para que sigan funcionando.',
     },
     {
+      q: '¿Trabajan con plantas de manufactura?',
+      a: 'Sí. Desde hace más de 10 años desarrollamos y mantenemos el sistema de una planta de autopartes, y hoy estamos construyendo Dreambox Manufacturing, una plataforma con módulos como PPAP, herramental, trazabilidad, Andon y scrap. Se instala en tu planta y puedes adoptar solo los módulos que necesites.',
+    },
+    {
+      q: 'Tengo un sistema viejo que funciona, pero ya nadie lo quiere tocar. ¿Pueden ayudarme?',
+      a: 'Sí, es justo lo que hacemos. Primero lo entendemos y documentamos; después lo migramos por partes a tecnología actual, sin apagar el sistema que hoy usas.',
+    },
+    {
+      q: '¿Pueden conectarse a mi ERP o a otros sistemas que ya tengo?',
+      a: 'Sí. Nos conectamos a la base de datos o a las APIs de tus sistemas para generar reportes, dashboards o integraciones, sin que tengas que cambiar de proveedor.',
+    },
+    {
       q: '¿Tengo que firmar un contrato largo?',
       a: 'No. Los planes son mes a mes. Todos los accesos, cuentas y archivos quedan a nombre de tu empresa, así que nunca dependes de nosotros para operar.',
     },
@@ -309,6 +530,8 @@ const es = {
     title: 'Cuéntanos qué necesitas.',
     body: 'Revisamos contigo cómo está hoy tu tecnología y qué conviene resolver primero. Sin compromiso.',
     serviceLegend: '¿En qué te ayudamos?',
+    // Opciones extra además de los servicios (el id "manufactura" lo preselecciona "Agenda una demo").
+    extraOptions: [{ id: 'manufactura', title: 'Software para manufactura' }],
     optional: '(opcional)',
     name: 'Nombre',
     email: 'Correo electrónico',
@@ -340,7 +563,7 @@ const es = {
   },
 
   footer: {
-    tagline: 'Soporte IT, web y tecnología para empresas en todo México.',
+    tagline: 'Soporte IT, software a la medida y software para manufactura, para empresas en México.',
     company: 'Empresa',
     services: 'Servicios',
     contact: 'Contacto',

@@ -36,25 +36,29 @@ export const site = {
   },
 }
 
-// Dos filas de la marquesina de herramientas con las que trabajamos
+// Dos filas de la marquesina de herramientas con las que trabajamos. El stack Microsoft va primero: es el principal.
+// slug: ícono de cdn.simpleicons.org. icon: ícono genérico (lucide) para marcas que Simple Icons no tiene (C#, SQL Server, Azure).
 export const stack = [
   [
-    { name: 'WordPress', slug: 'wordpress' },
-    { name: 'Shopify', slug: 'shopify' },
-    { name: 'WooCommerce', slug: 'woocommerce' },
+    { name: '.NET', slug: 'dotnet' },
+    { name: 'C#', icon: 'Code', color: '#68217a' },
+    { name: 'SQL Server', icon: 'Database', color: '#cc2927' },
+    { name: 'Azure', icon: 'Cloud', color: '#0078d4' },
     { name: 'React', slug: 'react' },
-    { name: 'Next.js', slug: 'nextdotjs' },
     { name: 'Node.js', slug: 'nodedotjs' },
     { name: 'Python', slug: 'python' },
+    { name: 'Next.js', slug: 'nextdotjs' },
     { name: 'Tailwind CSS', slug: 'tailwindcss' },
     { name: 'Figma', slug: 'figma' },
   ],
   [
+    { name: 'WordPress', slug: 'wordpress' },
+    { name: 'Shopify', slug: 'shopify' },
+    { name: 'WooCommerce', slug: 'woocommerce' },
     { name: 'Google Cloud', slug: 'googlecloud' },
     { name: 'Cloudflare', slug: 'cloudflare' },
-    { name: 'Linux', slug: 'linux' },
-    { name: 'Ubuntu', slug: 'ubuntu' },
     { name: 'Docker', slug: 'docker' },
+    { name: 'Linux', slug: 'linux' },
     { name: 'MySQL', slug: 'mysql' },
     { name: 'PostgreSQL', slug: 'postgresql' },
     { name: 'Firebase', slug: 'firebase' },

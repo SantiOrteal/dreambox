@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useInView, useReducedMotion } from 'motion/react'
-import { Boxes, ChevronLeft, ChevronRight, Cloud, Globe, Headset, Pause, Play, ShieldCheck, Sparkles } from 'lucide-react'
+import { ArrowRight, Boxes, ChevronLeft, ChevronRight, Cloud, Globe, Headset, Pause, Play, RefreshCw, ShieldCheck, Sparkles } from 'lucide-react'
 import es from '../../i18n/es'
 import { useT } from '../../i18n'
 import Reveal from '../Reveal'
 import { scenes } from '../services/ServiceScenes'
 
-const icons = { Boxes, Globe, Headset, ShieldCheck, Sparkles, Cloud }
+const icons = { Boxes, Globe, Headset, ShieldCheck, Sparkles, Cloud, RefreshCw }
 const AUTOPLAY_MS = 6500
 const EASE = [0.23, 1, 0.32, 1]
 // Ambos idiomas tienen los mismos servicios, en el mismo orden.
@@ -21,6 +21,16 @@ function Progress({ running, className }) {
       className={`absolute inset-0 origin-left ${className}`}
       style={running ? { animation: `fill ${AUTOPLAY_MS}ms linear forwards` } : { transform: 'scaleX(1)' }}
     />
+  )
+}
+
+// Enlace opcional de un servicio (por ejemplo, "Ver proyectos"). Fuera del servicio activo no recibe foco.
+function ServiceLink({ link, active }) {
+  if (!link) return null
+  return (
+    <a href={link.href} tabIndex={active ? undefined : -1} className="link mt-4 text-[15px]">
+      {link.label} <ArrowRight className="h-3.5 w-3.5" />
+    </a>
   )
 }
 
@@ -205,6 +215,7 @@ export default function Services() {
                             </li>
                           ))}
                         </ul>
+                        <ServiceLink link={s.link} active={selected} />
                       </div>
                     </div>
                   </div>
@@ -294,7 +305,7 @@ export default function Services() {
                 </button>
               </div>
 
-              {/* Los seis servicios quedan en el HTML con su título (SEO); solo se ve el activo.
+              {/* Todos los servicios quedan en el HTML con su título (SEO); solo se ve el activo.
                   Al ocupar la misma celda, la tarjeta mide siempre lo mismo y no salta al cambiar. */}
               <div className="grid">
                 {services.map((s, i) => {
@@ -320,6 +331,7 @@ export default function Services() {
                           </li>
                         ))}
                       </ul>
+                      <ServiceLink link={s.link} active={isActive} />
                     </motion.div>
                   )
                 })}

@@ -4,6 +4,9 @@ import Hero from './components/sections/Hero'
 import Statement from './components/sections/Statement'
 import Services from './components/sections/Services'
 import Commitments from './components/sections/Commitments'
+import Manufacturing from './components/sections/Manufacturing'
+import CaseStudy from './components/sections/CaseStudy'
+import Projects from './components/sections/Projects'
 import Process from './components/sections/Process'
 import About from './components/sections/About'
 import Testimonials from './components/sections/Testimonials'
@@ -15,7 +18,8 @@ import CookieBanner from './components/CookieBanner'
 import Backdrop from './components/Backdrop'
 import { useT } from './i18n'
 
-// Historia de la página: promesa → problema → servicios → compromisos → proceso → quiénes somos → dudas → acción.
+// Historia de la página: promesa → problema → servicios → compromisos → manufactura → caso y método → proyectos
+// → proceso → quiénes somos → dudas → acción.
 export default function App() {
   const t = useT()
   return (
@@ -34,6 +38,9 @@ export default function App() {
           <Statement />
           <Services />
           <Commitments />
+          <Manufacturing />
+          <CaseStudy />
+          <Projects />
           <Process />
           <About />
           <Testimonials />
