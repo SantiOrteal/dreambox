@@ -203,9 +203,9 @@ const en = {
       resolved: 'Fixed the same day',
     },
     plan: {
-      title: 'Your monthly plan',
-      rows: ['Support for your team', 'Maintenance', 'Backups'],
-      footer: 'Same price every month',
+      title: 'Your proposal',
+      rows: ['Development · per project', 'Maintenance · monthly', 'Support for your team'],
+      footer: 'Everything in writing before we start',
     },
     owner: { name: 'Your account lead', status: 'Available now' },
     toggle: { annual: 'Annual contract', monthly: 'Month to month' },
@@ -213,7 +213,7 @@ const en = {
 
   commitments: [
     { id: 'respuesta', value: 'Same day', label: 'We answer your support requests during business hours.' },
-    { id: 'precio', value: 'Fixed price', label: 'Clear monthly plans, no surprise charges.' },
+    { id: 'precio', value: 'Clear pricing', label: 'Per project, monthly or both. Always in writing, no surprise charges.' },
     { id: 'contacto', value: 'One owner', label: 'One person who knows your business and your systems.' },
     { id: 'contrato', value: 'Month to month', label: 'No long contracts. You stay because it works.' },
   ],
@@ -419,7 +419,7 @@ const en = {
       title: 'Proposal',
       body: 'We send you a written plan: what we will do, in what order and how much it costs. You decide whether to move forward.',
       detail: 'In under 3 business days',
-      items: ['Priorities ranked by impact', 'Scope and price in writing', 'Clear timelines for each stage'],
+      items: ['Priorities ranked by impact', 'Price and payment terms in writing', 'Clear timelines for each stage'],
       outcome: 'A plan with a locked-in price.',
       icon: 'FileText',
     },
@@ -485,8 +485,8 @@ const en = {
       a: 'Help for your team over WhatsApp, email and remote access, upkeep of your accounts, software and website, backups, updates and a monthly report. We tailor the plan to the size of your business.',
     },
     {
-      q: 'How much does it cost to work with DreamBox?',
-      a: "It depends on how many people and systems we support. After the assessment, which is free, we send you a written proposal: a fixed monthly price for support and a fixed price per project or per module for development.",
+      q: 'How much does it cost, and how do you charge?',
+      a: "It depends on what you need, and we put it in writing after the assessment, which is free. Support and maintenance are a fixed monthly fee. Projects, like a system built from scratch or a legacy migration, are priced per project, optionally followed by monthly maintenance. Depending on the project, it can also be an upfront investment plus monthly payments, or monthly payments only: we'll tell you which option applies.",
     },
     {
       q: 'Do you work remotely? Where are you based?',
@@ -510,7 +510,7 @@ const en = {
     },
     {
       q: 'Do I have to sign a long contract?',
-      a: 'No. Support plans are month to month.',
+      a: 'No. Support and maintenance are month to month, and maintenance after a project is optional.',
     },
     {
       q: 'What happens if we stop working together someday?',

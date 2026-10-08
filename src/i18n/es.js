@@ -206,9 +206,9 @@ const es = {
       resolved: 'Resuelto el mismo día',
     },
     plan: {
-      title: 'Tu plan mensual',
-      rows: ['Soporte a tu equipo', 'Mantenimiento', 'Copias de seguridad'],
-      footer: 'Mismo precio todos los meses',
+      title: 'Tu propuesta',
+      rows: ['Desarrollo · por proyecto', 'Mantenimiento · mensual', 'Soporte a tu equipo'],
+      footer: 'Todo por escrito antes de empezar',
     },
     owner: { name: 'Tu responsable', status: 'Disponible ahora' },
     toggle: { annual: 'Contrato anual', monthly: 'Mes a mes' },
@@ -217,7 +217,7 @@ const es = {
   // TODO: confirma que estos compromisos reflejan cómo opera tu empresa.
   commitments: [
     { id: 'respuesta', value: 'Mismo día', label: 'Respondemos tus solicitudes de soporte en horario laboral.' },
-    { id: 'precio', value: 'Precio fijo', label: 'Planes mensuales claros, sin cobros sorpresa.' },
+    { id: 'precio', value: 'Precio claro', label: 'Por proyecto, mensual o ambos. Siempre por escrito y sin cobros sorpresa.' },
     { id: 'contacto', value: 'Un responsable', label: 'Una persona que conoce tu empresa y tus sistemas.' },
     { id: 'contrato', value: 'Mes a mes', label: 'Sin contratos largos. Te quedas porque funciona.' },
   ],
@@ -434,7 +434,7 @@ const es = {
       title: 'Propuesta',
       body: 'Te enviamos un plan por escrito: qué haremos, en qué orden y cuánto cuesta. Tú decides si avanzamos.',
       detail: 'En menos de 3 días hábiles',
-      items: ['Prioridades ordenadas por impacto', 'Alcance y precio por escrito', 'Tiempos claros para cada etapa'],
+      items: ['Prioridades ordenadas por impacto', 'Precio y forma de pago por escrito', 'Tiempos claros para cada etapa'],
       outcome: 'Un plan con precio cerrado.',
       icon: 'FileText',
     },
@@ -505,8 +505,8 @@ const es = {
       a: 'Atención a tu equipo por WhatsApp, correo y acceso remoto, mantenimiento de tus cuentas, programas y sitio web, copias de seguridad, actualizaciones y un reporte mensual. Ajustamos el plan al tamaño de tu empresa.',
     },
     {
-      q: '¿Cuánto cuesta trabajar con DreamBox?',
-      a: 'Depende de cuántas personas y sistemas atendemos. Después del diagnóstico, que no tiene costo, te enviamos una propuesta por escrito: precio fijo mensual para el soporte y precio cerrado por proyecto o por módulo para el desarrollo.',
+      q: '¿Cuánto cuesta y cómo cobran?',
+      a: 'Depende de lo que necesites, y te lo decimos por escrito después del diagnóstico, que no tiene costo. El soporte y el mantenimiento se pagan con una cuota fija mensual. Los proyectos, como un sistema desde cero o la migración de un sistema legacy, se cobran por proyecto y después, si quieres, sigue un mantenimiento mensual. Según el proyecto, también puede hacerse con una inversión inicial y pagos mensuales, o solo con pagos mensuales: te decimos qué opción aplica.',
     },
     {
       q: '¿Atienden de forma remota? ¿En qué parte de México?',
@@ -532,7 +532,7 @@ const es = {
     },
     {
       q: '¿Tengo que firmar un contrato largo?',
-      a: 'No. Los planes de soporte son mes a mes.',
+      a: 'No. El soporte y el mantenimiento son mes a mes, y después de un proyecto el mantenimiento es opcional.',
     },
     {
       q: '¿Qué pasa si un día dejamos de trabajar juntos?',
