@@ -2,6 +2,7 @@ import { motion, useReducedMotion, useTransform } from 'motion/react'
 import BoxDefs, { RIM_IN, RIM_OUT } from './BoxDefs'
 import BoxLid from './BoxLid'
 import BoxLight, { BoxHalo } from './BoxLight'
+import EnergyLinks from './EnergyLinks'
 import ServicePiece from './ServicePiece'
 import { CHARGE_AT, CHARGE_DURATION, pieces } from './constants'
 import { useT } from '../../i18n'
@@ -13,6 +14,7 @@ const OUTLINE = 'M40 144 200 54 360 144v106L200 340 40 250Z'
 
 // La caja de DreamBox: empieza cerrada, se enciende cuando le llega el pulso de los circuitos y se destapa sola.
 // Capas, de atrás hacia adelante: sombra, halo, interior, borde, cuerpo, logo, aristas, luz y tapa.
+// Encima del SVG van las líneas de energía hacia las tarjetas y las tarjetas.
 export default function OpeningBox({ progress, layout, pointer }) {
   const { hero } = useT()
   const reduce = useReducedMotion()
@@ -92,9 +94,13 @@ export default function OpeningBox({ progress, layout, pointer }) {
           )}
 
           <BoxLight progress={progress} glow={glow} />
-          <BoxLid progress={progress} />
         </g>
+
+        {/* La tapa va fuera del grupo que flota: al caer se queda quieta en el piso */}
+        <BoxLid progress={progress} />
       </svg>
+
+      <EnergyLinks progress={progress} layout={layout} />
 
       {pieces.map((piece, i) => (
         <ServicePiece
