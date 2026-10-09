@@ -65,6 +65,9 @@ const es = {
     cueLabel: 'Desliza para descubrir nuestros servicios',
     boxLabel: 'La caja de DreamBox se abre y libera soporte, web, inteligencia artificial y nube',
     pieces: ['Soporte', 'Web', 'IA', 'Nube'],
+    // Se muestran al pasar el mouse por cada tarjeta del hero (mismo orden que pieces).
+    pieceHints: ['Por WhatsApp, correo o remoto', 'Sitios y tiendas que venden', 'Menos tareas repetitivas', 'Correo, archivos y respaldos'],
+    pieceAction: 'Ver servicio',
   },
 
   story: {
