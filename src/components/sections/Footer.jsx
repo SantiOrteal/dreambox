@@ -15,7 +15,13 @@ export default function Footer({ page = 'home' }) {
   const social = Object.entries(site.social).filter(([, url]) => url)
   const cols = [
     { title: f.company, links: [...t.nav, { label: f.contactLink, href: '#contacto' }].map((l) => ({ ...l, href: base + l.href })) },
-    { title: f.services, links: t.services.map((s) => ({ label: s.title, href: `${base}#servicios` })) },
+    {
+      title: f.services,
+      links: [
+        ...t.services.map((s) => ({ label: s.title, href: `${base}#servicios` })),
+        { label: t.manufacturing.eyebrow, href: `${base}#manufactura` },
+      ],
+    },
     {
       title: f.contact,
       links: [

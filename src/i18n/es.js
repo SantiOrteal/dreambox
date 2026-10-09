@@ -8,19 +8,28 @@ const es = {
   paths: { home: '/', privacy: '/privacidad' },
 
   meta: {
-    title: 'Soporte IT y desarrollo web en México | DreamBox Dev',
+    title: 'Soporte IT, software a la medida y manufactura | DreamBox Dev',
     description:
-      'Soporte de software, mantenimiento, desarrollo web y automatización para pymes en todo México. Un equipo que resuelve tu tecnología. Diagnóstico gratuito.',
+      'Soporte IT, software a la medida y plataformas para manufactura. Más de 10 años construyendo y manteniendo sistemas para empresas en México. Diagnóstico gratuito.',
     keywords:
-      'soporte IT para empresas, soporte de software, mantenimiento de software, empresa de desarrollo y soluciones IT, desarrollo web, tiendas en línea, automatización con IA, correo corporativo, consultoría IT, México',
+      'soporte IT para empresas, soporte de software, mantenimiento de software, software a la medida, software para manufactura, PPAP, trazabilidad, sistema Andon, modernización de sistemas legacy, desarrollo .NET, SQL Server, integración Mercado Libre, reportes ERP, desarrollo web, automatización con IA, México',
     ogTitle: 'DreamBox Dev | Tecnología que funciona, con un equipo que responde',
-    ogDescription: 'Soporte IT, mantenimiento, web y automatización para pymes en México. Agenda un diagnóstico gratuito.',
+    ogDescription: 'Soporte IT, software a la medida y plataformas para manufactura. Más de 10 años construyendo sistemas. Agenda un diagnóstico gratuito.',
     ogImageAlt: 'DreamBox Dev, soporte IT y soluciones tecnológicas para empresas',
     privacyTitle: 'Aviso de privacidad y cookies | DreamBox Dev',
     privacyDescription:
       'Qué datos recopila DreamBox Dev, para qué los usa, qué cookies usa el sitio y cómo ejercer tus derechos ARCO.',
-    orgDescription: 'Soporte IT, mantenimiento, desarrollo web y soluciones tecnológicas para pymes en México.',
-    knowsAbout: ['Soporte técnico de software', 'Mantenimiento de software', 'Desarrollo web', 'Automatización', 'Correo corporativo y nube', 'Consultoría IT'],
+    orgDescription: 'Soporte IT, software a la medida y plataformas para manufactura para empresas en México.',
+    knowsAbout: [
+      'Soporte técnico de software',
+      'Mantenimiento de software',
+      'Software a la medida',
+      'Software para manufactura',
+      'Modernización de sistemas',
+      'Desarrollo web',
+      'Automatización',
+      'Correo corporativo y nube',
+    ],
     catalogName: 'Servicios de soporte IT y soluciones tecnológicas',
     country: 'México',
   },
@@ -36,6 +45,7 @@ const es = {
 
   nav: [
     { label: 'Servicios', href: '#servicios' },
+    { label: 'Proyectos', href: '#construido' },
     { label: 'Cómo trabajamos', href: '#proceso' },
     { label: 'Nosotros', href: '#nosotros' },
     { label: 'Preguntas', href: '#preguntas' },
@@ -44,12 +54,13 @@ const es = {
   header: { mainNav: 'Principal', mobileNav: 'Menú', openMenu: 'Abrir menú', closeMenu: 'Cerrar menú' },
 
   hero: {
-    eyebrow: 'Soporte IT para empresas en México',
+    eyebrow: 'Soporte y software para empresas en México',
     title: 'Tecnología que funciona, con un equipo que responde.',
-    subtitle: 'Somos el equipo de sistemas de tu empresa: resolvemos, mantenemos y mejoramos tu tecnología.',
+    subtitle:
+      'Desde hace más de 10 años construimos y mantenemos los sistemas de los que dependen las empresas: soporte diario, software a la medida y plataformas para manufactura.',
     secondary: 'Ver servicios',
     trustLabel: 'Nuestros compromisos',
-    trust: ['Respuesta el mismo día', 'Precio fijo mensual', 'Sin contratos largos'],
+    trust: ['Diagnóstico gratuito', 'Atención remota en todo México'],
     cue: 'Descubre qué hay dentro',
     cueLabel: 'Desliza para descubrir nuestros servicios',
     boxLabel: 'La caja de DreamBox se abre y libera soporte, web, inteligencia artificial y nube',
@@ -64,7 +75,7 @@ const es = {
 
   servicesSection: {
     title: 'Todo lo que tu empresa necesita en tecnología.',
-    subtitle: 'Un solo equipo para el soporte diario, tu web y tus sistemas. Sin coordinar a cinco proveedores.',
+    subtitle: 'Del soporte diario al software a la medida, sin coordinar a cinco proveedores.',
     tabsLabel: 'Servicios',
     pause: 'Pausar avance automático',
     play: 'Reanudar avance automático',
@@ -76,25 +87,25 @@ const es = {
     {
       id: 'soporte',
       title: 'Soporte técnico y mesa de ayuda',
-      body: 'Resolvemos los problemas con tus programas, cuentas y sistemas por WhatsApp, correo o acceso remoto. Una persona real que conoce tu empresa.',
+      body: 'Cuando algo falla, nos escribes por WhatsApp o correo y lo resolvemos, casi siempre por acceso remoto.',
       short: 'Soporte',
-      points: ['Atención remota el mismo día', 'Correo, cuentas y accesos', 'Ayuda con tus programas y tu web'],
+      points: ['Correo, cuentas y accesos', 'Programas y sistemas del día a día', 'Seguimiento hasta que quede resuelto'],
       icon: 'Headset',
     },
     {
       id: 'web',
       title: 'Sitios web y tiendas en línea',
-      body: 'Creamos, migramos y mantenemos tu web para que cargue rápido, aparezca en Google y reciba clientes.',
+      body: 'Creamos, migramos y mantenemos tu web para que traiga clientes, no solo visitas.',
       short: 'Web',
-      points: ['Diseño que se ve bien en celular', 'Optimizada para Google', 'Cambios cuando los necesites'],
+      points: ['Diseño pensado para celular', 'Rápida y optimizada para Google', 'Cambios cuando los necesites'],
       icon: 'Globe',
     },
     {
       id: 'mantenimiento',
       title: 'Mantenimiento mensual',
-      body: 'Actualizaciones, copias de seguridad y monitoreo para que tus sistemas no fallen en el peor momento.',
+      body: 'Cuidamos tus sistemas antes de que fallen, no después.',
       short: 'Mantenimiento',
-      points: ['Copias de seguridad verificadas', 'Actualizaciones de seguridad', 'Reporte mensual claro'],
+      points: ['Copias de seguridad verificadas', 'Actualizaciones y monitoreo', 'Reporte mensual claro'],
       icon: 'ShieldCheck',
     },
     {
@@ -108,7 +119,7 @@ const es = {
     {
       id: 'cloud',
       title: 'Nube, correo y seguridad',
-      body: 'Configuramos correo corporativo, almacenamiento en la nube, accesos y respaldos de forma segura.',
+      body: 'Tu equipo trabaja desde cualquier lugar, con la información protegida.',
       short: 'Nube',
       points: ['Correo con tu dominio', 'Archivos compartidos y respaldados', 'Accesos seguros para tu equipo'],
       icon: 'Cloud',
@@ -118,8 +129,23 @@ const es = {
       title: 'Sistemas a la medida',
       body: 'Cuando una herramienta estándar no alcanza, desarrollamos la que necesitas y la mantenemos contigo.',
       short: 'A la medida',
-      points: ['Inventarios, pedidos y reportes', 'Paneles con tus números', 'Soporte después de entregar'],
+      points: [
+        'Software para manufactura',
+        'Integraciones con APIs (Mercado Libre, eBay y otras)',
+        'Reportes y dashboards sobre tus datos',
+        'Soporte después de entregar',
+      ],
+      link: { label: 'Ver proyectos', href: '#proyectos' },
       icon: 'Boxes',
+    },
+    {
+      id: 'modernizacion',
+      title: 'Modernización de sistemas',
+      body: '¿Tu empresa depende de un sistema viejo que ya nadie quiere tocar? Lo llevamos a tecnología actual sin detener tu operación.',
+      short: 'Modernización',
+      points: ['Migración por módulos', 'Tu sistema actual sigue operando durante el cambio'],
+      link: { label: 'Ver el caso de estudio', href: '#caso' },
+      icon: 'RefreshCw',
     },
   ],
 
@@ -163,6 +189,13 @@ const es = {
       ],
       chip: 'Hecho para tu forma de trabajar',
     },
+    modernization: {
+      before: 'Sistema anterior',
+      after: 'Plataforma nueva',
+      modules: ['Inventario', 'Facturación', 'Reportes', 'Usuarios'],
+      next: 'En camino',
+      chip: 'Sin apagar nada',
+    },
   },
 
   commitmentsSection: {
@@ -173,9 +206,9 @@ const es = {
       resolved: 'Resuelto el mismo día',
     },
     plan: {
-      title: 'Tu plan mensual',
-      rows: ['Soporte a tu equipo', 'Mantenimiento', 'Copias de seguridad'],
-      footer: 'Mismo precio todos los meses',
+      title: 'Tu propuesta',
+      rows: ['Desarrollo · por proyecto', 'Mantenimiento · mensual', 'Soporte a tu equipo'],
+      footer: 'Todo por escrito antes de empezar',
     },
     owner: { name: 'Tu responsable', status: 'Disponible ahora' },
     toggle: { annual: 'Contrato anual', monthly: 'Mes a mes' },
@@ -184,26 +217,214 @@ const es = {
   // TODO: confirma que estos compromisos reflejan cómo opera tu empresa.
   commitments: [
     { id: 'respuesta', value: 'Mismo día', label: 'Respondemos tus solicitudes de soporte en horario laboral.' },
-    { id: 'precio', value: 'Precio fijo', label: 'Planes mensuales claros, sin cobros sorpresa.' },
+    { id: 'precio', value: 'Precio claro', label: 'Por proyecto, mensual o ambos. Siempre por escrito y sin cobros sorpresa.' },
     { id: 'contacto', value: 'Un responsable', label: 'Una persona que conoce tu empresa y tus sistemas.' },
     { id: 'contrato', value: 'Mes a mes', label: 'Sin contratos largos. Te quedas porque funciona.' },
   ],
 
+  // Lo que hemos construido (#construido): una sección con tres pestañas (manufactura, caso de estudio y proyectos).
+  // Los enlaces a #manufactura, #caso y #proyectos abren la pestaña correspondiente.
+  builtSection: {
+    title: 'Lo que hemos construido.',
+    subtitle: 'La mejor prueba de cómo trabajamos son los sistemas que ya están operando.',
+    tabsLabel: 'Proyectos',
+    tabs: [
+      { id: 'manufactura', label: 'Manufactura', hint: 'Dreambox Manufacturing' },
+      { id: 'caso', label: 'Caso de estudio', hint: 'Antes y ahora' },
+      { id: 'proyectos', label: 'Proyectos', hint: 'Marketplaces y ERP' },
+    ],
+    carousel: { prev: 'Anterior', next: 'Siguiente' },
+    deck: { label: 'Módulos destacados', prev: 'Módulo anterior', next: 'Módulo siguiente' },
+    compare: 'Comparar antes y ahora',
+  },
+
+  // Software para manufactura (#manufactura). **texto** se muestra en negritas.
+  // El sistema tiene 12 años: usar siempre "más de 10 años" / "10+ años" / "más de una década", nunca "15 años".
+  manufacturing: {
+    eyebrow: 'Software para manufactura',
+    title: 'Más de 10 años en el piso de producción. Ahora en una plataforma moderna.',
+    body: 'Nació del sistema que desarrollamos y mantenemos para una planta de autopartes. Hoy esa experiencia vive en **Dreambox Manufacturing**, una plataforma nueva que se instala en tu planta.',
+    cta: 'Agenda una demo',
+    secondary: 'Ver el caso de estudio',
+    facts: [
+      { value: 'Tier 1 y 2', label: 'Hecha para los requisitos de calidad de los proveedores automotrices.' },
+      { value: 'On-premise', label: 'Una instalación por sucursal. Tus datos se quedan en tu servidor y la operación no depende de internet.' },
+      { value: 'Por módulos', label: 'Adopta solo los que necesitas: cada uno nace de un proceso real de planta y funciona por separado.' },
+    ],
+    soon: 'Próximamente',
+    modules: [
+      {
+        id: 'ppap',
+        title: 'PPAP',
+        body: 'Expedientes por número de parte, estatus de cada elemento y generación de documentos listos para el cliente.',
+      },
+      {
+        id: 'herramental',
+        title: 'Herramental',
+        body: 'Acciones sobre moldes y herramientas capturadas directo en piso desde un kiosco, con historial por herramental.',
+      },
+      {
+        id: 'trazabilidad',
+        title: 'Trazabilidad de componentes',
+        body: 'Qué lote de cada componente del BOM entró en cada corrida, por turno y operador. Responde un reclamo del cliente en minutos.',
+        soon: true,
+      },
+    ],
+    alsoTitle: 'También incluye',
+    // Confirmado: todos ya están en la plataforma nueva. Si alguno vuelve a estar en migración, márcalo con { label, soon: true }.
+    also: [
+      'Sistema Andon',
+      'Recibo de material',
+      'Manejo de scrap',
+      'Auditoría',
+      'Dashboards',
+      'Catálogos de planta',
+      'Usuarios y permisos por rol',
+      'Alertas',
+      'Varias plantas por sucursal',
+      'Módulos a la medida',
+      '…y más',
+    ],
+  },
+
+  // Ejemplos ilustrativos de los módulos (números de parte, folios y moldes inventados).
+  manufacturingScenes: {
+    ppap: {
+      title: 'PPAP · Nivel 3',
+      part: 'No. de parte 4471-B',
+      items: [
+        { label: 'Dibujo y especificaciones', status: 'Aprobado', done: true },
+        { label: 'Estudio dimensional', status: 'Aprobado', done: true },
+        { label: 'PSW', status: 'En revisión', done: false },
+      ],
+    },
+    tooling: {
+      header: 'Línea 2 · Turno 1',
+      tool: 'Molde M-218',
+      actions: ['Ajuste', 'Limpieza', 'Reparación'],
+      saved: 'Limpieza registrada',
+    },
+    trace: {
+      title: 'Corrida · Folio 000812 · Turno 2',
+      product: 'Producto terminado',
+      productValue: 'Soporte 7720',
+      components: [
+        { name: 'Resina PP', lot: 'Lote R-2291' },
+        { name: 'Inserto metálico', lot: 'Lote M-0457' },
+      ],
+    },
+  },
+
+  // Caso de estudio (#caso) y cómo modernizamos un sistema existente, en un solo bloque.
+  // No mencionar el nombre del cliente hasta tener su autorización.
+  caseStudy: {
+    eyebrow: 'Caso de estudio · Proveedor automotriz en Saltillo',
+    title: 'Modernizar un sistema de más de 10 años sin detener la planta.',
+    body: 'La planta dependía de dos sistemas que crecieron por separado durante años. Funcionaban, pero se habían vuelto un freno.',
+    beforeTitle: 'Antes',
+    before: [
+      'Información repartida entre dos sistemas legacy.',
+      'Procesos clave, como scrap y trazabilidad, mezclados en módulos que ya no se usaban.',
+      'Cada mejora implicaba tocar código frágil.',
+    ],
+    afterTitle: 'Ahora',
+    after: [
+      'Una sola plataforma moderna, instalada en la planta.',
+      'PPAP, Herramental y catálogos ya migrados; Trazabilidad en camino.',
+      'Cada módulo se documenta y aprueba con la planta antes de construirse.',
+    ],
+    // TODO: cita real del cliente, con su permiso. Mientras sea null, el bloque no se muestra.
+    // Formato: { quote: 'Una o dos frases sobre el resultado.', name: 'Nombre', role: 'Puesto', company: 'Empresa (solo si autoriza)' }
+    testimonial: null,
+  },
+
+  modernize: {
+    title: '¿Tu empresa también corre sobre un sistema viejo?',
+    body: 'No hace falta tirarlo y empezar de cero.',
+    steps: [
+      {
+        title: 'Entendemos lo que ya funciona',
+        body: 'Revisamos tu sistema con la gente que lo usa todos los días, para no perder nada de lo que hoy sí funciona.',
+      },
+      {
+        title: 'Migramos un módulo a la vez',
+        body: 'Empezamos por el que más duele. Cada módulo tiene alcance, precio y fecha por escrito.',
+      },
+      {
+        title: 'Conviven hasta el cambio',
+        body: 'El sistema anterior sigue operando mientras validas el nuevo. Cambias cuando estás seguro.',
+      },
+    ],
+    stack: ['.NET 8', 'React', 'SQL Server', 'On-premise o en la nube', 'Pruebas automatizadas'],
+  },
+
+  // Proyectos a la medida (#proyectos). No usar logos de Mercado Libre ni eBay, solo el nombre.
+  // TODO: confirmar si los clientes permiten mencionar su giro o nombre.
+  projectsSection: {
+    title: 'Más allá de la planta.',
+    body: 'También construimos sistemas a la medida para otros giros. Dos ejemplos:',
+  },
+
+  projects: [
+    {
+      id: 'marketplaces',
+      label: 'Comercio en línea',
+      title: 'Inventario conectado a Mercado Libre y eBay',
+      body: 'Para una empresa que compra y revende en marketplaces. Desde un solo sistema manejan su inventario y publican, actualizan o dan de baja sus anuncios en Mercado Libre y eBay, conectados directo a sus APIs. Nada de capturar dos veces.',
+      points: [
+        'Inventario central como única fuente de verdad',
+        'Publicar, editar y eliminar anuncios en Mercado Libre y eBay desde el sistema',
+        'Integración directa con las APIs de cada marketplace',
+      ],
+    },
+    {
+      id: 'erp',
+      label: 'Reportes y análisis',
+      title: 'Reportes a la medida sobre tu ERP',
+      body: 'Pedirle reportes nuevos al proveedor de su ERP les salía muy caro. Nos conectamos a su base de datos, transformamos la información y les entregamos sus reportes y gráficas tal como los necesitaban, sin cambiar de ERP.',
+      points: [
+        'Conexión directa a la base de datos del ERP',
+        'Transformación de datos al formato que el negocio necesita',
+        'Reportes personalizados y gráficas',
+        'Sin depender ni pagarle al proveedor del ERP por cada reporte',
+      ],
+    },
+  ],
+
+  // Ejemplos ilustrativos de los proyectos.
+  projectScenes: {
+    marketplaces: {
+      sku: 'SKU 10482',
+      stock: 'Stock',
+      channels: ['Mercado Libre', 'eBay'],
+      published: 'Publicado',
+      sale: 'Se vendió 1 en eBay → stock actualizado en ambos canales',
+    },
+    erp: {
+      title: 'Ventas por sucursal · Este mes',
+      branches: ['Centro', 'Norte', 'Sur', 'Oriente'],
+      source: 'Datos de tu ERP',
+    },
+  },
+
   processSection: {
     title: 'De la primera llamada a todo en orden, en cuatro pasos.',
-    subtitle: 'Sin contratos eternos ni tecnicismos. En cada etapa sabes qué estamos haciendo, cuánto falta y cuánto cuesta.',
+    subtitle: 'En cada etapa sabes qué estamos haciendo, cuánto falta y cuánto cuesta.',
     tabsLabel: 'Pasos',
-    step: (n, total) => `Paso ${n} de ${total}`,
+    pause: 'Pausar avance automático',
+    play: 'Reanudar avance automático',
+    prev: 'Paso anterior',
+    next: 'Paso siguiente',
     takeaway: 'Te llevas:',
     ctaTitle: 'El primer paso no cuesta nada.',
-    ctaBody: 'Agenda tu diagnóstico de 30 minutos y sal con un panorama claro.',
+    ctaBody: 'Agenda tu diagnóstico y sal sabiendo por dónde empezar.',
     ctaButton: 'Agendar diagnóstico',
   },
 
   process: [
     {
       title: 'Diagnóstico',
-      body: 'Una videollamada para conocer tu empresa, las herramientas que usan y lo que hoy les quita tiempo. Sin costo y sin compromiso.',
+      body: 'Una videollamada para conocer tu empresa, las herramientas que usan y lo que hoy les quita tiempo.',
       detail: 'Gratis · 30 minutos',
       items: ['Revisamos tus cuentas, tu web y tus sistemas', 'Separamos lo urgente de lo que puede esperar', 'Resolvemos tus dudas sin tecnicismos'],
       outcome: 'Un panorama claro de dónde estás.',
@@ -213,16 +434,16 @@ const es = {
       title: 'Propuesta',
       body: 'Te enviamos un plan por escrito: qué haremos, en qué orden y cuánto cuesta. Tú decides si avanzamos.',
       detail: 'En menos de 3 días hábiles',
-      items: ['Prioridades ordenadas por impacto', 'Precio fijo, sin cobros sorpresa', 'Tiempos claros para cada etapa'],
+      items: ['Prioridades ordenadas por impacto', 'Precio y forma de pago por escrito', 'Tiempos claros para cada etapa'],
       outcome: 'Un plan con precio cerrado.',
       icon: 'FileText',
     },
     {
       title: 'Puesta en marcha',
-      body: 'Empezamos por lo urgente: accesos, respaldos, correo y web. Tu equipo sigue trabajando mientras ordenamos todo por detrás.',
+      body: 'Empezamos por lo urgente: accesos, respaldos, correo y web. Tu equipo sigue trabajando mientras tanto.',
       detail: 'Sin detener tu operación',
       items: ['Accesos y contraseñas en orden', 'Copias de seguridad funcionando', 'Todo documentado a nombre de tu empresa'],
-      outcome: 'Tu tecnología en orden y documentada.',
+      outcome: 'Tu tecnología en orden, sin depender de nadie.',
       icon: 'Rocket',
     },
     {
@@ -245,7 +466,7 @@ const es = {
       priceValue: 'Fijo mensual',
       approved: 'Aprobada',
     },
-    rollout: { title: 'Puesta en marcha', note: 'Sin pausar tu operación', tasks: ['Accesos', 'Respaldos', 'Correo', 'Web'] },
+    rollout: { title: 'Puesta en marcha', note: 'Avance del plan', tasks: ['Accesos', 'Respaldos', 'Correo', 'Web'] },
     report: {
       title: 'Reporte del mes',
       example: 'Ejemplo',
@@ -260,7 +481,12 @@ const es = {
 
   about: {
     title: 'Un socio tecnológico. No un proveedor más.',
-    body: 'Somos un equipo mexicano de especialistas en soporte y desarrolladores que atiende a pequeñas y medianas empresas en todo México. Cuando escribes, responde alguien que ya conoce tus sistemas, tus cuentas y tu web.',
+    // Historia en dos tiempos: por qué somos pequeños y que nos quedamos a cuidar lo que construimos.
+    // Las cifras y la lista de proyectos ya aparecen en el hero y en "Lo que hemos construido"; aquí no se repiten.
+    body: [
+      'Somos un equipo pequeño, y es a propósito: así quien te contesta es quien construyó tu sistema. Sin intermediarios, sin ejecutivos de cuenta y sin tener que explicar todo desde cero cada vez.',
+      'Y lo que construimos, lo cuidamos. El sistema que desarrollamos para una planta automotriz lleva más de una década operando todos los días, y seguimos a cargo de él.',
+    ],
     claim: 'No te vendemos tecnología. Nos hacemos cargo de que funcione.',
     toolsTitle: 'Herramientas con las que trabajamos a diario',
   },
@@ -279,36 +505,48 @@ const es = {
       a: 'Atención a tu equipo por WhatsApp, correo y acceso remoto, mantenimiento de tus cuentas, programas y sitio web, copias de seguridad, actualizaciones y un reporte mensual. Ajustamos el plan al tamaño de tu empresa.',
     },
     {
-      q: '¿Cuánto cuesta trabajar con DreamBox?',
-      a: 'Depende de cuántas personas y sistemas atendemos. Después del diagnóstico gratuito te enviamos una propuesta con precio fijo mensual, o un precio cerrado si es un proyecto puntual como una web.',
+      q: '¿Cuánto cuesta y cómo cobran?',
+      a: 'Depende de lo que necesites, y te lo decimos por escrito después del diagnóstico, que no tiene costo. El soporte y el mantenimiento se pagan con una cuota fija mensual. Los proyectos, como un sistema desde cero o la migración de un sistema legacy, se cobran por proyecto y después, si quieres, sigue un mantenimiento mensual. Según el proyecto, también puede hacerse con una inversión inicial y pagos mensuales, o solo con pagos mensuales: te decimos qué opción aplica.',
     },
     {
-      q: '¿Atienden de forma remota o presencial?',
-      a: 'Trabajamos de forma remota: la mayoría de los casos los resolvemos el mismo día por acceso remoto, videollamada, WhatsApp o correo. Nos especializamos en software, cuentas y sistemas; no hacemos reparación de equipos.',
-    },
-    {
-      q: '¿Atienden en todo México?',
-      a: 'Sí. Como trabajamos de forma remota, damos soporte a empresas en cualquier parte de México.',
+      q: '¿Atienden de forma remota? ¿En qué parte de México?',
+      // TODO (confirmar): si hacemos visitas a planta, agregar al final:
+      // "Para proyectos de manufactura podemos hacer visitas a planta cuando el proyecto lo requiere."
+      a: 'Trabajamos de forma remota con empresas de cualquier parte de México, por acceso remoto, videollamada, WhatsApp o correo. Nos especializamos en software, cuentas y sistemas; no hacemos reparación de equipos.',
     },
     {
       q: '¿Trabajan con empresas pequeñas?',
-      a: 'Sí. La mayoría de nuestros clientes son pymes y negocios en crecimiento que no tienen un área de sistemas propia. Nosotros cumplimos ese rol.',
+      a: 'Sí. La mayoría de nuestros clientes son pymes y negocios en crecimiento sin un área de sistemas propia.',
     },
     {
-      q: '¿También hacen páginas web y sistemas?',
-      a: 'Sí. Diseñamos sitios web, tiendas en línea y sistemas a la medida, y después nos quedamos a cargo de su mantenimiento para que sigan funcionando.',
+      q: '¿Trabajan con plantas de manufactura?',
+      a: 'Sí. Dreambox Manufacturing incluye módulos como PPAP, herramental, trazabilidad, Andon y scrap. Se instala en tu planta y puedes adoptar solo los que necesites.',
+    },
+    {
+      q: '¿Pueden modernizar un sistema que ya tenemos?',
+      a: 'Sí. Primero lo documentamos con quienes lo usan y después lo migramos por partes, sin apagar el que hoy usas.',
+    },
+    {
+      q: '¿Pueden conectarse a mi ERP o a otros sistemas que ya tengo?',
+      a: 'Sí. Nos conectamos a la base de datos o a las APIs de tus sistemas para generar reportes, dashboards o integraciones, sin que tengas que cambiar de proveedor.',
     },
     {
       q: '¿Tengo que firmar un contrato largo?',
-      a: 'No. Los planes son mes a mes. Todos los accesos, cuentas y archivos quedan a nombre de tu empresa, así que nunca dependes de nosotros para operar.',
+      a: 'No. El soporte y el mantenimiento son mes a mes, y después de un proyecto el mantenimiento es opcional.',
+    },
+    {
+      q: '¿Qué pasa si un día dejamos de trabajar juntos?',
+      a: 'Nada se queda con nosotros: accesos, cuentas, archivos y documentación están a nombre de tu empresa desde el primer día.',
     },
   ],
 
   contact: {
     eyebrow: 'Diagnóstico gratuito de 30 minutos',
     title: 'Cuéntanos qué necesitas.',
-    body: 'Revisamos contigo cómo está hoy tu tecnología y qué conviene resolver primero. Sin compromiso.',
+    body: 'Lo revisamos juntos en una videollamada y te decimos qué conviene resolver primero. Sin compromiso.',
     serviceLegend: '¿En qué te ayudamos?',
+    // Opciones extra además de los servicios (el id "manufactura" lo preselecciona "Agenda una demo").
+    extraOptions: [{ id: 'manufactura', title: 'Software para manufactura' }],
     optional: '(opcional)',
     name: 'Nombre',
     email: 'Correo electrónico',
@@ -340,7 +578,7 @@ const es = {
   },
 
   footer: {
-    tagline: 'Soporte IT, web y tecnología para empresas en todo México.',
+    tagline: 'Soporte IT, software a la medida y software para manufactura, para empresas en México.',
     company: 'Empresa',
     services: 'Servicios',
     contact: 'Contacto',

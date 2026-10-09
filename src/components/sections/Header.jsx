@@ -26,7 +26,7 @@ export default function Header() {
       <div className="wrap flex h-12 items-center justify-between">
         <Logo animated />
 
-        <nav aria-label={t.header.mainNav} className="hidden items-center gap-8 md:flex">
+        <nav aria-label={t.header.mainNav} className="hidden items-center gap-7 lg:flex">
           {t.nav.map((item) => (
             <a key={item.href} href={item.href} className="py-3 text-[13px] text-ink/80 transition-colors hover:text-ink">
               {item.label}
@@ -42,7 +42,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="-mr-2 grid h-11 w-11 place-items-center text-ink md:hidden"
+            className="-mr-2 grid h-11 w-11 place-items-center text-ink lg:hidden"
             aria-expanded={open}
             aria-controls="menu-movil"
             aria-label={open ? t.header.closeMenu : t.header.openMenu}
@@ -61,7 +61,7 @@ export default function Header() {
             animate={{ opacity: 1, height: '100dvh' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ type: 'spring', bounce: 0, duration: 0.45 }}
-            className="overflow-hidden bg-white md:hidden"
+            className="overflow-hidden bg-white lg:hidden"
           >
             <div className="wrap pt-6">
               {t.nav.map((item, i) => (
