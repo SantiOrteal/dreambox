@@ -1,8 +1,9 @@
 import { motion, useReducedMotion, useTransform } from 'motion/react'
 import BoxDefs, { RIM_IN, RIM_OUT } from './BoxDefs'
 import BoxFloor from './BoxFloor'
+import BoxLayer from './BoxLayer'
 import BoxLid from './BoxLid'
-import BoxLight, { BoxHalo } from './BoxLight'
+import { BoxHalo, BoxRays, BoxSparks } from './BoxLight'
 import EnergyLinks from './EnergyLinks'
 import ServicePiece from './ServicePiece'
 import { CHARGE_AT, CHARGE_DURATION, pieces } from './constants'
@@ -12,11 +13,12 @@ const FACE_LEFT = 'M40 144 200 234v106L40 250Z'
 const FACE_RIGHT = 'M200 234 360 144v106L200 340Z'
 const FLOOR = 'M200 159 342 239 200 319 58 239Z'
 const OUTLINE = 'M40 144 200 54 360 144v106L200 340 40 250Z'
+const layer = 'pointer-events-none absolute inset-0'
 
 // La caja de DreamBox: empieza cerrada, se enciende cuando le llega el pulso de los circuitos y se destapa sola.
-// Capas, de atrás hacia adelante: piso de circuito, sombra, halo, interior, borde, cuerpo, logo, luz del cursor,
-// aristas, luz y tapa.
-// Encima del SVG van las líneas de energía hacia las tarjetas y las tarjetas.
+// Es una pila de capas (ver BoxLayer), de atrás hacia adelante: piso de circuito, sombras, halo; luego, flotando
+// juntos, el cuerpo de la caja, los rayos y las chispas; la tapa (que cae al piso), las líneas de energía y las tarjetas.
+// Lo que se anima sin parar se mueve con transform u opacidad de su capa, sin redibujar el resto.
 export default function OpeningBox({ progress, layout, pointer }) {
   const { hero } = useT()
   const reduce = useReducedMotion()
@@ -29,35 +31,33 @@ export default function OpeningBox({ progress, layout, pointer }) {
 
   return (
     <>
-      <svg
-        viewBox="0 0 400 360"
-        className="absolute inset-x-0 bottom-0 w-full overflow-visible"
-        role="img"
-        aria-label={hero.boxLabel}
-      >
-        <BoxDefs />
-        <defs>
-          <clipPath id="faces">
-            <path d={FACE_LEFT} />
-            <path d={FACE_RIGHT} />
-          </clipPath>
-          <radialGradient id="cursorLight" cx="0.5" cy="0.5" r="0.5">
-            <stop offset="0" stopColor="#ffffff" stopOpacity="0.38" />
-            <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
-          </radialGradient>
-        </defs>
+      <BoxFloor glow={glow} />
 
-        <BoxFloor glow={glow} />
-
-        {/* Sombras en el suelo: se encogen un poco cuando la caja sube al flotar */}
-        <g className="animate-float-shadow transform-fill origin-center motion-reduce:animate-none">
+      {/* Sombras en el suelo: se encogen un poco cuando la caja sube al flotar */}
+      <div className={`${layer} animate-float-shadow motion-reduce:animate-none`} style={{ transformOrigin: '50% 95%' }}>
+        <BoxLayer>
           <ellipse cx="200" cy="344" rx="180" ry="26" fill="#0b1a3f" opacity="0.2" filter="url(#softShadow)" />
           <ellipse cx="200" cy="341" rx="115" ry="9" fill="#0b1a3f" opacity="0.32" filter="url(#contactShadow)" />
-        </g>
+        </BoxLayer>
+      </div>
 
-        <BoxHalo glow={glow} />
+      <BoxHalo glow={glow} />
 
-        <g className="animate-float motion-reduce:animate-none">
+      {/* Todo lo que flota junto con la caja */}
+      <div className={`${layer} animate-float motion-reduce:animate-none`}>
+        <BoxLayer label={hero.boxLabel}>
+          <BoxDefs />
+          <defs>
+            <clipPath id="faces">
+              <path d={FACE_LEFT} />
+              <path d={FACE_RIGHT} />
+            </clipPath>
+            <radialGradient id="cursorLight" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0" stopColor="#ffffff" stopOpacity="0.38" />
+              <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+
           {/* Interior azul: paredes del fondo y piso que se ilumina al abrir */}
           <g clipPath="url(#opening)">
             <path d="M58 144 200 64v95L58 239Z" fill="url(#wallL)" />
@@ -83,7 +83,7 @@ export default function OpeningBox({ progress, layout, pointer }) {
             opacity="0.6"
           />
 
-          {/* Reflejo del cursor sobre las caras */}
+          {/* Reflejo del cursor sobre las caras (solo cambia al mover el mouse) */}
           <g clipPath="url(#faces)">
             <motion.ellipse cx={lightX} cy={lightY} rx="130" ry="100" fill="url(#cursorLight)" />
           </g>
@@ -114,13 +114,16 @@ export default function OpeningBox({ progress, layout, pointer }) {
               transition={{ duration: 0.9, delay: charged - 0.1, times: [0, 0.25, 1], ease: 'easeOut' }}
             />
           )}
+        </BoxLayer>
 
-          <BoxLight progress={progress} glow={glow} />
-        </g>
+        <BoxRays progress={progress} glow={glow} />
+        <BoxSparks glow={glow} />
+      </div>
 
-        {/* La tapa va fuera del grupo que flota: al caer se queda quieta en el piso */}
+      {/* La tapa va fuera de lo que flota: al caer se queda quieta en el piso */}
+      <BoxLayer>
         <BoxLid progress={progress} />
-      </svg>
+      </BoxLayer>
 
       <EnergyLinks progress={progress} layout={layout} />
 

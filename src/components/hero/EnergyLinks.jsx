@@ -19,13 +19,13 @@ function Link({ piece, index, progress, layout }) {
 
   return (
     <>
-      {/* Trazo con un halo suave debajo, para que se lea sobre la caja y sobre el fondo claro */}
-      <motion.path d={d} stroke="#4f7cff" strokeOpacity="0.35" strokeWidth="6" strokeLinecap="round" filter="url(#energyGlow)" style={{ pathLength: drawn }} />
+      {/* Trazo con un halo suave debajo (un trazo ancho y transparente, sin desenfoque: es más ligero) */}
+      <motion.path d={d} stroke="#4f7cff" strokeOpacity="0.16" strokeWidth="7" strokeLinecap="round" style={{ pathLength: drawn }} />
       <motion.path d={d} stroke="url(#energy)" strokeWidth="2" strokeLinecap="round" style={{ pathLength: drawn }} />
       <motion.g style={{ opacity: live }} className="motion-reduce:hidden">
         {[
-          { stroke: '#7b9dff', width: 9, filter: 'url(#energyGlow)' },
-          { stroke: '#ffffff', width: 3.5 },
+          { stroke: '#7b9dff', width: 9, opacity: 0.35 },
+          { stroke: '#ffffff', width: 3.5, opacity: 1 },
         ].map((layer) => (
           <path
             key={layer.width}
@@ -35,7 +35,7 @@ function Link({ piece, index, progress, layout }) {
             strokeWidth={layer.width}
             strokeLinecap="round"
             strokeDasharray="5 200"
-            filter={layer.filter}
+            strokeOpacity={layer.opacity}
             className="animate-pulse-trace [animation-fill-mode:backwards]"
             style={{ animationDuration: `${3.2 + index * 0.5}s`, animationDelay: `${0.4 + index * 0.9}s` }}
           />
@@ -58,9 +58,6 @@ export default function EnergyLinks({ progress, layout }) {
           <stop offset="0" stopColor="#c7d4ff" />
           <stop offset="1" stopColor="#4f7cff" stopOpacity="0.8" />
         </linearGradient>
-        <filter id="energyGlow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="3" />
-        </filter>
       </defs>
       {pieces.map((piece, i) => (
         <Link key={i} index={i} piece={piece} progress={progress} layout={layout} />

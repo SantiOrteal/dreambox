@@ -32,7 +32,7 @@ export default function HeroParticles() {
     }
     measure()
 
-    const dots = Array.from({ length: w < 640 ? 28 : 56 }, () => ({
+    const dots = Array.from({ length: w < 640 ? 18 : 56 }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
       vx: (Math.random() - 0.5) * 0.35,
