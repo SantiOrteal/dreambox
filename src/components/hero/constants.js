@@ -17,9 +17,10 @@ export const STAGE_H = 468
 // Soluciones que salen de la caja (sus nombres están en i18n: hero.pieces, en el mismo orden).
 // x/y: posición final en px del escenario, relativa al centro. r: giro final. from: progreso de apertura en que sale.
 // depth: cuánto se mueve con el cursor (parallax); más alto = más cerca de la pantalla.
+// service: el servicio que abre la tarjeta al hacer clic (id de i18n services).
 export const pieces = [
-  { Icon: Headset, x: -192, y: -78, r: -6, from: 0.3, depth: 26 },
-  { Icon: Globe, x: -68, y: -168, r: 3, from: 0.38, depth: 16 },
-  { Icon: Sparkles, x: 68, y: -168, r: -3, from: 0.46, depth: 20 },
-  { Icon: Cloud, x: 192, y: -78, r: 6, from: 0.54, depth: 30 },
+  { Icon: Headset, service: 'soporte', x: -192, y: -78, r: -6, from: 0.3, depth: 26 },
+  { Icon: Globe, service: 'web', x: -68, y: -168, r: 3, from: 0.38, depth: 16 },
+  { Icon: Sparkles, service: 'automatizacion', x: 68, y: -168, r: -3, from: 0.46, depth: 20 },
+  { Icon: Cloud, service: 'cloud', x: 192, y: -78, r: 6, from: 0.54, depth: 30 },
 ]
