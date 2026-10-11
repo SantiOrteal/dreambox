@@ -2,11 +2,13 @@ import { useEffect, useRef } from 'react'
 import { useReducedMotion } from 'motion/react'
 
 // Fondo del hero: partículas que flotan y se enlazan cuando están cerca (tomado de la variante "Red de nodos").
-// Con el mouse, las cercanas se apartan y se conectan con el cursor. Solo se anima mientras el hero se ve;
+// Con el mouse, las cercanas se acercan al cursor, giran despacio a su alrededor y se conectan con él:
+// el cursor se vuelve un nodo más de la red. Solo se anima mientras el hero se ve;
 // con movimiento reducido se dibujan una vez, quietas.
 const LINK = 120 // distancia máxima para unir dos partículas
-const REPEL = 140 // radio en el que el cursor las aparta
-const CURSOR_LINK = 180 // radio en el que se enlazan con el cursor
+const ATTRACT = 320 // radio en el que el cursor las atrae
+const ORBIT = 75 // distancia a la que se quedan girando (no se amontonan encima del cursor)
+const CURSOR_LINK = 200 // radio en el que se enlazan con el cursor
 
 export default function HeroParticles() {
   const canvasRef = useRef(null)
@@ -46,10 +48,15 @@ export default function HeroParticles() {
           const dx = p.x - mouse.x
           const dy = p.y - mouse.y
           const d = Math.hypot(dx, dy)
-          if (d < REPEL && d > 0.1) {
-            const f = (1 - d / REPEL) * 0.6
-            p.vx += (dx / d) * f
-            p.vy += (dy / d) * f
+          if (d < ATTRACT && d > 0.1) {
+            const ux = dx / d
+            const uy = dy / d
+            // Hacia el cursor si están lejos de la órbita; un empujón suave hacia afuera si se acercan demasiado.
+            const pull = d > ORBIT ? -(1 - d / ATTRACT) * 0.07 : (1 - d / ORBIT) * 0.12
+            // Un poco de giro alrededor del cursor, para que la red se vea viva y no se quede quieta.
+            const swirl = (1 - d / ATTRACT) * 0.03
+            p.vx += ux * pull - uy * swirl
+            p.vy += uy * pull + ux * swirl
           }
         }
         p.vx *= 0.96
@@ -85,7 +92,7 @@ export default function HeroParticles() {
         if (mouse.active) {
           const d = Math.hypot(a.x - mouse.x, a.y - mouse.y)
           if (d < CURSOR_LINK) {
-            ctx.strokeStyle = `rgba(109,92,255,${(1 - d / CURSOR_LINK) * 0.4})`
+            ctx.strokeStyle = `rgba(109,92,255,${(1 - d / CURSOR_LINK) * 0.5})`
             ctx.beginPath()
             ctx.moveTo(a.x, a.y)
             ctx.lineTo(mouse.x, mouse.y)
@@ -93,10 +100,19 @@ export default function HeroParticles() {
           }
         }
       }
-      ctx.fillStyle = 'rgba(47,91,234,0.4)'
+      // Partículas: las conectadas al cursor se encienden un poco
       for (const p of dots) {
+        const near = mouse.active ? Math.max(0, 1 - Math.hypot(p.x - mouse.x, p.y - mouse.y) / CURSOR_LINK) : 0
+        ctx.fillStyle = `rgba(${Math.round(47 + 62 * near)},${Math.round(91 + 1 * near)},${Math.round(234 + 21 * near)},${0.4 + near * 0.45})`
         ctx.beginPath()
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
+        ctx.arc(p.x, p.y, p.r + near * 0.8, 0, Math.PI * 2)
+        ctx.fill()
+      }
+      // El cursor como nodo de la red
+      if (mouse.active) {
+        ctx.fillStyle = 'rgba(109,92,255,0.55)'
+        ctx.beginPath()
+        ctx.arc(mouse.x, mouse.y, 2.6, 0, Math.PI * 2)
         ctx.fill()
       }
     }
