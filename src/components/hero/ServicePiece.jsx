@@ -36,7 +36,7 @@ export default function ServicePiece({ piece, index, label, hint, action, progre
           className="group relative block rounded-[22px] outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
         >
           <div
-            className="flex animate-float flex-col items-center gap-2 rounded-[22px] bg-white/90 px-3 pb-3 pt-3.5 shadow-[0_20px_40px_-14px_rgba(30,58,138,0.45),0_2px_6px_rgba(15,23,42,0.06)] ring-1 ring-black/5 backdrop-blur-md transition-[box-shadow] duration-300 group-hover:shadow-[0_26px_50px_-14px_rgba(47,91,234,0.55),0_0_0_1.5px_rgba(79,124,255,0.55)] group-focus-visible:shadow-[0_26px_50px_-14px_rgba(47,91,234,0.55),0_0_0_1.5px_rgba(79,124,255,0.55)] motion-reduce:animate-none"
+            className="flex animate-float flex-col items-center gap-2 rounded-[22px] bg-white/95 px-3 pb-3 pt-3.5 shadow-[0_20px_40px_-14px_rgba(30,58,138,0.45),0_2px_6px_rgba(15,23,42,0.06)] ring-1 ring-black/5 transition-[box-shadow] duration-300 group-hover:shadow-[0_26px_50px_-14px_rgba(47,91,234,0.55),0_0_0_1.5px_rgba(79,124,255,0.55)] group-focus-visible:shadow-[0_26px_50px_-14px_rgba(47,91,234,0.55),0_0_0_1.5px_rgba(79,124,255,0.55)] motion-reduce:animate-none"
             style={{ animationDelay: `${-index * 1.4}s`, animationDuration: `${5 + index * 0.6}s` }}
           >
             <span className="grid h-11 w-11 place-items-center rounded-[14px] bg-linear-to-br from-brand-soft to-[#e3e9ff] transition-colors duration-300 group-hover:from-brand group-hover:to-[#6d5cff] group-focus-visible:from-brand group-focus-visible:to-[#6d5cff]">

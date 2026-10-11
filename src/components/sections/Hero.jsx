@@ -68,7 +68,7 @@ export default function Hero() {
       <div
         onPointerMove={onPointerMove}
         onPointerLeave={onPointerLeave}
-        className="relative flex h-dvh min-h-[560px] flex-col items-center justify-center overflow-hidden pb-5 pt-18 max-sm:[@media(max-height:620px)]:pb-3 max-sm:[@media(max-height:620px)]:pt-16"
+        className="relative flex h-svh min-h-[560px] flex-col items-center justify-center overflow-hidden pb-5 pt-18 max-sm:[@media(max-height:620px)]:pb-3 max-sm:[@media(max-height:620px)]:pt-16"
       >
         <HeroParticles />
         {withCircuits.has(variant) && <CircuitLines pointer={pointer} />}
