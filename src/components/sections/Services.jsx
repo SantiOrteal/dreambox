@@ -5,6 +5,7 @@ import es from '../../i18n/es'
 import { useT } from '../../i18n'
 import Reveal from '../Reveal'
 import { scenes } from '../services/ServiceScenes'
+import { onOpenService } from '../../lib/serviceIntent'
 
 const icons = { Boxes, Globe, Headset, ShieldCheck, Sparkles, Cloud, RefreshCw }
 const AUTOPLAY_MS = 6500
@@ -96,6 +97,16 @@ export default function Services() {
   const go = (index) => setState(([cur]) => [wrapIndex(index), index >= cur ? 1 : -1])
   const step = (delta) => setState(([cur]) => [wrapIndex(cur + delta), delta])
   const listKeys = useTabKeys(go, listTabs)
+
+  // Las tarjetas del hero abren aquí su servicio (el enlace ya lleva a #servicios).
+  useEffect(
+    () =>
+      onOpenService((id) => {
+        const i = es.services.findIndex((s) => s.id === id)
+        if (i >= 0) setState(([cur]) => [i, i >= cur ? 1 : -1])
+      }),
+    [],
+  )
   const pillKeys = useTabKeys(go, pillTabs)
 
   // Avance automático: lo marca la barra (onEnd). Se pausa al pausar, con el mouse encima o fuera de vista.

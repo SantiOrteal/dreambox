@@ -28,9 +28,9 @@ export const site = {
   name: 'DreamBox',
   legalName: 'DreamBox Dev',
   // Dirección pública del sitio. Se define en .env (VITE_SITE_URL).
-  url: import.meta.env.VITE_SITE_URL || 'https://dreamboxdev.netlify.app',
-  // TODO (dominio): cambiar por el correo del dominio cuando exista.
-  email: 'hola@dreamboxdev.com',
+  url: import.meta.env.VITE_SITE_URL || 'https://www.dreamboxdev.mx',
+  // Correo de contacto: se muestra en la página, en el pie, en el aviso de privacidad y en los datos para Google.
+  email: 'info@dreamboxdev.mx',
   phone: '+52 56 5923 9380',
   phoneHref: '+525659239380',
   whatsapp: '525659239380', // número en formato internacional, sin + ni espacios

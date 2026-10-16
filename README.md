@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://dreamboxdev.netlify.app">
+  <a href="https://www.dreamboxdev.mx">
     <img src="public/og-image.png" alt="DreamBox: tecnología que funciona, con un equipo que responde." width="720" />
   </a>
 </p>
@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://dreamboxdev.netlify.app"><strong>Visitar el sitio →</strong></a>
+  <a href="https://www.dreamboxdev.mx"><strong>Visitar el sitio →</strong></a>
   &nbsp;·&nbsp;
   <a href="https://wa.me/525659239380"><strong>Escríbenos por WhatsApp</strong></a>
 </p>
@@ -42,7 +42,8 @@
 ¿Tu empresa necesita que la tecnología simplemente funcione?
 
 - 💬 **WhatsApp:** [+52 56 5923 9380](https://wa.me/525659239380)
-- 🌐 **Sitio web:** [dreamboxdev.netlify.app](https://dreamboxdev.netlify.app), con formulario de contacto
+- ✉️ **Correo:** [info@dreamboxdev.mx](mailto:info@dreamboxdev.mx)
+- 🌐 **Sitio web:** [www.dreamboxdev.mx](https://www.dreamboxdev.mx), con formulario de contacto
 
 ---
 

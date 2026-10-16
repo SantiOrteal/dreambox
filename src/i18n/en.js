@@ -63,6 +63,8 @@ const en = {
     cueLabel: 'Scroll to discover our services',
     boxLabel: 'The DreamBox box opens and releases support, web, artificial intelligence and cloud',
     pieces: ['Support', 'Web', 'AI', 'Cloud'],
+    pieceHints: ['Over WhatsApp, email or remote', 'Websites and stores that sell', 'Less repetitive work', 'Email, files and backups'],
+    pieceAction: 'See service',
   },
 
   story: {

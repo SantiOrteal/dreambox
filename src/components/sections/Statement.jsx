@@ -1,11 +1,14 @@
 import { useRef, useState } from 'react'
 import { AnimatePresence, motion, useInView, useMotionValueEvent, useReducedMotion, useScroll } from 'motion/react'
 import { useT } from '../../i18n'
+import useScrollSteps from '../../hooks/useScrollSteps'
 
 // Storytelling en pantalla completa. El scroll solo elige qué frase se muestra;
 // el cambio entre frases es una transición con tiempo propio, así se ve igual de suave
 // sin importar la velocidad de la rueda o del dedo.
 const EASE = [0.22, 1, 0.36, 1]
+// La última frase se alcanza un poco antes del final del recorrido.
+const DENSITY = 1.05
 
 function Phrase({ text, last }) {
   const words = text.split(' ')
@@ -66,8 +69,11 @@ export default function Statement() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
-    setIndex(Math.min(story.length - 1, Math.max(0, Math.floor(v * story.length * 1.05))))
+    setIndex(Math.min(story.length - 1, Math.max(0, Math.floor(v * story.length * DENSITY))))
   })
+
+  // Un gesto de scroll = una frase, aunque el gesto sea largo (ver useScrollSteps).
+  useScrollSteps(ref, story.length, { enabled: !reduce, density: DENSITY })
 
   if (reduce) {
     return (
@@ -92,7 +98,7 @@ export default function Statement() {
     // Recorrido corto (~1.1 pantallas para las cuatro frases): así no parece que la página se trabó.
     <section ref={ref} aria-label={copy.label} className="relative h-[210vh]">
       <h2 className="sr-only">{story.join(' ')}</h2>
-      <div className="sticky top-0 flex h-dvh items-center justify-center overflow-hidden">
+      <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden">
         {/* Halo que acompaña la respuesta final */}
         <motion.div
           aria-hidden="true"
