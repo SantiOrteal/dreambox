@@ -5,7 +5,8 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  { ignores: ['dist', 'dist-ssr'] },
+  // Builds y carpetas locales de herramientas y agentes (no están en el repo).
+  { ignores: ['dist', 'dist-ssr', '.kilo', '.agents', '.claude', '.hermes', '.wrangler'] },
   { files: ['scripts/**', '*.config.js'], languageOptions: { globals: globals.node } },
   {
     files: ['**/*.{js,jsx}'],

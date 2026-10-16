@@ -1,0 +1,41 @@
+# CI: revisa que el sitio pase el lint y se construya. Es un check obligatorio para hacer merge a main.
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-build:
+    # Este nombre es el que exige el ruleset de main: si lo cambias, actualízalo también allá.
+    name: lint-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build (pre-render en español e inglés)
+        run: npm run build
+        env:
+          VITE_SITE_URL: ${{ vars.VITE_SITE_URL || 'https://www.dreamboxdev.mx' }}
+          VITE_NOINDEX: 'true'
