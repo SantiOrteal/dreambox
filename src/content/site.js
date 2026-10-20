@@ -28,7 +28,7 @@ export const site = {
   name: 'DreamBox',
   legalName: 'DreamBox Dev',
   // Dirección pública del sitio. Se define en .env (VITE_SITE_URL).
-  url: import.meta.env.VITE_SITE_URL || 'https://www.dreamboxdev.mx',
+  url: import.meta.env.VITE_SITE_URL || 'https://dreamboxdev.mx',
   // Correo de contacto: se muestra en la página, en el pie, en el aviso de privacidad y en los datos para Google.
   email: 'info@dreamboxdev.mx',
   phone: '+52 56 5923 9380',
