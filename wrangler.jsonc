@@ -1,7 +1,7 @@
 // Ambiente de PRODUCCIÓN: Cloudflare Workers con archivos estáticos (publica ./dist, el HTML pre-renderizado).
 // No usa Workers Builds: GitHub Actions construye y despliega (.github/workflows/deploy.yml).
 //  - PR a main → versión de vista previa con su propia URL (no toca producción).
-//  - Merge a main → producción en www.dreamboxdev.mx.
+//  - Merge a main → producción en dreamboxdev.mx.
 // Variables de build: en GitHub (Settings → Secrets and variables → Actions). Guía completa en DEPLOY.md.
 // Cabeceras HTTP: public/_headers.
 {
@@ -14,10 +14,11 @@
     "html_handling": "auto-trailing-slash"
   },
   // Dominio de producción: Cloudflare crea los registros DNS y el certificado HTTPS al desplegar.
-  // La versión sin www se redirige a www con una Redirect Rule (ver DEPLOY.md).
+  // La dirección oficial es sin www. www se queda conectado para que la Redirect Rule de Cloudflare
+  // lo mande a https://dreamboxdev.mx (ver DEPLOY.md).
   "routes": [
-    { "pattern": "www.dreamboxdev.mx", "custom_domain": true },
-    { "pattern": "dreamboxdev.mx", "custom_domain": true }
+    { "pattern": "dreamboxdev.mx", "custom_domain": true },
+    { "pattern": "www.dreamboxdev.mx", "custom_domain": true }
   ],
   // Dirección *.workers.dev y URLs de vista previa para cada PR.
   "workers_dev": true,

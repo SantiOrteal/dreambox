@@ -8,7 +8,7 @@ import { loadEnv } from 'vite'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const dist = path.join(root, 'dist')
 const env = loadEnv('production', root, '')
-const siteUrl = (env.VITE_SITE_URL || 'https://www.dreamboxdev.mx').replace(/\/$/, '')
+const siteUrl = (env.VITE_SITE_URL || 'https://dreamboxdev.mx').replace(/\/$/, '')
 // Versión de prueba: pide a los buscadores no indexar (solo en dev).
 const noindex = env.VITE_NOINDEX === 'true'
 

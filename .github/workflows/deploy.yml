@@ -1,6 +1,6 @@
 # CD a Cloudflare Workers.
 #  - PR a main: sube una versión de vista previa (no toca producción) y comenta su URL en el PR.
-#  - Merge a main: despliega a producción (www.dreamboxdev.mx).
+#  - Merge a main: despliega a producción (dreamboxdev.mx).
 # Secrets necesarios: CLOUDFLARE_API_TOKEN y CLOUDFLARE_ACCOUNT_ID. Guía en DEPLOY.md.
 name: Deploy
 
@@ -43,7 +43,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_SITE_URL: ${{ vars.VITE_SITE_URL || 'https://www.dreamboxdev.mx' }}
+          VITE_SITE_URL: ${{ vars.VITE_SITE_URL || 'https://dreamboxdev.mx' }}
           # Las vistas previas nunca se indexan en Google.
           VITE_NOINDEX: 'true'
           VITE_WEB3FORMS_KEY: ${{ vars.VITE_WEB3FORMS_KEY }}
@@ -99,7 +99,7 @@ jobs:
       cancel-in-progress: false
     environment:
       name: production
-      url: https://www.dreamboxdev.mx
+      url: https://dreamboxdev.mx
     steps:
       - uses: actions/checkout@v4
 
@@ -113,7 +113,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_SITE_URL: ${{ vars.VITE_SITE_URL || 'https://www.dreamboxdev.mx' }}
+          VITE_SITE_URL: ${{ vars.VITE_SITE_URL || 'https://dreamboxdev.mx' }}
           # Mientras la variable VITE_NOINDEX no sea "false", Google no indexa el sitio.
           VITE_NOINDEX: ${{ vars.VITE_NOINDEX || 'true' }}
           VITE_WEB3FORMS_KEY: ${{ vars.VITE_WEB3FORMS_KEY }}
