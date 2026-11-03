@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>DreamBox Dev</title>
+    <!-- Título, descripción, canonical, hreflang y Open Graph de cada página e idioma: los escribe scripts/prerender.js -->
+    <!--head-meta-->
     <!--
       Idioma automático: si el visitante no eligió idioma a mano, se usa el de su navegador.
       Español (de cualquier país) → versión en español; cualquier otro idioma → versión en inglés.
@@ -21,15 +24,12 @@
           var browser = (navigator.languages && navigator.languages[0]) || navigator.language || 'es'
           var want = saved === 'es' || saved === 'en' ? saved : /^es\b/i.test(browser) ? 'es' : 'en'
           if ((want === 'en') === isEn) return
-          var isPrivacy = /\/(privacidad|privacy)(\.html|\/)?$/.test(path)
-          var target = want === 'en' ? (isPrivacy ? '/en/privacy' : '/en/') : isPrivacy ? '/privacidad' : '/'
-          location.replace(target + location.search + location.hash)
+          // La versión en el otro idioma se toma de los hreflang que el pre-render escribe en esta página.
+          var alt = document.querySelector('link[rel="alternate"][hreflang="' + want + '"]')
+          if (alt) location.replace(new URL(alt.href).pathname + location.search + location.hash)
         } catch (e) {}
       })()
     </script>
-    <title>DreamBox Dev</title>
-    <!-- Título, descripción, canonical, hreflang y Open Graph de cada página e idioma: los escribe scripts/prerender.js -->
-    <!--head-meta-->
     <meta name="author" content="DreamBox Dev" />
     <meta name="theme-color" content="#ffffff" />
 

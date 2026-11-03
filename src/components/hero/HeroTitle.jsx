@@ -3,14 +3,14 @@ import { EASE } from './constants'
 
 // Titular que se revela palabra por palabra: cada una sube desde detrás de una máscara
 // y se enfoca (de borroso a nítido). El último tramo, después de la coma, lleva el degradado de la marca.
-export default function HeroTitle({ text, delay = 0, stagger = 0.06, className }) {
+export default function HeroTitle({ text, delay = 0, stagger = 0.06, className, as: Tag = 'p' }) {
   const reduce = useReducedMotion()
   const comma = text.indexOf(',')
   const words = text.split(' ')
   const accentFrom = comma === -1 ? words.length : text.slice(0, comma + 1).split(' ').length
 
   return (
-    <h1 className={className} aria-label={text}>
+    <Tag className={className} aria-label={text}>
       {words.map((word, i) => (
         <span key={i} aria-hidden="true">
           {/* La máscara deja espacio arriba y abajo para acentos y descendentes (í, g, p, y) */}
@@ -26,6 +26,6 @@ export default function HeroTitle({ text, delay = 0, stagger = 0.06, className }
           </span>{' '}
         </span>
       ))}
-    </h1>
+    </Tag>
   )
 }

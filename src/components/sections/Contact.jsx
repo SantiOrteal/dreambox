@@ -35,12 +35,12 @@ function Field({ id, label, optional, error, children }) {
   )
 }
 
-export default function Contact() {
+export default function Contact({ defaultService = '' }) {
   const t = useT()
   const c = t.contact
   const options = [...t.services, ...c.extraOptions]
   const reduce = useReducedMotion()
-  const [values, setValues] = useState(empty)
+  const [values, setValues] = useState({ ...empty, servicio: defaultService })
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
 

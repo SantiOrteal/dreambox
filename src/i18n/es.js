@@ -8,9 +8,9 @@ const es = {
   paths: { home: '/', privacy: '/privacidad' },
 
   meta: {
-    title: 'Soporte IT, software a la medida y manufactura | DreamBox Dev',
+    title: 'Soporte IT y software para empresas en México | DreamBox Dev',
     description:
-      'Soporte IT, software a la medida y plataformas para manufactura. Más de 10 años construyendo y manteniendo sistemas para empresas en México. Diagnóstico gratuito.',
+      'Soporte técnico, mantenimiento y software a la medida para empresas en México. Más de 10 años haciendo que los sistemas funcionen. Diagnóstico gratuito.',
     keywords:
       'soporte IT para empresas, soporte de software, mantenimiento de software, software a la medida, software para manufactura, PPAP, trazabilidad, sistema Andon, modernización de sistemas legacy, desarrollo .NET, SQL Server, integración Mercado Libre, reportes ERP, desarrollo web, automatización con IA, México',
     ogTitle: 'DreamBox Dev | Tecnología que funciona, con un equipo que responde',
@@ -54,7 +54,7 @@ const es = {
   header: { mainNav: 'Principal', mobileNav: 'Menú', openMenu: 'Abrir menú', closeMenu: 'Cerrar menú' },
 
   hero: {
-    eyebrow: 'Soporte y software para empresas en México',
+    eyebrow: 'Soporte IT y software para empresas en México',
     title: 'Tecnología que funciona, con un equipo que responde.',
     subtitle:
       'Desde hace más de 10 años construimos y mantenemos los sistemas de los que dependen las empresas: soporte diario, software a la medida y plataformas para manufactura.',
@@ -77,7 +77,7 @@ const es = {
   },
 
   servicesSection: {
-    title: 'Todo lo que tu empresa necesita en tecnología.',
+    title: 'Soporte IT y software: todo lo que tu empresa necesita.',
     subtitle: 'Del soporte diario al software a la medida, sin coordinar a cinco proveedores.',
     tabsLabel: 'Servicios',
     pause: 'Pausar avance automático',

@@ -31,6 +31,21 @@ function Progress({ running, reduce, onEnd, className }) {
 }
 
 // Enlace opcional de un servicio (por ejemplo, "Ver proyectos"). Fuera del servicio activo no recibe foco.
+// Mantenimiento y nube se explican dentro de la página de soporte IT.
+const pageFor = { mantenimiento: 'soporte', cloud: 'soporte' }
+
+// Enlace a la página propia del servicio y, si existe, al proyecto o caso relacionado.
+function ServiceLinks({ service, active }) {
+  const t = useT()
+  const page = { label: t.servicePages.ui.more, href: t.paths[pageFor[service.id] || service.id] }
+  return (
+    <div className="flex flex-wrap gap-x-5">
+      <ServiceLink link={page} active={active} />
+      <ServiceLink link={service.link} active={active} />
+    </div>
+  )
+}
+
 function ServiceLink({ link, active }) {
   if (!link) return null
   return (
@@ -239,7 +254,7 @@ export default function Services() {
                             </li>
                           ))}
                         </ul>
-                        <ServiceLink link={s.link} active={selected} />
+                        <ServiceLinks service={s} active={selected} />
                       </div>
                     </div>
                   </div>
@@ -356,7 +371,7 @@ export default function Services() {
                           </li>
                         ))}
                       </ul>
-                      <ServiceLink link={s.link} active={isActive} />
+                      <ServiceLinks service={s} active={isActive} />
                     </motion.div>
                   )
                 })}
