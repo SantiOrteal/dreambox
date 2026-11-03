@@ -15,7 +15,7 @@ export default function HeroCopy({ style }) {
   const t = useT()
   return (
     <motion.div style={style} className="wrap relative z-10 shrink-0 text-center">
-      <motion.p
+      <motion.h1
         {...rise(0)}
         className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3.5 py-1.5 text-[14px] font-semibold text-brand ring-1 ring-brand/15 backdrop-blur-md sm:text-[16px]"
       >
@@ -25,7 +25,7 @@ export default function HeroCopy({ style }) {
           <span className="relative h-2 w-2 rounded-full bg-brand" />
         </span>
         {t.hero.eyebrow}
-      </motion.p>
+      </motion.h1>
 
       <HeroTitle text={t.hero.title} delay={0.1} className="display mx-auto mt-3 max-w-[23ch] max-sm:[@media(max-height:620px)]:text-[2.1rem] [@media(min-width:640px)_and_(max-height:800px)]:text-[3.25rem]" />
 

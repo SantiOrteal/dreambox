@@ -19,15 +19,18 @@ if ((process.env.WORKERS_CI || process.env.CF_PAGES) && !env.VITE_SITE_URL) {
   process.exit(1)
 }
 
-const { render, structuredData, dictionaries } = await import(
+const { render, structuredData, serviceStructuredData, dictionaries } = await import(
   pathToFileURL(path.join(root, 'dist-ssr', 'entry-server.js')).href
 )
 
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
 const LANGS = Object.keys(dictionaries)
 
-// Archivo de salida de cada ruta (Netlify sirve /privacidad desde privacidad.html y /en/ desde en/index.html).
-const files = { '/': 'index.html', '/privacidad': 'privacidad.html', '/en/': 'en/index.html', '/en/privacy': 'en/privacy.html' }
+// Todas las páginas del sitio: inicio, aviso de privacidad y una por servicio.
+const pageIds = ['home', 'privacy', ...dictionaries.es.servicePages.pages.map((p) => p.id)]
+
+// Archivo de salida de cada ruta: /privacidad se sirve desde privacidad.html y /en/ desde en/index.html.
+const fileFor = (route) => (route.endsWith('/') ? `${route}index.html` : `${route}.html`).slice(1)
 
 // "<" escapado dentro del JSON-LD para que no pueda cerrar la etiqueta <script>.
 const escapedLt = String.fromCharCode(92) + 'u003c'
@@ -38,8 +41,9 @@ function headMeta(page, lang) {
   const m = t.meta
   const isHome = page === 'home'
   const url = siteUrl + t.paths[page]
-  const title = isHome ? m.title : m.privacyTitle
-  const description = isHome ? m.description : m.privacyDescription
+  const service = t.servicePages.pages.find((p) => p.id === page)
+  const title = isHome ? m.title : service ? service.title : m.privacyTitle
+  const description = isHome ? m.description : service ? service.description : m.privacyDescription
   const alternates = LANGS.map(
     (l) => `<link rel="alternate" hreflang="${dictionaries[l].locale}" href="${siteUrl}${dictionaries[l].paths[page]}" />`,
   )
@@ -71,22 +75,20 @@ function headMeta(page, lang) {
 }
 
 for (const lang of LANGS) {
-  for (const page of ['home', 'privacy']) {
+  for (const page of pageIds) {
     const t = dictionaries[lang]
     const { title, tags } = headMeta(page, lang)
-    const jsonLd =
-      page === 'home'
-        ? structuredData(lang)
+    const data = page === 'home' ? structuredData(lang) : page === 'privacy' ? [] : serviceStructuredData(page, lang)
+    const jsonLd = data
             .map((d) => `<script type="application/ld+json">${JSON.stringify(d).replaceAll('<', escapedLt)}</script>`)
             .join('\n    ')
-        : ''
     const html = template
       .replace('<html lang="es">', `<html lang="${t.locale}">`)
       .replace(/<title>[\s\S]*?<\/title>/, `<title>${attr(title)}</title>`)
       .replace('<!--head-meta-->', tags)
       .replace('<!--structured-data-->', jsonLd)
       .replace('<!--app-html-->', render(page, lang))
-    const out = path.join(dist, files[t.paths[page]])
+    const out = path.join(dist, fileFor(t.paths[page]))
     fs.mkdirSync(path.dirname(out), { recursive: true })
     fs.writeFileSync(out, html)
   }
@@ -95,7 +97,7 @@ for (const lang of LANGS) {
 // Sitemap con las versiones de cada página enlazadas entre sí (hreflang).
 const today = new Date().toISOString().slice(0, 10)
 const urls = []
-for (const page of ['home', 'privacy']) {
+for (const page of pageIds) {
   for (const lang of LANGS) {
     const links = LANGS.map(
       (l) => `    <xhtml:link rel="alternate" hreflang="${dictionaries[l].locale}" href="${siteUrl}${dictionaries[l].paths[page]}" />`,
@@ -104,8 +106,8 @@ for (const page of ['home', 'privacy']) {
     <loc>${siteUrl}${dictionaries[lang].paths[page]}</loc>
 ${links}
     <lastmod>${today}</lastmod>
-    <changefreq>${page === 'home' ? 'monthly' : 'yearly'}</changefreq>
-    <priority>${page === 'home' ? '1.0' : '0.3'}</priority>
+    <changefreq>${page === 'privacy' ? 'yearly' : 'monthly'}</changefreq>
+    <priority>${page === 'home' ? '1.0' : page === 'privacy' ? '0.3' : '0.8'}</priority>
   </url>`)
   }
 }

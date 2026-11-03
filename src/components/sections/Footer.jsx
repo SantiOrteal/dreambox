@@ -18,8 +18,7 @@ export default function Footer({ page = 'home' }) {
     {
       title: f.services,
       links: [
-        ...t.services.map((s) => ({ label: s.title, href: `${base}#servicios` })),
-        { label: t.manufacturing.eyebrow, href: `${base}#manufactura` },
+        ...t.servicePages.pages.map((p) => ({ label: p.name, href: p.path })),
       ],
     },
     {

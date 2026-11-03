@@ -18,7 +18,8 @@ function rich(text) {
 
 // Pestaña de manufactura: qué es Dreambox Manufacturing, tres datos clave, el mazo de módulos y el resto de módulos.
 export default function ManufacturingPanel({ onCase }) {
-  const { manufacturing: m } = useT()
+  const t = useT()
+  const { manufacturing: m } = t
   return (
     <div>
       <div className="grid items-start gap-14 lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-16">
@@ -34,6 +35,9 @@ export default function ManufacturingPanel({ onCase }) {
               {m.secondary}
             </a>
           </div>
+          <a href={t.paths.manufactura} className="link mt-5 text-[16px]">
+            {t.servicePages.ui.more} <ArrowRight className="h-4 w-4" />
+          </a>
 
           {/* Datos clave: filas en móvil y escritorio, franja de 3 en tablet. El primero resalta en azul marino */}
           <dl className="mt-12 grid overflow-hidden rounded-[24px] ring-1 ring-black/6 sm:grid-cols-3 lg:grid-cols-1">

@@ -7,9 +7,9 @@ const en = {
   paths: { home: '/en/', privacy: '/en/privacy' },
 
   meta: {
-    title: 'IT Support, Custom Software & Manufacturing | DreamBox Dev',
+    title: 'IT Support & Custom Software for Businesses | DreamBox Dev',
     description:
-      'IT support, custom software and manufacturing platforms. Over 10 years building and maintaining the systems businesses in Mexico rely on. Free assessment.',
+      'Tech support, maintenance and custom software for businesses. Over 10 years keeping the systems companies rely on running. Free assessment.',
     keywords:
       'IT support for businesses, software support, software maintenance, custom software, manufacturing software, PPAP, traceability, Andon system, legacy system modernization, .NET development, SQL Server, Mercado Libre integration, ERP reporting, web development, AI automation, Mexico',
     ogTitle: 'DreamBox Dev | Technology that works, with a team that answers',
@@ -52,7 +52,7 @@ const en = {
   header: { mainNav: 'Main', mobileNav: 'Menu', openMenu: 'Open menu', closeMenu: 'Close menu' },
 
   hero: {
-    eyebrow: 'Support and software for businesses in Mexico',
+    eyebrow: 'IT support and custom software for businesses',
     title: 'Technology that works, with a team that answers.',
     subtitle:
       'For over 10 years we have built and maintained the systems businesses rely on: day-to-day support, custom software and manufacturing platforms.',
@@ -74,7 +74,7 @@ const en = {
   },
 
   servicesSection: {
-    title: 'Everything your business needs in technology.',
+    title: 'IT support and software: everything your business needs.',
     subtitle: 'From day-to-day support to custom software, without juggling five vendors.',
     tabsLabel: 'Services',
     pause: 'Pause autoplay',

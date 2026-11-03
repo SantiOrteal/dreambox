@@ -2,22 +2,58 @@ import { StrictMode } from 'react'
 import { renderToString } from 'react-dom/server'
 import App from './App.jsx'
 import Privacy from './pages/Privacy.jsx'
+import ServicePage from './pages/ServicePage.jsx'
 import { LangProvider, dictionaries } from './i18n'
 import { site } from './content/site'
 
 export { dictionaries }
 
-const pages = { home: App, privacy: Privacy }
-
 export function render(page = 'home', lang = 'es') {
-  const Page = pages[page]
   return renderToString(
     <StrictMode>
       <LangProvider lang={lang}>
-        <Page />
+        {page === 'home' ? <App /> : page === 'privacy' ? <Privacy /> : <ServicePage id={page} />}
       </LangProvider>
     </StrictMode>,
   )
+}
+
+// Datos estructurados de una página de servicio: el servicio, la ruta de navegación y sus preguntas frecuentes.
+export function serviceStructuredData(id, lang = 'es') {
+  const t = dictionaries[lang]
+  const page = t.servicePages.pages.find((p) => p.id === id)
+  const url = `${site.url}${page.path}`
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: page.name,
+      description: page.description,
+      url,
+      serviceType: page.name,
+      provider: { '@id': `${site.url}/#organization`, '@type': 'ProfessionalService', name: site.legalName, url: `${site.url}${t.paths.home}` },
+      areaServed: { '@type': 'Country', name: t.meta.country },
+      inLanguage: t.locale,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: t.servicePages.ui.breadcrumbHome, item: `${site.url}${t.paths.home}` },
+        { '@type': 'ListItem', position: 2, name: page.name, item: url },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      inLanguage: t.locale,
+      mainEntity: page.faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ]
 }
 
 // Datos estructurados (schema.org) para que Google entienda la empresa, sus servicios y el FAQ, en cada idioma.
