@@ -5,7 +5,7 @@ const es = {
   lang: 'es',
   locale: 'es',
   ogLocale: 'es_MX',
-  paths: { home: '/', privacy: '/privacidad' },
+  paths: { home: '/', privacy: '/privacidad', manufacturing: '/manufactura' },
 
   meta: {
     title: 'Soporte IT, software a la medida y manufactura | DreamBox Dev',
@@ -16,6 +16,9 @@ const es = {
     ogTitle: 'DreamBox Dev | Tecnología que funciona, con un equipo que responde',
     ogDescription: 'Soporte IT, software a la medida y plataformas para manufactura. Más de 10 años construyendo sistemas. Agenda un diagnóstico gratuito.',
     ogImageAlt: 'DreamBox Dev, soporte IT y soluciones tecnológicas para empresas',
+    manufacturingTitle: 'Software para manufactura: PPAP, herramental y Andon | DreamBox Dev',
+    manufacturingDescription:
+      'Dreambox Manufacturing: plataforma on-premise y por módulos para proveedores automotrices Tier 1 y 2. PPAP, herramental, Andon, scrap y más. Agenda una demo.',
     privacyTitle: 'Aviso de privacidad y cookies | DreamBox Dev',
     privacyDescription:
       'Qué datos recopila DreamBox Dev, para qué los usa, qué cookies usa el sitio y cómo ejercer tus derechos ARCO.',
@@ -45,6 +48,7 @@ const es = {
 
   nav: [
     { label: 'Servicios', href: '#servicios' },
+    { label: 'Manufactura', href: '/manufactura' },
     { label: 'Proyectos', href: '#construido' },
     { label: 'Cómo trabajamos', href: '#proceso' },
     { label: 'Nosotros', href: '#nosotros' },
@@ -74,6 +78,17 @@ const es = {
     label: 'El problema que resolvemos',
     lines: ['¿Se cayó el sistema otra vez?', '¿Tu web no trae clientes?', '¿Nadie responde cuando algo falla?', 'Nosotros nos encargamos.'],
     tagline: 'Soporte, mantenimiento y mejoras continuas. Un solo equipo para toda tu tecnología.',
+  },
+
+  // Escena después de "Nosotros nos encargamos": un sistema falla, se atiende y queda resuelto.
+  handled: {
+    label: 'Cómo se ve cuando nos encargamos',
+    lines: ['Mientras tú operas,', 'nosotros cuidamos', 'que todo funcione.'],
+    body: 'Cuando algo falla, le damos seguimiento hasta que quede resuelto. Tú sigues con tu día.',
+    panelTitle: 'Tus sistemas',
+    summary: { incident: '1 incidente', ok: 'Todo en operación' },
+    status: { ok: 'En operación', alert: 'Falla', working: 'Atendiendo', resolved: 'Resuelto' },
+    systems: ['Correo y cuentas', 'Sistema interno', 'Sitio web', 'Respaldos'],
   },
 
   servicesSection: {
@@ -249,6 +264,17 @@ const es = {
     body: 'Nació del sistema que desarrollamos y mantenemos para una planta de autopartes. Hoy esa experiencia vive en **Dreambox Manufacturing**, una plataforma nueva que se instala en tu planta.',
     cta: 'Agenda una demo',
     secondary: 'Ver el caso de estudio',
+    more: 'Conocer la plataforma',
+    modulesTitle: 'Una plataforma a la medida de tu planta',
+    // Video de video/composition.html con la voz de video/voz. Si cambia lo que dice o muestra, actualiza transcript.
+    video: {
+      lang: 'es',
+      label: 'Dreambox Manufacturing en 35 segundos',
+      play: 'Ver video · 35 s',
+      replay: 'Ver de nuevo',
+      transcript:
+        'Narración: La información de tu planta, repartida entre sistemas viejos. Una sola plataforma, instalada en tu planta. Cada módulo nace de un proceso real. En PPAP, cada número de parte tiene su expediente, y los documentos quedan listos para el cliente. En Herramental, todo se captura en piso, desde un kiosco. Cada acción queda en su historial. On-premise, por módulos y hecha para proveedores Tier 1 y 2. Más de diez años en el piso de producción. Agenda una demo. En pantalla: PPAP muestra el estatus de cada elemento. On-premise: tus datos se quedan en tu servidor y la operación no depende de internet. Por módulos: adopta solo los que necesitas. Tier 1 y 2: hecha para los requisitos de calidad de los proveedores automotrices.',
+    },
     facts: [
       { value: 'Tier 1 y 2', label: 'Hecha para los requisitos de calidad de los proveedores automotrices.' },
       { value: 'On-premise', label: 'Una instalación por sucursal. Tus datos se quedan en tu servidor y la operación no depende de internet.' },

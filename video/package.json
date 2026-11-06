@@ -1,0 +1,12 @@
+{
+  "name": "dreambox-video",
+  "private": true,
+  "type": "module",
+  "description": "Render del video de Dreambox Manufacturing. Va aparte para no sumar dependencias al sitio.",
+  "scripts": {
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.0.0"
+  }
+}

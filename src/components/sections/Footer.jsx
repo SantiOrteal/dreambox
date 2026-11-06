@@ -7,19 +7,26 @@ import { useT } from '../../i18n'
 const socialNames = { linkedin: 'LinkedIn', instagram: 'Instagram', facebook: 'Facebook', github: 'GitHub' }
 
 // Footer al estilo Apple: tipografía pequeña, gris, columnas y una línea fina.
-// page: página actual ("home" o "privacy"); fuera de la principal, los enlaces a secciones llevan a la página de inicio.
+// page: página actual ("home", "privacy" o "manufacturing"); fuera de la principal, los enlaces a secciones llevan a la página de inicio.
 export default function Footer({ page = 'home' }) {
   const t = useT()
   const f = t.footer
   const base = page === 'home' ? '' : t.paths.home
   const social = Object.entries(site.social).filter(([, url]) => url)
   const cols = [
-    { title: f.company, links: [...t.nav, { label: f.contactLink, href: '#contacto' }].map((l) => ({ ...l, href: base + l.href })) },
+    {
+      title: f.company,
+      links: [
+        ...t.nav.filter((l) => l.href.startsWith('#')).map((l) => ({ ...l, href: base + l.href })),
+        // La página de manufactura tiene su propio formulario.
+        { label: f.contactLink, href: page === 'manufacturing' ? '#contacto' : `${base}#contacto` },
+      ],
+    },
     {
       title: f.services,
       links: [
         ...t.services.map((s) => ({ label: s.title, href: `${base}#servicios` })),
-        { label: t.manufacturing.eyebrow, href: `${base}#manufactura` },
+        { label: t.manufacturing.eyebrow, href: t.paths.manufacturing },
       ],
     },
     {

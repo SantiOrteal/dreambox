@@ -1,7 +1,9 @@
+import { useEffect } from 'react'
 import { MotionConfig } from 'motion/react'
 import Header from './components/sections/Header'
 import Hero from './components/sections/Hero'
 import Statement from './components/sections/Statement'
+import Handled from './components/sections/Handled'
 import Services from './components/sections/Services'
 import Commitments from './components/sections/Commitments'
 import Built from './components/sections/Built'
@@ -16,10 +18,16 @@ import CookieBanner from './components/CookieBanner'
 import Backdrop from './components/Backdrop'
 import { useT } from './i18n'
 
-// Historia de la página: promesa → problema → servicios → compromisos → lo que hemos construido
+// Historia de la página: promesa → problema → respuesta → servicios → compromisos → lo que hemos construido
 // (manufactura, caso y proyectos) → proceso → quiénes somos → dudas → acción.
 export default function App() {
   const t = useT()
+
+  // Si la dirección conserva su #ancla es porque se llegó desde otra página del sitio (ver main.jsx).
+  useEffect(() => {
+    if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView()
+  }, [])
+
   return (
     <MotionConfig reducedMotion="user">
       <Backdrop />
@@ -34,6 +42,7 @@ export default function App() {
         <main id="contenido">
           <Hero />
           <Statement />
+          <Handled />
           <Services />
           <Commitments />
           <Built />

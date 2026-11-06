@@ -67,7 +67,7 @@ export default function ModuleDeck() {
                 </div>
                 <div className="p-7">
                   <div className="flex flex-wrap items-center gap-2.5">
-                    <h4 className="text-[22px] font-semibold tracking-[-0.02em] text-ink">{mod.title}</h4>
+                    <h3 className="text-[22px] font-semibold tracking-[-0.02em] text-ink">{mod.title}</h3>
                     {mod.soon && (
                       <span className="rounded-full bg-[#fff4e0] px-2.5 py-1 text-[12px] font-medium text-[#9a5b00]">{m.soon}</span>
                     )}

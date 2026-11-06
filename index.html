@@ -22,7 +22,10 @@
           var want = saved === 'es' || saved === 'en' ? saved : /^es\b/i.test(browser) ? 'es' : 'en'
           if ((want === 'en') === isEn) return
           var isPrivacy = /\/(privacidad|privacy)(\.html|\/)?$/.test(path)
-          var target = want === 'en' ? (isPrivacy ? '/en/privacy' : '/en/') : isPrivacy ? '/privacidad' : '/'
+          var isManufacturing = /\/(manufactura|manufacturing)(\.html|\/)?$/.test(path)
+          var target = want === 'en'
+            ? (isPrivacy ? '/en/privacy' : isManufacturing ? '/en/manufacturing' : '/en/')
+            : isPrivacy ? '/privacidad' : isManufacturing ? '/manufactura' : '/'
           location.replace(target + location.search + location.hash)
         } catch (e) {}
       })()
