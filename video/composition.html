@@ -1,0 +1,318 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Dreambox Manufacturing</title>
+<style>
+  @font-face {
+    font-family: Geist;
+    src: url('../node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2') format('woff2');
+    font-weight: 100 900;
+  }
+  :root {
+    --navy: #0b1a3f; --brand: #2f5bea; --light: #4f7cff; --ink: #1d1d1f; --muted: #5c5c61; --line: #e4e6ee;
+    --ok-bg: #e8f6ee; --ok: #1f7a45; --wait-bg: #fff4e0; --wait: #9a5b00;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: var(--navy); font-family: Geist, sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+  #stage { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+  .bg { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size: 26px 26px; }
+  .glow { position: absolute; left: -220px; top: -300px; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(circle, rgba(47,91,234,.5), transparent 68%); }
+  .hide { visibility: hidden; opacity: 0; }
+
+  /* Frases: siempre en el mismo lugar para que el ojo sepa dónde leer. */
+  .cap { position: absolute; left: 64px; right: 64px; top: 44px; font-size: 38px; font-weight: 600; line-height: 1.12; letter-spacing: -.025em; }
+  .cap b { font-weight: 600; color: var(--light); }
+
+  /* Sistemas viejos */
+  .old { position: absolute; top: 220px; width: 470px; border-radius: 10px; background: #2b3346; box-shadow: 0 24px 60px -20px rgba(0,0,0,.6); overflow: hidden; }
+  .old header { padding: 12px 18px; font: 500 19px ui-monospace, Consolas, monospace; background: #3a4358; color: #c8cede; }
+  .old div { display: flex; justify-content: space-between; padding: 19px 20px; font: 400 23px ui-monospace, Consolas, monospace; color: #a8b0c3; border-top: 1px solid rgba(255,255,255,.07); }
+  .old i { font-style: normal; color: #f2bf6b; }
+  #old1 { left: 90px; } #old2 { right: 90px; }
+
+  /* La plataforma */
+  #shell { position: absolute; left: 64px; right: 64px; top: 150px; bottom: 48px; display: flex; border-radius: 20px; background: #fff; color: var(--ink); overflow: hidden; box-shadow: 0 40px 90px -30px rgba(0,0,0,.65); }
+  nav { position: relative; width: 250px; flex: none; padding: 20px 14px; background: #f5f6fa; border-right: 1px solid var(--line); }
+  nav p { padding: 0 12px 12px; font-size: 16px; font-weight: 600; color: var(--muted); }
+  nav div { position: relative; padding: 11px 12px; font-size: 19px; font-weight: 500; border-radius: 10px; color: var(--ink); }
+  nav div span { position: relative; }
+  #cursor { position: absolute; top: 0; left: 14px; right: 14px; height: 45px; border-radius: 10px; background: var(--brand); }
+  main { position: relative; flex: 1; min-width: 0; }
+  .view { position: absolute; inset: 0; padding: 28px 32px; }
+  .note { position: absolute; right: 22px; bottom: 12px; font-size: 14px; color: #8a8a90; }
+
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .tile { padding: 24px 20px; min-height: 134px; border-radius: 14px; background: #f5f6fa; font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
+  .tile small { display: block; width: 26px; height: 5px; margin-bottom: 16px; border-radius: 3px; background: var(--light); }
+
+  .head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+  .head strong { font-size: 30px; font-weight: 600; letter-spacing: -.02em; }
+  .head span { font-size: 20px; color: var(--muted); }
+  .row { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 16px 0; font-size: 22px; border-bottom: 1px solid var(--line); }
+  .pill { display: inline-flex; align-items: center; gap: 7px; padding: 6px 14px; border-radius: 99px; font-size: 18px; font-weight: 600; white-space: nowrap; }
+  .pill.ok { background: var(--ok-bg); color: var(--ok); }
+  .pill.wait { background: var(--wait-bg); color: var(--wait); }
+  .stack { display: grid; justify-items: end; }
+  .stack > * { grid-area: 1 / 1; }
+  #ready { display: flex; align-items: center; gap: 12px; margin-top: 20px; padding: 16px 20px; border-radius: 14px; background: var(--navy); color: #fff; font-size: 22px; font-weight: 600; }
+  svg.check { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+
+  .kiosk { display: flex; gap: 22px; height: 100%; }
+  .screen { flex: 1.25; padding: 22px 24px; border-radius: 16px; background: var(--navy); color: #fff; }
+  .screen p { font-size: 18px; color: rgba(255,255,255,.65); }
+  .screen h3 { margin-top: 6px; font-size: 32px; font-weight: 600; letter-spacing: -.02em; }
+  .acts { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  .act { position: relative; padding: 20px 18px; border-radius: 12px; background: rgba(255,255,255,.1); font-size: 21px; font-weight: 500; overflow: hidden; }
+  .act em { position: absolute; inset: 0; background: var(--brand); }
+  .act span { position: relative; }
+  #tap { position: absolute; width: 58px; height: 58px; margin: -29px; border-radius: 50%; background: rgba(255,255,255,.4); box-shadow: 0 0 0 2px rgba(255,255,255,.7); }
+  .hist { flex: 1; min-width: 0; }
+  .hist h4 { font-size: 18px; font-weight: 600; color: var(--muted); padding-bottom: 8px; }
+  .hist div { padding: 13px 0; border-top: 1px solid var(--line); font-size: 19px; }
+  .hist small { display: block; margin-top: 2px; font-size: 15px; color: var(--muted); }
+  #saved { color: var(--ok); font-weight: 600; }
+
+  /* Lo que lo distingue */
+  #facts { position: absolute; left: 64px; right: 64px; top: 190px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .fact { padding: 30px 28px; min-height: 300px; border-radius: 20px; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
+  .fact strong { display: block; font-size: 34px; font-weight: 600; letter-spacing: -.025em; }
+  .fact p { margin-top: 14px; font-size: 23px; line-height: 1.32; color: rgba(255,255,255,.75); }
+  .fact s { display: block; width: 38px; height: 5px; margin-bottom: 26px; border-radius: 3px; background: var(--light); }
+
+  /* Cierre */
+  #end { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 64px; text-align: center; }
+  #end img { height: 46px; }
+  #end h2 { margin-top: 34px; font-size: 52px; font-weight: 600; line-height: 1.08; letter-spacing: -.03em; }
+  #end a { margin-top: 36px; padding: 16px 34px; border-radius: 99px; background: var(--brand); font-size: 25px; font-weight: 500; }
+
+  /* Versión vertical: misma historia, con letra mayor porque se ve en un celular. */
+  .tall .cap { left: 44px; right: 44px; top: 42px; font-size: 46px; }
+  .tall .old { width: 500px; } .tall .old div { padding: 13px 18px; font-size: 21px; }
+  .tall #old1 { left: 44px; top: 270px; } .tall #old2 { right: 44px; left: auto; top: 500px; }
+  .tall #shell { left: 32px; right: 32px; top: 250px; bottom: 36px; flex-direction: column; }
+  .tall nav { width: auto; display: flex; align-items: center; gap: 4px; padding: 12px; border-right: 0; border-bottom: 1px solid var(--line); overflow: hidden; }
+  .tall nav p, .tall nav div.extra, .tall #cursor { display: none; }
+  .tall nav div { white-space: nowrap; font-size: 22px; padding: 9px 16px; }
+  .tall nav div.on { background: var(--brand); color: #fff; }
+  .tall .view { padding: 26px 28px; }
+  .tall .tiles { grid-template-columns: repeat(2, 1fr); }
+  .tall .tile { min-height: 110px; font-size: 24px; padding: 18px; }
+  .tall .head { flex-direction: column; gap: 4px; }
+  .tall .head strong { font-size: 38px; } .tall .head span { font-size: 25px; }
+  .tall .row { font-size: 27px; padding: 20px 0; } .tall .pill { font-size: 22px; }
+  .tall #ready { font-size: 28px; margin-top: 26px; }
+  .tall .kiosk { flex-direction: column; gap: 16px; }
+  .tall .screen { flex: none; } .tall .screen p { font-size: 22px; } .tall .screen h3 { font-size: 36px; }
+  .tall .acts { flex-direction: row; } .tall .act { flex: 1; text-align: center; font-size: 22px; padding: 14px 4px; }
+  .tall .hist h4 { font-size: 22px; } .tall .hist div { font-size: 24px; padding: 12px 0; } .tall .hist small { font-size: 20px; }
+  .tall #facts { left: 44px; right: 44px; top: 200px; grid-template-columns: 1fr; gap: 16px; }
+  .tall .fact { min-height: 0; padding: 22px 26px; }
+  .tall .fact s { display: none; }
+  .tall .fact strong { font-size: 38px; } .tall .fact p { margin-top: 8px; font-size: 26px; }
+  .tall #end h2 { font-size: 62px; } .tall #end a { font-size: 32px; } .tall #end img { height: 54px; }
+  .tall .note { font-size: 18px; right: 18px; bottom: 8px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="bg"></div>
+  <div class="glow"></div>
+  <div id="root"></div>
+</div>
+
+<script src="../node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+const params = new URLSearchParams(location.search)
+const lang = params.get('lang') || 'es'
+if (params.get('format') === 'tall') document.documentElement.classList.add('tall')
+
+// Los datos de la interfaz (números de parte, moldes) son los mismos ejemplos inventados que usa el sitio
+// en manufacturingScenes. Trazabilidad no aparece porque todavía es "próximamente".
+const T = {
+  es: {
+    cap: {
+      problem: 'La información de tu planta, repartida entre <b>sistemas viejos.</b>',
+      one: 'Una sola plataforma, <b>instalada en tu planta.</b>',
+      modules: 'Cada módulo nace de un <b>proceso real de planta.</b>',
+      ppap: '<b>PPAP:</b> expedientes por número de parte y el estatus de cada elemento.',
+      tooling: '<b>Herramental:</b> se captura en piso, desde un kiosco, con historial.',
+      facts: 'Hecha para <b>cómo opera tu planta.</b>',
+    },
+    old: ['Sistema 1', 'Sistema 2'],
+    oldRows: [['Scrap', 'Sin uso'], ['Calidad', ''], ['Reportes', '?']],
+    oldRows2: [['Trazabilidad', 'Sin uso'], ['Recibo', ''], ['Herramental', '?']],
+    navTitle: 'Dreambox Manufacturing',
+    modules: ['PPAP', 'Herramental', 'Sistema Andon', 'Recibo de material', 'Manejo de scrap', 'Auditoría', 'Dashboards'],
+    note: 'Interfaz ilustrativa',
+    ppap: { title: 'PPAP · Nivel 3', part: 'No. de parte 4471-B', items: ['Dibujo y especificaciones', 'Estudio dimensional', 'PSW'], ok: 'Aprobado', wait: 'En revisión', ready: 'Documentos listos para el cliente' },
+    tool: { header: 'Línea 2 · Turno 1', name: 'Molde M-218', acts: ['Ajuste', 'Limpieza', 'Reparación'], hist: 'Historial del molde', saved: 'Limpieza registrada', now: 'Ahora · Turno 1', prev: 'Ajuste', prevWhen: 'Turno anterior' },
+    facts: [['On-premise', 'Tus datos se quedan en tu servidor y la operación no depende de internet.'], ['Por módulos', 'Adopta solo los que necesitas: cada uno funciona por separado.'], ['Tier 1 y 2', 'Hecha para los requisitos de calidad de los proveedores automotrices.']],
+    end: 'Más de 10 años en el piso de producción.', cta: 'Agenda una demo',
+  },
+  en: {
+    cap: {
+      problem: 'Your plant’s information, scattered across <b>aging systems.</b>',
+      one: 'One platform, <b>installed at your plant.</b>',
+      modules: 'Every module comes from <b>a real plant process.</b>',
+      ppap: '<b>PPAP:</b> files by part number and the status of every element.',
+      tooling: '<b>Tooling:</b> captured on the shop floor, from a kiosk, with full history.',
+      facts: 'Built for <b>how your plant runs.</b>',
+    },
+    old: ['System 1', 'System 2'],
+    oldRows: [['Scrap', 'Unused'], ['Quality', ''], ['Reports', '?']],
+    oldRows2: [['Traceability', 'Unused'], ['Receiving', ''], ['Tooling', '?']],
+    navTitle: 'Dreambox Manufacturing',
+    modules: ['PPAP', 'Tooling', 'Andon system', 'Material receiving', 'Scrap management', 'Audit', 'Dashboards'],
+    note: 'Illustrative interface',
+    ppap: { title: 'PPAP · Level 3', part: 'Part no. 4471-B', items: ['Drawings & specifications', 'Dimensional results', 'PSW'], ok: 'Approved', wait: 'In review', ready: 'Documents ready for the customer' },
+    tool: { header: 'Line 2 · Shift 1', name: 'Mold M-218', acts: ['Adjustment', 'Cleaning', 'Repair'], hist: 'Mold history', saved: 'Cleaning logged', now: 'Now · Shift 1', prev: 'Adjustment', prevWhen: 'Previous shift' },
+    facts: [['On-premise', 'Your data stays on your server and operations don’t depend on the internet.'], ['By module', 'Adopt only what you need: each module works on its own.'], ['Tier 1 & 2', 'Built for the quality requirements of automotive suppliers.']],
+    end: 'Over 10 years on the shop floor.', cta: 'Book a demo',
+  },
+}[lang]
+
+const CHECK = '<svg class="check" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>'
+const oldWin = (id, title, rows) => `<div id="${id}" class="old hide"><header>${title}</header>${rows.map(([a, b]) => `<div>${a}<i>${b}</i></div>`).join('')}</div>`
+
+document.getElementById('root').innerHTML = `
+  ${Object.entries(T.cap).map(([k, v]) => `<p class="cap hide" id="cap-${k}">${v}</p>`).join('')}
+  ${oldWin('old1', T.old[0], T.oldRows)}
+  ${oldWin('old2', T.old[1], T.oldRows2)}
+
+  <div id="shell" class="hide">
+    <nav>
+      <p>${T.navTitle}</p>
+      <div id="cursor" class="hide"></div>
+      ${T.modules.map((m, i) => `<div class="${i > 1 ? 'extra' : ''}" data-nav="${i}"><span>${m}</span></div>`).join('')}
+    </nav>
+    <main>
+      <div class="view" id="v-home"><div class="tiles">${T.modules.map((m) => `<div class="tile hide"><small></small>${m}</div>`).join('')}</div></div>
+
+      <div class="view hide" id="v-ppap">
+        <div class="head"><strong>${T.ppap.title}</strong><span>${T.ppap.part}</span></div>
+        ${T.ppap.items.map((it, i) => `<div class="row p-row">${it}${
+          i < 2
+            ? `<span class="pill ok">${CHECK}${T.ppap.ok}</span>`
+            : `<span class="stack"><span class="pill wait" id="psw-wait">${T.ppap.wait}</span><span class="pill ok hide" id="psw-ok">${CHECK}${T.ppap.ok}</span></span>`
+        }</div>`).join('')}
+        <div id="ready" class="hide">${CHECK}${T.ppap.ready}</div>
+      </div>
+
+      <div class="view hide" id="v-tool">
+        <div class="kiosk">
+          <div class="screen">
+            <p>${T.tool.header}</p><h3>${T.tool.name}</h3>
+            <div class="acts">${T.tool.acts.map((a, i) => `<div class="act" ${i === 1 ? 'id="act-pick"' : ''}>${i === 1 ? '<em id="act-fill" class="hide"></em>' : ''}<span>${a}</span></div>`).join('')}</div>
+          </div>
+          <div class="hist">
+            <h4>${T.tool.hist}</h4>
+            <div id="saved" class="hide">${T.tool.saved}<small>${T.tool.now}</small></div>
+            <div id="prev">${T.tool.prev}<small>${T.tool.prevWhen}</small></div>
+          </div>
+        </div>
+        <div id="tap" class="hide"></div>
+      </div>
+      <span class="note">${T.note}</span>
+    </main>
+  </div>
+
+  <div id="facts">${T.facts.map(([a, b]) => `<div class="fact hide"><s></s><strong>${a}</strong><p>${b}</p></div>`).join('')}</div>
+
+  <div id="end" class="hide">
+    <img src="../public/brand/logo-wordmark-light.png" alt="" />
+    <h2>${T.end}</h2>
+    <a>${T.cta}</a>
+  </div>
+`
+
+// Mismo lenguaje de movimiento que el sitio: directo, sin rebote y con tres duraciones.
+const QUICK = 0.25, STANDARD = 0.35, SLOW = 0.55
+const IN = 'power3.out', OUT = 'power2.in'
+const tall = document.documentElement.classList.contains('tall')
+const tl = gsap.timeline({ paused: true })
+
+const show = (sel, at, y = 14, extra = {}) => tl.fromTo(sel, { autoAlpha: 0, y }, { autoAlpha: 1, y: 0, duration: SLOW, ease: IN, ...extra }, at)
+const hide = (sel, at, y = -10) => tl.to(sel, { autoAlpha: 0, y, duration: QUICK, ease: OUT }, at)
+const caption = (key, from, to) => { show(`#cap-${key}`, from); if (to) hide(`#cap-${key}`, to) }
+
+// Mueve la selección del menú lateral al módulo indicado.
+let previous = null
+function select(i, at) {
+  const item = document.querySelector(`[data-nav="${i}"]`)
+  if (tall) {
+    document.querySelectorAll('[data-nav]').forEach((el) => {
+      const base = el.classList.contains('extra') ? 'extra' : ''
+      tl.set(el, { className: el === item ? `${base} on` : base }, at)
+    })
+    return
+  }
+  tl.fromTo('#cursor', { y: previous ? previous.offsetTop : item.offsetTop }, { y: item.offsetTop, duration: STANDARD, ease: IN, immediateRender: false }, at)
+  tl.set('#cursor', { autoAlpha: 1 }, at)
+  if (previous) tl.to(previous, { color: '#1d1d1f', duration: 0.15 }, at)
+  tl.to(item, { color: '#fff', duration: 0.15 }, at + 0.1)
+  previous = item
+}
+
+// Fondo vivo muy lento: se nota sin competir con el texto.
+tl.fromTo('.glow', { x: 0, y: 0 }, { x: 260, y: 90, duration: 35, ease: 'sine.inOut' }, 0)
+
+// 1. El problema: dos sistemas separados (0 a 6 s).
+caption('problem', 0.2, 4.1)
+show('#old1', 0.5, 20)
+show('#old2', 0.75, 20)
+tl.fromTo('.old i', { autoAlpha: 0 }, { autoAlpha: 1, duration: QUICK, stagger: 0.25, ease: IN }, 1.8)
+
+// 2. Se vuelven uno solo (4 a 6.5 s).
+tl.to('#old1', { x: tall ? 60 : 200, y: tall ? 110 : 0, autoAlpha: 0, duration: 0.6, ease: 'power2.inOut' }, 4.1)
+tl.to('#old2', { x: tall ? -60 : -200, y: tall ? -110 : 0, autoAlpha: 0, duration: 0.6, ease: 'power2.inOut' }, 4.1)
+caption('one', 4.4, 8.3)
+tl.fromTo('#shell', { autoAlpha: 0, scale: 0.94 }, { autoAlpha: 1, scale: 1, duration: SLOW, ease: IN }, 4.5)
+
+// 3. Los módulos (8.5 a 12 s).
+caption('modules', 8.5, 11.8)
+tl.fromTo('.tile', { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: STANDARD, stagger: 0.06, ease: IN }, 5.1)
+
+// 4. PPAP (12 a 19.5 s).
+select(0, 11.8)
+hide('#v-home', 11.9, -8)
+caption('ppap', 12, 19.2)
+show('#v-ppap', 12.1, 10, { duration: STANDARD })
+tl.fromTo('.p-row', { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: STANDARD, stagger: 0.12, ease: IN }, 12.3)
+hide('#psw-wait', 15.2, -6)
+show('#psw-ok', 15.35, 6, { duration: STANDARD })
+show('#ready', 16.1, 12)
+
+// 5. Herramental (19.5 a 27 s).
+select(1, 19.2)
+hide('#v-ppap', 19.2, -8)
+caption('tooling', 19.4, 26.6)
+show('#v-tool', 19.4, 10, { duration: STANDARD })
+
+// El dedo toca el botón del kiosco; se ubica con medidas de layout, que no cambian con las animaciones.
+const pick = document.getElementById('act-pick')
+gsap.set('#tap', { left: pick.offsetLeft + pick.offsetWidth / 2, top: pick.offsetTop + pick.offsetHeight / 2 })
+tl.fromTo('#tap', { autoAlpha: 0, scale: 1.25 }, { autoAlpha: 1, scale: 1, duration: QUICK, ease: IN }, 21.2)
+tl.to('#tap', { scale: 0.8, duration: 0.12, ease: 'power2.out' }, 21.7)
+tl.fromTo('#act-fill', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.15 }, 21.75)
+tl.to('#tap', { autoAlpha: 0, scale: 1.3, duration: QUICK, ease: 'power2.out' }, 21.9)
+tl.fromTo('#prev', { y: -64 }, { y: 0, duration: STANDARD, ease: IN }, 22.25)
+show('#saved', 22.25, -14, { duration: STANDARD })
+
+// 6. Lo que lo distingue (27 a 31.5 s).
+hide('#shell', 26.7, 0)
+caption('facts', 26.9, 31.2)
+tl.fromTo('.fact', { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: SLOW, stagger: 0.18, ease: IN }, 27.1)
+hide('.fact', 31.2, -12)
+
+// 7. Cierre: se queda quieto para alcanzar a leerlo.
+tl.fromTo('#end', { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: SLOW, ease: IN }, 31.5)
+tl.to({}, { duration: 0.01 }, 35)
+
+window.duration = 35
+// De atrás hacia adelante también funciona, así que se puede pedir cualquier cuadro suelto.
+window.seek = (t) => { tl.time(t, false) }
+Promise.all([document.fonts.load('600 40px Geist'), ...[...document.images].map((i) => i.decode().catch(() => {}))]).then(() => { window.ready = true })
+</script>
+</body>
+</html>

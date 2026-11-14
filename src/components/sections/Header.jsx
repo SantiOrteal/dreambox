@@ -6,8 +6,10 @@ import LangSwitch from '../LangSwitch'
 import { useT } from '../../i18n'
 
 // Barra fina a todo el ancho, como apple.com: material translúcido y una línea inferior.
-export default function Header() {
+// page: página actual; fuera de la principal, los enlaces a secciones llevan a la página de inicio.
+export default function Header({ page = 'home' }) {
   const t = useT()
+  const link = (href) => (page !== 'home' && href.startsWith('#') ? t.paths.home + href : href)
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -24,18 +26,18 @@ export default function Header() {
   return (
     <header className="material fixed inset-x-0 top-0 z-50 border-b border-black/8">
       <div className="wrap flex h-12 items-center justify-between">
-        <Logo animated />
+        <Logo animated href={page === 'home' ? '#inicio' : t.paths.home} />
 
         <nav aria-label={t.header.mainNav} className="hidden items-center gap-7 lg:flex">
           {t.nav.map((item) => (
-            <a key={item.href} href={item.href} className="py-3 text-[13px] text-ink/80 transition-colors hover:text-ink">
+            <a key={item.href} href={link(item.href)} className="py-3 text-[13px] text-ink/80 transition-colors hover:text-ink">
               {item.label}
             </a>
           ))}
         </nav>
 
         <div className="flex items-center gap-1">
-          <LangSwitch className="mr-1" />
+          <LangSwitch page={page} className="mr-1" />
           <a href="#contacto" className="btn-primary hit hidden px-3.5 py-1.5 text-[13px] sm:inline-flex">
             {t.common.cta}
           </a>
@@ -67,7 +69,7 @@ export default function Header() {
               {t.nav.map((item, i) => (
                 <motion.a
                   key={item.href}
-                  href={item.href}
+                  href={link(item.href)}
                   onClick={() => setOpen(false)}
                   initial={{ opacity: 0, y: -6 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -80,7 +82,7 @@ export default function Header() {
               <a href="#contacto" onClick={() => setOpen(false)} className="btn-primary mt-8 w-full py-3">
                 {t.common.cta}
               </a>
-              <LangSwitch variant="full" className="mt-6" />
+              <LangSwitch page={page} variant="full" className="mt-6" />
             </div>
           </motion.nav>
         )}

@@ -40,6 +40,10 @@ jobs:
 
       - run: npm ci
 
+      # El CI corre en paralelo y no frena el despliegue: por eso el lint se repite aquí.
+      - name: Lint
+        run: npm run lint
+
       - name: Build
         run: npm run build
         env:
@@ -109,6 +113,10 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      # El CI corre en paralelo y no frena el despliegue: por eso el lint se repite aquí.
+      - name: Lint
+        run: npm run lint
 
       - name: Build
         run: npm run build

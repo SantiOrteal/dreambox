@@ -2,12 +2,13 @@ import { StrictMode } from 'react'
 import { renderToString } from 'react-dom/server'
 import App from './App.jsx'
 import Privacy from './pages/Privacy.jsx'
+import Manufacturing from './pages/Manufacturing.jsx'
 import { LangProvider, dictionaries } from './i18n'
 import { site } from './content/site'
 
 export { dictionaries }
 
-const pages = { home: App, privacy: Privacy }
+const pages = { home: App, privacy: Privacy, manufacturing: Manufacturing }
 
 export function render(page = 'home', lang = 'es') {
   const Page = pages[page]

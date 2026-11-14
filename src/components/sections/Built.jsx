@@ -123,11 +123,11 @@ export default function Built() {
                 animate={{ opacity: 1, transform: 'translateX(0px)' }}
                 transition={{ duration: 0.5, ease: EASE }}
               >
-                <Panel onCase={() => open('caso')} />
+                <Panel />
               </motion.div>
             ) : (
               <div key={`${id}-off`} {...props} hidden>
-                <Panel onCase={() => open('caso')} />
+                <Panel />
               </div>
             )
           })}

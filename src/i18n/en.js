@@ -4,7 +4,7 @@ const en = {
   lang: 'en',
   locale: 'en',
   ogLocale: 'en_US',
-  paths: { home: '/en/', privacy: '/en/privacy' },
+  paths: { home: '/en/', privacy: '/en/privacy', manufacturing: '/en/manufacturing' },
 
   meta: {
     title: 'IT Support, Custom Software & Manufacturing | DreamBox Dev',
@@ -15,6 +15,9 @@ const en = {
     ogTitle: 'DreamBox Dev | Technology that works, with a team that answers',
     ogDescription: 'IT support, custom software and manufacturing platforms. Over 10 years building systems. Book a free assessment.',
     ogImageAlt: 'DreamBox Dev, IT support and technology solutions for businesses',
+    manufacturingTitle: 'Manufacturing Software: PPAP, Tooling & Andon | DreamBox Dev',
+    manufacturingDescription:
+      'Dreambox Manufacturing: an on-premise, modular platform for Tier 1 and 2 automotive suppliers. PPAP, tooling, Andon, scrap and more. Schedule a demo.',
     privacyTitle: 'Privacy & Cookie Notice | DreamBox Dev',
     privacyDescription: 'What data DreamBox Dev collects, how it is used, which cookies the site uses and how to exercise your rights.',
     orgDescription: 'IT support, custom software and manufacturing platforms for businesses in Mexico.',
@@ -43,6 +46,7 @@ const en = {
 
   nav: [
     { label: 'Services', href: '#servicios' },
+    { label: 'Manufacturing', href: '/en/manufacturing' },
     { label: 'Projects', href: '#construido' },
     { label: 'How we work', href: '#proceso' },
     { label: 'About', href: '#nosotros' },
@@ -71,6 +75,16 @@ const en = {
     label: 'The problem we solve',
     lines: ['System down again?', 'Website not bringing in clients?', 'No one answers when things break?', "We've got it covered."],
     tagline: 'Support, maintenance and ongoing improvements. One team for all your technology.',
+  },
+
+  handled: {
+    label: 'What it looks like when we take care of it',
+    lines: ['While you run your business,', 'we make sure', 'everything works.'],
+    body: 'When something breaks, we follow up until it is resolved. You get on with your day.',
+    panelTitle: 'Your systems',
+    summary: { incident: '1 incident', ok: 'All systems running' },
+    status: { ok: 'Running', alert: 'Down', working: 'Working on it', resolved: 'Resolved' },
+    systems: ['Email & accounts', 'Internal system', 'Website', 'Backups'],
   },
 
   servicesSection: {
@@ -242,6 +256,16 @@ const en = {
     body: 'It grew out of the system we built and maintain for an auto parts plant. Today that experience lives in **Dreambox Manufacturing**, a new platform installed in your plant.',
     cta: 'Book a demo',
     secondary: 'See the case study',
+    more: 'Explore the platform',
+    modulesTitle: 'A platform that fits your plant',
+    video: {
+      lang: 'en',
+      label: 'Dreambox Manufacturing in 35 seconds',
+      play: 'Watch video · 35 s',
+      replay: 'Watch again',
+      transcript:
+        "Narration: Your plant's information, scattered across aging systems. One platform, installed at your plant. Every module comes from a real process. With PPAP, every part number has its own file, and documents are ready for the customer. With Tooling, everything is captured on the floor, from a kiosk. Every action stays in its history. On-premise, by module, and built for Tier 1 and 2 suppliers. Over ten years on the shop floor. Book a demo. On screen: PPAP shows the status of every element. On-premise: your data stays on your server and operations don't depend on the internet. By module: adopt only what you need. Tier 1 and 2: built for the quality requirements of automotive suppliers.",
+    },
     facts: [
       { value: 'Tier 1 & 2', label: 'Built for the quality requirements of automotive suppliers.' },
       { value: 'On-premise', label: "One installation per site. Your data stays on your server and operations don't depend on the internet." },

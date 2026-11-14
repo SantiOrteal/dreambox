@@ -27,7 +27,15 @@ const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
 const LANGS = Object.keys(dictionaries)
 
 // Archivo de salida de cada ruta (Netlify sirve /privacidad desde privacidad.html y /en/ desde en/index.html).
-const files = { '/': 'index.html', '/privacidad': 'privacidad.html', '/en/': 'en/index.html', '/en/privacy': 'en/privacy.html' }
+const files = {
+  '/': 'index.html',
+  '/privacidad': 'privacidad.html',
+  '/manufactura': 'manufactura.html',
+  '/en/': 'en/index.html',
+  '/en/privacy': 'en/privacy.html',
+  '/en/manufacturing': 'en/manufacturing.html',
+}
+const PAGES = ['home', 'manufacturing', 'privacy']
 
 // "<" escapado dentro del JSON-LD para que no pueda cerrar la etiqueta <script>.
 const escapedLt = String.fromCharCode(92) + 'u003c'
@@ -38,8 +46,8 @@ function headMeta(page, lang) {
   const m = t.meta
   const isHome = page === 'home'
   const url = siteUrl + t.paths[page]
-  const title = isHome ? m.title : m.privacyTitle
-  const description = isHome ? m.description : m.privacyDescription
+  const title = { home: m.title, manufacturing: m.manufacturingTitle, privacy: m.privacyTitle }[page]
+  const description = { home: m.description, manufacturing: m.manufacturingDescription, privacy: m.privacyDescription }[page]
   const alternates = LANGS.map(
     (l) => `<link rel="alternate" hreflang="${dictionaries[l].locale}" href="${siteUrl}${dictionaries[l].paths[page]}" />`,
   )
@@ -71,7 +79,7 @@ function headMeta(page, lang) {
 }
 
 for (const lang of LANGS) {
-  for (const page of ['home', 'privacy']) {
+  for (const page of PAGES) {
     const t = dictionaries[lang]
     const { title, tags } = headMeta(page, lang)
     const jsonLd =
@@ -95,7 +103,7 @@ for (const lang of LANGS) {
 // Sitemap con las versiones de cada página enlazadas entre sí (hreflang).
 const today = new Date().toISOString().slice(0, 10)
 const urls = []
-for (const page of ['home', 'privacy']) {
+for (const page of PAGES) {
   for (const lang of LANGS) {
     const links = LANGS.map(
       (l) => `    <xhtml:link rel="alternate" hreflang="${dictionaries[l].locale}" href="${siteUrl}${dictionaries[l].paths[page]}" />`,
@@ -104,8 +112,8 @@ for (const page of ['home', 'privacy']) {
     <loc>${siteUrl}${dictionaries[lang].paths[page]}</loc>
 ${links}
     <lastmod>${today}</lastmod>
-    <changefreq>${page === 'home' ? 'monthly' : 'yearly'}</changefreq>
-    <priority>${page === 'home' ? '1.0' : '0.3'}</priority>
+    <changefreq>${page === 'privacy' ? 'yearly' : 'monthly'}</changefreq>
+    <priority>${{ home: '1.0', manufacturing: '0.8', privacy: '0.3' }[page]}</priority>
   </url>`)
   }
 }

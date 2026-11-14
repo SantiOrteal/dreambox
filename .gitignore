@@ -35,3 +35,8 @@ skills-lock.json
 
 # Documentación interna (por ahora solo local, no se sube)
 docs/
+
+# Render del video (dependencias aparte; los archivos finales van en public/media)
+video/still-*.jpg
+video/voz/narracion-*.wav
+video/voz/prueba-*.mp4

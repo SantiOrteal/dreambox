@@ -2,6 +2,7 @@ import { motion } from 'motion/react'
 import { Check, ChevronRight } from 'lucide-react'
 import { useT } from '../../i18n'
 import HeroTitle from './HeroTitle'
+import Magnetic from '../Magnetic'
 import { EASE } from './constants'
 
 // Aparece mientras el título termina de revelarse.
@@ -37,9 +38,11 @@ export default function HeroCopy({ style }) {
       </motion.p>
 
       <motion.div {...rise(0.85)} className="mt-7 max-sm:[@media(max-height:620px)]:mt-4 [@media(min-width:640px)_and_(max-height:800px)]:mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 sm:gap-x-8">
-        <a href="#contacto" className="btn-primary px-5 py-3 text-[16px] sm:px-6 sm:text-[17px]">
-          {t.common.cta}
-        </a>
+        <Magnetic>
+          <a href="#contacto" className="btn-primary px-5 py-3 text-[16px] sm:px-6 sm:text-[17px]">
+            {t.common.cta}
+          </a>
+        </Magnetic>
         <a href="#servicios" className="link text-[16px] sm:text-[17px]">
           {t.hero.secondary} <ChevronRight className="h-4 w-4" />
         </a>

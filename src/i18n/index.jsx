@@ -2,7 +2,7 @@ import { createContext, useContext } from 'react'
 import es from './es'
 import en from './en'
 
-// Idiomas del sitio. Español en "/" y "/privacidad"; inglés en "/en/" y "/en/privacy".
+// Idiomas del sitio. Español en "/", "/privacidad" y "/manufactura"; inglés en "/en/", "/en/privacy" y "/en/manufacturing".
 export const dictionaries = { es, en }
 export const LANGS = ['es', 'en']
 
@@ -23,7 +23,11 @@ export function useT() {
 // Qué página e idioma corresponden a una ruta.
 export function routeFromPath(pathname) {
   const lang = /^\/en(\/|$)/.test(pathname) ? 'en' : 'es'
-  const page = /\/(privacidad|privacy)(\.html|\/)?$/.test(pathname) ? 'privacy' : 'home'
+  const page = /\/(privacidad|privacy)(\.html|\/)?$/.test(pathname)
+    ? 'privacy'
+    : /\/(manufactura|manufacturing)(\.html|\/)?$/.test(pathname)
+      ? 'manufacturing'
+      : 'home'
   return { lang, page }
 }
 
